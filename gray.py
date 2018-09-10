@@ -52,5 +52,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         nonZero = cv2.findNonZero(edges)
         print(nonZero)
         np.savetxt('output.txt',nonZero,fmt="%s")
+        cv2.imwrite('output.png',edges)
         break
 ##    cv2.destroyAllWindows()
