@@ -1,7 +1,7 @@
 from multiprocessing import Process, Pipe, Queue
-from queue import Queue, Empty
+import time
 
-def camera(queue):
+def camera(stopQueue,objectQueue):
     import time
     time1 = time.time()
     import cv2
@@ -99,7 +99,8 @@ def camera(queue):
 
         # capture frames from camera
         for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-                
+
+        
             # image array, try do processing here?
             image = frame.array
 
@@ -183,76 +184,94 @@ def camera(queue):
                 pwma.stop()
                 pwmb.stop()
                 break
-                
+
+
+            if(objectQueue.empty()):
+                pass
+            else:
+                objectFlag = objectQueue.get_nowait()
+                print("object queue content: ",objectFlag)
+                if(objectFlag == "obstacle"):
+                    print("stop car")
+
+                    
         time2 = time.time()
         print ('Elapsed time : ', time2-time1,'secs')
         GPIO.cleanup() #important to have to reset the GPIOs
-        queue.put("stop ultrasonic")
+        stopQueue.put_nowait("stop ultrasonic")
         
 
 
-def ultrasonic(queue):
+def ultrasonic(stopQueue, objectQueue):
     import time
     import RPi.GPIO as GPIO
     
     GPIO.setwarnings(False) # no gpio warnings
     GPIO.setmode(GPIO.BCM)
-    US_trigger = 26
-    US_echo = 19
+    trigger = 26
+    echo = 19
 
-    GPIO.setup(US_trigger, GPIO.OUT)
-    GPIO.setup(US_echo, GPIO.IN)
+    GPIO.setup(trigger, GPIO.OUT)
+    GPIO.setup(echo, GPIO.IN)
+
+    obstacleDist = 20.0
 
     def distance():
         # set Trigger to HIGH
-        GPIO.output(US_trigger, True)
+        GPIO.output(trigger, True)
      
         # set Trigger after 10microseconds to LOW
         time.sleep(0.00001)
-        GPIO.output(US_trigger, False)
+        GPIO.output(trigger, False)
      
         StartTime = time.time()
         StopTime = time.time()
      
         # save StartTime
-        while GPIO.input(US_echo) == 0:
+        while GPIO.input(echo) == 0:
             StartTime = time.time()
      
         # save time of arrival
-        while GPIO.input(US_echo) == 1:
+        while GPIO.input(echo) == 1:
             StopTime = time.time()
      
         # time difference between start and arrival
         TimeElapsed = StopTime - StartTime
         # multiply with the sonic speed (34300 cm/s)
         # and divide by 2, because there and back
-        distance = (TimeElapsed * 34300) / 2
-     
+        distance = (TimeElapsed * 34300) / 2 
         return distance
+    
     if __name__ == '__main__':
         while True:
-            try:
-                print("checking queue")
-                stopFlag = queue.get(block=False)
+            
+            if(stopQueue.empty()):
+                dist = distance()
+                print ("Measured Distance = %.1f cm" % dist)          
+                if(dist <= obstacleDist):
+                    print("Obstacle detected")
+                    objectQueue.put_nowait("obstacle")
+                else:
+                    pass
+                time.sleep(0.5)
+            else:
+                stopFlag = stopQueue.get_nowait()
                 print("queue content: ",stopFlag)
                 if(stopFlag == "stop ultrasonic"):
                     print("Stop measurement")
                     GPIO.cleanup()
                     break
-            except Empty:
-                print("do calculation")
-                dist = distance()
-                print ("Measured Distance = %.1f cm" % dist)
-                time.sleep(0.5)
 
 if __name__ == '__main__':
 
     from time import sleep
 
-    queue = Queue()
+    stopQueue = Queue()
+    objectQueue = Queue()
     
-    us = Process(target=ultrasonic,args=(queue,))
-    us.start()
-    camera = Process(target=camera, args=(queue,))
+    ultrasonic = Process(target=ultrasonic,args=((stopQueue),(objectQueue)))
+    ultrasonic.start()
+    camera = Process(target=camera, args=((stopQueue),(objectQueue)))
     camera.start()
+
     
