@@ -14,6 +14,127 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
     def nothing(x):
         pass
 
+    def distFromCenter (nonZero, lengthOfNonZero):
+        criticalY = -1
+        total = 0
+        count = 0
+        
+        # retrieve critical Y value and break loop
+        for counter in range(0, lengthOfNonZero):
+            if(criticalY != -1):
+                break
+            if(counter == 0):
+                prevY = nonZero[counter][0][1]
+            else:
+                currentY = nonZero[counter][0][1]
+                diffY = currentY - prevY
+                if(diffY == 0):
+                    count = 0
+                else:
+                    # difference of 1 between previous and current Y
+                    if(count == 1):
+                        print("critical Y value is: ",prevY)
+                        criticalX1 = nonZero[counter-1][0][0]
+                        criticalX2 = nonZero[counter-1][0][0]
+                        print("critical X value is: ",criticalX1)
+                        criticalY = 0
+                        indexY = counter - 1 
+                        break
+                    else:
+                        prevY = currentY
+                        count += 1
+
+        # only add if X value is within critical range (first half range)
+        print(indexY)
+        for counter in range(indexY,-1,-1):
+            if(criticalY == -1):
+                break
+            else:
+                currentX1 = nonZero[counter][0][0]
+                diffX1 = currentX1 - criticalX1
+                if(diffX1 >= -3 and diffX1 <= 3):
+                    total += currentX1
+                    criticalX1 = currentX1
+
+        # only add if X value is within critical range (second half range)
+        for counter in range(indexY+1,lengthOfNonZero):
+            if(criticalY == -1):
+                break
+            else:
+                currentX2 = nonZero[counter][0][0]
+                diffX2 = currentX2 - criticalX2
+                if(diffX2 >= -3 and diffX2 <= 3):
+                    total += currentX2
+                    criticalX2 = currentX2
+        return total
+
+    def keyInput (key):
+        if key == 82:
+            print ('up')
+    ##            GPIO.output(PWMA,1)
+            pwma.start(varRight)
+            GPIO.output(AIN1,1)
+            GPIO.output(AIN2,0)
+    ##            GPIO.output(PWMB,1)
+            pwmb.start(varLeft)
+            GPIO.output(BIN1,1)
+            GPIO.output(BIN2,0)
+            print("left: " ,varLeft)
+            print("right: " ,varRight)
+            
+        if key == 84:
+            print ('down')
+    ##            GPIO.output(PWMA,1)
+            pwma.start(varRight)
+            GPIO.output(AIN1,0)
+            GPIO.output(AIN2,1)
+    ##            GPIO.output(PWMB,1)
+            pwmb.start(varLeft)
+            GPIO.output(BIN1,0)
+            GPIO.output(BIN2,1)
+            print("left: " ,varLeft)
+            print("right: " ,varRight)
+
+        if key == ord("t"):
+            varLeft += 0.1
+            print("left: " + "%.1f" %varLeft)
+            print("right: " + "%.1f" %varRight)
+            
+        if key == ord("g"):
+            varLeft -= 0.1
+            print("left: " + "%.1f" %varLeft)
+            print("right: " + "%.1f" %varRight)
+            
+        if key == ord("y"):
+            varRight += 0.1
+            print("left: " + "%.1f" %varLeft)
+            print("right: " + "%.1f" %varRight)
+            
+        if key == ord("h"):
+            varRight -= 0.1
+            print("left: " + "%.1f" %varLeft)
+            print("right: " + "%.1f" %varRight)
+            
+        # stop movement if keyboard p is pressed
+        if key == ord("p"):
+            print('pause')
+            pwma.stop()
+            pwmb.stop()
+
+        # exit from loop if keyboard q is pressed
+        if key == ord("q"):
+            print('quit')
+            pwma.stop()
+            pwmb.stop()
+            nonZeroLeft = cv2.findNonZero(leftMask)
+            nonZeroRight = cv2.findNonZero(rightMask)
+            
+            stopQueue.put_nowait("stop ultrasonic")
+            cameraLeftQueue.put_nowait(nonZeroLeft)
+            cameraRightQueue.put_nowait(nonZeroRight)
+            return True
+        return False
+
     if __name__ == '__main__':
 
         #Motor driver pins
@@ -55,36 +176,16 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
         # colour settings
         white = (255,255,255)
 
-        # main logic variables
+        # main logic parameters
         leftX1 = 0
         leftY1 = 0
         leftX2 = 319
         leftY2 = 479
 
-        totalLeft = 0
-        prevLeftY = 0
-        currentLeftY = 0
-        diffLeftY = 0
-        countLeft = 0
-        indexY = 0
-
-        currentLeftX1 = 0
-        currentLeftX2 = 0
-        diffLeftX1 = 0
-        diffLeftX2 = 0
-        criticalLeftX1 = -1
-        criticalLeftX2 = -1
-
-        # Flags
-        criticalLeftY = -1
-
-
         rightX1 = 320
         rightY1 = 0
         rightX2 = 639
         rightY2 = 479
-
-        totalRight = 0
 
         dataLeftX = ['Left X Values']
         dataLeftY = ['Left Y Values']
@@ -127,14 +228,14 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
         # capture frames from camera
         for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
-        
-            # image array, try do processing here?
+##            cannyMin = cv2.getTrackbarPos('Canny Min','window')
+##            cannyMax = cv2.getTrackbarPos('Canny Max','window')
+            
+            # image array, processing done here
             image = frame.array
 
             hsv = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
             
-##            cannyMin = cv2.getTrackbarPos('Canny Min','window')
-##            cannyMax = cv2.getTrackbarPos('Canny Max','window')
             edges = cv2.Canny(hsv, cannyMin ,cannyMax)
 
         ##    edges = cv2.line(edges, middleBottom, middleTop, white, 1)
@@ -159,65 +260,22 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
                 pass
             
             else:
-                # retrieve critical Y value and break loop
-                for counter in range(0, len(nonZeroLeft)):
-                    if(criticalLeftY != -1):
-                        break
-                    if(counter == 0):
-                        prevLeftY = nonZeroLeft[counter][0][1]
-                    else:
-                        currentLeftY = nonZeroLeft[counter][0][1]
-                        diffLeftY = currentLeftY - prevLeftY
-                        if(diffLeftY == 0):
-                            countLeft = 0
-                        else:
-                            if(countLeft == 1):
-                                print("critical Y value is: ",prevLeftY)
-                                criticalLeftX1 = nonZeroLeft[counter][0][0]
-                                criticalLeftX2 = nonZeroLeft[counter][0][0]
-                                print("critical X value is: ",criticalLeftX1)
-                                criticalLeftY = 0
-                                indexY = counter
-                                break
-                            else:
-                                prevLeftY = currentLeftY
-                                countLeft += 1
+                lengthNonZeroLeft = len(nonZeroLeft)
+                lengthNonZeroRight = len(nonZeroRight)
+                
+                print("length of non zero arrray left: ", lengthNonZeroLeft ," length of non zero arrray right: ", lengthNonZeroRight)
 
-                # only add if X value is within critical range (first half range)
-                print(indexY)
-                for counter in range(indexY,-1,-1):
-                    if(criticalLeftY == -1):
-                        break
-                    else:
-                        currentLeftX1 = nonZeroLeft[counter][0][0]
-                        diffLeftX1 = currentLeftX1 - criticalLeftX1
-            ##            print("diff: ",diffLeftX)
-            ##            print("current: ",currentLeftX)
-            ##            print("critical: ",criticalLeftX)
-                        if(diffLeftX1 >= -3 and diffLeftX1 <= 3):
-                            totalLeft += currentLeftX1
-                            criticalLeftX1 = currentLeftX1
-            ##                print("add X1")
-
-
-                for counter in range(indexY+1,len(nonZeroLeft)):
-                    if(criticalLeftY == -1):
-                        break
-                    else:
-                        currentLeftX2 = nonZeroLeft[counter][0][0]
-                        diffLeftX2 = currentLeftX2 - criticalLeftX2
-                        if(diffLeftX2 >= -3 and diffLeftX2 <= 3):
-                            totalLeft += currentLeftX2
-                            criticalLeftX2 = currentLeftX2
-            ##                print("add X2")
-            ##                
-            ##    print("totalLeftX2: ", totalLeft)
+                totalLeft = distFromCenter (nonZeroLeft, lengthNonZeroLeft)
 
                 print("total Left: ",totalLeft)
-                criticalLeftY = -1
-                print("left: ",leftX2 - (totalLeft/len(nonZeroLeft)))
+                print("left: ",leftX2 - (totalLeft/cameraHeight))
                 totalLeft = 0
-                        
+
+                totalRight = distFromCenter (nonZeroRight, lengthNonZeroRight)
+
+                print("total right: ",totalRight)
+                print("right: ",(totalRight/cameraHeight)- rightX1)
+                totalRight = 0            
             
 
             # count number of pixels on masked image
@@ -235,71 +293,11 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
             # wait for input
             key = cv2.waitKey(1) & 0xFF
             
-            if key == 82:
-                print ('up')
-    ##            GPIO.output(PWMA,1)
-                pwma.start(varRight)
-                GPIO.output(AIN1,1)
-                GPIO.output(AIN2,0)
-    ##            GPIO.output(PWMB,1)
-                pwmb.start(varLeft)
-                GPIO.output(BIN1,1)
-                GPIO.output(BIN2,0)
-                print("left: " ,varLeft)
-                print("right: " ,varRight)
-                
-            if key == 84:
-                print ('down')
-    ##            GPIO.output(PWMA,1)
-                pwma.start(varRight)
-                GPIO.output(AIN1,0)
-                GPIO.output(AIN2,1)
-    ##            GPIO.output(PWMB,1)
-                pwmb.start(varLeft)
-                GPIO.output(BIN1,0)
-                GPIO.output(BIN2,1)
-                print("left: " ,varLeft)
-                print("right: " ,varRight)
-
-            if key & 0xFF == ord("t"):
-                varLeft += 0.1
-                print("left: " + "%.1f" %varLeft)
-                print("right: " + "%.1f" %varRight)
-                
-            if key & 0xFF == ord("g"):
-                varLeft -= 0.1
-                print("left: " + "%.1f" %varLeft)
-                print("right: " + "%.1f" %varRight)
-                
-            if key & 0xFF == ord("y"):
-                varRight += 0.1
-                print("left: " + "%.1f" %varLeft)
-                print("right: " + "%.1f" %varRight)
-                
-            if key & 0xFF == ord("h"):
-                varRight -= 0.1
-                print("left: " + "%.1f" %varLeft)
-                print("right: " + "%.1f" %varRight)
-                
-            # stop movement if keyboard p is pressed
-            if key & 0xFF == ord("p"):
-                print('pause')
-                pwma.stop()
-                pwmb.stop()
-
-            # exit from loop if keyboard q is pressed
-            if key & 0xFF == ord("q"):
-                print('quit')
-                pwma.stop()
-                pwmb.stop()
-                nonZeroLeft = cv2.findNonZero(leftMask)
-                nonZeroRight = cv2.findNonZero(rightMask)
-                
-                stopQueue.put_nowait("stop ultrasonic")
-                cameraLeftQueue.put_nowait(nonZeroLeft)
-                cameraRightQueue.put_nowait(nonZeroRight)
-                
+            breakLoop = keyInput(key)
+            if(breakLoop == True):
                 break
+            else:
+                pass
 
 
             if(objectQueue.empty()):
