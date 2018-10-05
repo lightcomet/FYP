@@ -1,7 +1,7 @@
-from multiprocessing import Process, Pipe, Queue
+from multiprocessing import Process, Queue
 import time
 
-def camera(stopQueue,objectQueue):
+def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
     import time
     time1 = time.time()
     import cv2
@@ -9,28 +9,10 @@ def camera(stopQueue,objectQueue):
     from picamera import PiCamera
     from picamera.array import PiRGBArray
     import RPi.GPIO as GPIO
+    import csv
 
-    def regionOfInterest(image, vertices):
-        #define blank matrix matching image height & width
-        mask = np.zeros_like(image)
-        #retrieve number of color channels of image
-    ##    channel_count = image.shape[2]
-        #create a match color with same color channel counts
-    ##    match_mask_color = (255,) * channel_count
-        match_mask_color = 255
-        #fill inside the polygon
-        cv2.fillPoly (mask,vertices,match_mask_color)
-        #return image only where mask pixel match
-        masked_image = cv2.bitwise_and (image, mask)
-        return masked_image
-
-    def colorOfInterest(image,lower_col,upper_col):
-        image = cv2.GaussianBlur(image,(5,5),0)
-        hsv = cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
-        mask = cv2.inRange(hsv, lower_red, upper_red)
-        res = cv2.bitwise_and(image,image, mask = mask)
-        edges = cv2.Canny(res, 300, 500)
-        return edges
+    def nothing(x):
+        pass
 
     if __name__ == '__main__':
 
@@ -43,8 +25,8 @@ def camera(stopQueue,objectQueue):
         BIN2 = 6
 
         #default motor speed
-        varLeft = 40
-        varRight = 40
+        varLeft = 35
+        varRight = 35
 
         GPIO.setwarnings(False) # no gpio warnings
         GPIO.setmode(GPIO.BCM)
@@ -66,21 +48,55 @@ def camera(stopQueue,objectQueue):
         GPIO.output(BIN1,0)
         GPIO.output(BIN2,0)
 
+        #camera resolution
         cameraHeight = 480
         cameraWidth = 640
 
         # colour settings
-        blue = (255,255,255)
-        # cardboard color
-        lower_red = np.array([130,60,60])
-        upper_red = np.array([170,255,255])
+        white = (255,255,255)
+
+        # main logic variables
+        leftX1 = 0
+        leftY1 = 0
+        leftX2 = 319
+        leftY2 = 479
+
+        totalLeft = 0
+        prevLeftY = 0
+        currentLeftY = 0
+        diffLeftY = 0
+        countLeft = 0
+        indexY = 0
+
+        currentLeftX1 = 0
+        currentLeftX2 = 0
+        diffLeftX1 = 0
+        diffLeftX2 = 0
+        criticalLeftX1 = -1
+        criticalLeftX2 = -1
+
+        # Flags
+        criticalLeftY = -1
+
+
+        rightX1 = 320
+        rightY1 = 0
+        rightX2 = 639
+        rightY2 = 479
+
+        totalRight = 0
+
+        dataLeftX = ['Left X Values']
+        dataLeftY = ['Left Y Values']
+        dataRightX = ['Right X Values']
+        dataRightY = ['Right Y Values']
+
         #coordinate settings
         middleBottom = (int(cameraWidth/2),int(cameraHeight))
         middleTop = (int(cameraWidth/2),int(cameraHeight-cameraHeight))
         print(middleBottom)
         print(middleTop)
 
-        roi_vertices = [(0,cameraHeight),(int(cameraWidth/2),int(cameraHeight-cameraHeight)),(cameraWidth,cameraHeight)]
 
         # camera settings
         setResolution = (cameraWidth,cameraHeight)
@@ -90,12 +106,23 @@ def camera(stopQueue,objectQueue):
         camera.framerate = 60
         rawCapture = PiRGBArray(camera, size=setResolution)
 
+        # canny min & max
+        cannyMin = 80
+        cannyMax = 100
+
         # set up time
         time3 = time.time()
         print ('Set up time : ', time3-time1,'secs')
 
+
         # camera warm up
         time.sleep(2)
+        
+##        cv2.namedWindow('window')
+##        cv2.createTrackbar('Canny Min','window',0,900,nothing)
+##        cv2.createTrackbar('Canny Max','window',0,900,nothing)
+##        cv2.setTrackbarPos('Canny Min','window',80)
+##        cv2.setTrackbarPos('Canny Max','window',100)
 
         # capture frames from camera
         for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
@@ -104,21 +131,103 @@ def camera(stopQueue,objectQueue):
             # image array, try do processing here?
             image = frame.array
 
-            output = image.copy()
+            hsv = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
             
-            image = cv2.line(image, middleBottom, middleTop, blue, 5)
+##            cannyMin = cv2.getTrackbarPos('Canny Min','window')
+##            cannyMax = cv2.getTrackbarPos('Canny Max','window')
+            edges = cv2.Canny(hsv, cannyMin ,cannyMax)
 
-            gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-            canny_image = cv2.Canny(gray_image, 300, 500)
+        ##    edges = cv2.line(edges, middleBottom, middleTop, white, 1)
+
+            cv2.imshow('mask',hsv)
+        ##    cv2.imshow('edges',edges)
+
+            mask = np.zeros(edges.shape, dtype="uint8")
+            cv2.rectangle(mask, (leftX1,leftY1), (leftX2,leftY2),(255,255,255),-1)
+
+            mask2 = np.zeros(edges.shape, dtype="uint8")
+            cv2.rectangle(mask2, (rightX1,rightY1), (rightX2,rightY2),(255,255,255),-1)
+
+            leftMask = cv2.bitwise_and(edges,mask)
+            rightMask = cv2.bitwise_and(edges,mask2)
+
+            nonZeroLeft = cv2.findNonZero(leftMask) #2nd 0 is 1st array pair, 3rd 0 is 1st item in array
+            nonZeroRight = cv2.findNonZero(rightMask) #2nd 0 is 1st array pair, 3rd 0 is 1st item in array
             
-            cropImage = regionOfInterest(canny_image, np.array([roi_vertices],np.int32),)
-    ##        detectColor = colorOfInterest(cropImage, lower_red, upper_red)
-    ##        cv2.addWeighted(detectColor, 0.5, image, 0.5 , 0.0, output)
+            #check if empty
+            if(nonZeroLeft is None or nonZeroRight is None):
+                pass
             
-            # show frame
-            cv2.imshow("Image", image)
-            cv2.imshow("Crop", cropImage)
-    ##        cv2.imshow("Color", detectColor)
+            else:
+                # retrieve critical Y value and break loop
+                for counter in range(0, len(nonZeroLeft)):
+                    if(criticalLeftY != -1):
+                        break
+                    if(counter == 0):
+                        prevLeftY = nonZeroLeft[counter][0][1]
+                    else:
+                        currentLeftY = nonZeroLeft[counter][0][1]
+                        diffLeftY = currentLeftY - prevLeftY
+                        if(diffLeftY == 0):
+                            countLeft = 0
+                        else:
+                            if(countLeft == 1):
+                                print("critical Y value is: ",prevLeftY)
+                                criticalLeftX1 = nonZeroLeft[counter][0][0]
+                                criticalLeftX2 = nonZeroLeft[counter][0][0]
+                                print("critical X value is: ",criticalLeftX1)
+                                criticalLeftY = 0
+                                indexY = counter
+                                break
+                            else:
+                                prevLeftY = currentLeftY
+                                countLeft += 1
+
+                # only add if X value is within critical range (first half range)
+                print(indexY)
+                for counter in range(indexY,-1,-1):
+                    if(criticalLeftY == -1):
+                        break
+                    else:
+                        currentLeftX1 = nonZeroLeft[counter][0][0]
+                        diffLeftX1 = currentLeftX1 - criticalLeftX1
+            ##            print("diff: ",diffLeftX)
+            ##            print("current: ",currentLeftX)
+            ##            print("critical: ",criticalLeftX)
+                        if(diffLeftX1 >= -3 and diffLeftX1 <= 3):
+                            totalLeft += currentLeftX1
+                            criticalLeftX1 = currentLeftX1
+            ##                print("add X1")
+
+
+                for counter in range(indexY+1,len(nonZeroLeft)):
+                    if(criticalLeftY == -1):
+                        break
+                    else:
+                        currentLeftX2 = nonZeroLeft[counter][0][0]
+                        diffLeftX2 = currentLeftX2 - criticalLeftX2
+                        if(diffLeftX2 >= -3 and diffLeftX2 <= 3):
+                            totalLeft += currentLeftX2
+                            criticalLeftX2 = currentLeftX2
+            ##                print("add X2")
+            ##                
+            ##    print("totalLeftX2: ", totalLeft)
+
+                print("total Left: ",totalLeft)
+                criticalLeftY = -1
+                print("left: ",leftX2 - (totalLeft/len(nonZeroLeft)))
+                totalLeft = 0
+                        
+            
+
+            # count number of pixels on masked image
+        ##    nonZeroLeft = cv2.countNonZero(leftMask)
+        ##    nonZeroRight = cv2.countNonZero(rightMask)
+            
+        ##    print("left: ",nonZeroLeft," right: ",nonZeroRight)
+            
+            cv2.imshow('mask1',leftMask)
+            cv2.imshow('mask2',rightMask)
                     
             # clear stream in preparation for next frame
             rawCapture.truncate(0)
@@ -183,6 +292,13 @@ def camera(stopQueue,objectQueue):
                 print('quit')
                 pwma.stop()
                 pwmb.stop()
+                nonZeroLeft = cv2.findNonZero(leftMask)
+                nonZeroRight = cv2.findNonZero(rightMask)
+                
+                stopQueue.put_nowait("stop ultrasonic")
+                cameraLeftQueue.put_nowait(nonZeroLeft)
+                cameraRightQueue.put_nowait(nonZeroRight)
+                
                 break
 
 
@@ -198,7 +314,6 @@ def camera(stopQueue,objectQueue):
         time2 = time.time()
         print ('Elapsed time : ', time2-time1,'secs')
         GPIO.cleanup() #important to have to reset the GPIOs
-        stopQueue.put_nowait("stop ultrasonic")
         
 
 
@@ -264,14 +379,49 @@ def ultrasonic(stopQueue, objectQueue):
 
 if __name__ == '__main__':
 
-    from time import sleep
 
     stopQueue = Queue()
     objectQueue = Queue()
+    cameraLeftQueue = Queue()
+    cameraRightQueue = Queue()
     
-    ultrasonic = Process(target=ultrasonic,args=((stopQueue),(objectQueue)))
+    ultrasonic = Process(target=ultrasonic,args=( (stopQueue),(objectQueue) ) )
     ultrasonic.start()
-    camera = Process(target=camera, args=((stopQueue),(objectQueue)))
+    camera = Process( target=camera, args=( (stopQueue),(objectQueue),(cameraLeftQueue), (cameraRightQueue) ) )
     camera.start()
 
-    
+    while(camera.is_alive()):
+        pass
+    else:
+        nonZeroLeft = cameraLeftQueue.get_nowait()
+        nonZeroRight = cameraRightQueue.get_nowait()
+                        
+        saveOutput = input("Save File? Type 'Y' for yes and 'N' for no \n")
+        if(saveOutput == "Y" or saveOutput == "y"):
+            
+            for counter in range (0, len(nonZeroLeft)):                
+                dataLeftX.append(nonZeroLeft[counter][0][0])
+                dataLeftY.append(nonZeroLeft[counter][0][1])
+                
+            for counter in range (0, len(nonZeroRight)):
+                dataRightX.append(nonZeroRight[counter][0][0])
+                dataRightY.append(nonZeroRight[counter][0][1])
+
+##            print(dataLeftX)
+##            print(dataLeftY)
+##            print(dataRightX)
+##            print(dataRightY)
+
+            timeString = time.strftime("%Y%m%d-%H%M%S")
+
+            with open ('/home/pi/Desktop/FYP/Data/%s.csv' %timeString,'w',newline='') as csvfile:
+                writer = csv.writer(csvfile, delimiter = ',')
+                writer.writerow(dataLeftX)
+                writer.writerow(dataLeftY)
+                writer.writerow(dataRightX)
+                writer.writerow(dataRightY)
+                
+            cv2.imwrite('/home/pi/Desktop/FYP/Data/%s.png' %timeString ,edges)
+            print("Output is saved")
+        else:
+            print("Output not saved")
