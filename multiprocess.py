@@ -3,8 +3,14 @@ import time
 import os
 import csv
 
+def masking (image, Xaxis):
+    leftMask = image[0:480, 0:int(Xaxis/2)]
+    rightMask = image[0:480, int(Xaxis/2):int(Xaxis)]
+    return leftMask, rightMask
+
 def distFromCenter (leftOrRight, appendData, nonZero, lengthOfNonZero):
         criticalY = -1
+        indexY = 0
         total = 0
         count = 0
         dataLeftX = ['Left X Values']
@@ -270,18 +276,61 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
             cv2.imshow('mask',hsv)
         ##    cv2.imshow('edges',edges)
 
-            mask = np.zeros(edges.shape, dtype="uint8")
-            cv2.rectangle(mask, (leftX1,leftY1), (leftX2,leftY2),(255,255,255),-1)
+            leftMask = edges[0:480, 0:320]
+            rightMask = edges[0:480, 320:640]
 
-            mask2 = np.zeros(edges.shape, dtype="uint8")
-            cv2.rectangle(mask2, (rightX1,rightY1), (rightX2,rightY2),(255,255,255),-1)
-
-            leftMask = cv2.bitwise_and(edges,mask)
-            rightMask = cv2.bitwise_and(edges,mask2)
-
+            leftMask, rightMask = masking(edges, edges.shape[1])
+            
             nonZeroLeft = cv2.findNonZero(leftMask) #2nd 0 is 1st array pair, 3rd 0 is 1st item in array
             nonZeroRight = cv2.findNonZero(rightMask) #2nd 0 is 1st array pair, 3rd 0 is 1st item in array
-            
+
+            countZeroLeft = cv2.countNonZero(leftMask)
+            countZeroRight = cv2.countNonZero(rightMask)
+
+            if(countZeroLeft > countZeroRight):
+                print("more on left")
+                differenceLR = countZeroLeft - countZeroRight
+                if(differenceLR > countZeroRight):
+                    #check if smaller count side is just noise
+                    print("cl,cr,dlr", countZeroLeft, " ", countZeroRight, " ",differenceLR)
+                    if(countZeroRight <= 50):
+                        print("ignore right side")
+                        print("recursive")
+                        newLeftMask, newRightMask = masking(leftMask, leftMask.shape[1])
+                        print(newLeftMask.shape , newRightMask.shape)
+                else:
+                    print("minor difference between left and right, normal processing")
+            elif(countZeroRight > countZeroLeft):
+                print("more on right")
+                differenceRL = countZeroRight - countZeroLeft
+                if(differenceRL > countZeroLeft):
+                    #check if smaller count side is just noise
+                    print("cl,cr,drl", countZeroLeft, " ", countZeroRight, " ",differenceRL)
+                    if(countZeroLeft <= 50):
+                        print("ignore left side")
+                        print("recursive")
+                        newLeftMask, newRightMask = masking(rightMask, rightMask.shape[1])
+                        print(newLeftMask.shape , newRightMask.shape)
+                else:
+                    print("minor difference between left and right, normal processing")
+                
+            else:
+                if(countZeroRight <= 50 or countZeroLeft <= 50):
+                    print("empty")
+                else:
+                    print("cl,cr", countZeroLeft, " ", countZeroRight)
+                    print("both have same amount")
+                    print("normal")
+                    
+                    lengthNonZeroLeft = len(nonZeroLeft)
+                    lengthNonZeroRight = len(nonZeroRight)
+                    totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
+                    print("left: ",leftX2 - (totalLeft/cameraHeight))
+                    totalLeft = 0
+                    totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
+                    print("right: ",(totalRight/cameraHeight)- rightX1)
+                    totalRight = 0 
+
             #check if empty
             if(nonZeroLeft is None or nonZeroRight is None):
                 pass
