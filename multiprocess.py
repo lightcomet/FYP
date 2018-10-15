@@ -1,23 +1,17 @@
 from multiprocessing import Process, Queue
 import time
+import os
+import csv
 
-def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
-    import time
-    time1 = time.time()
-    import cv2
-    import numpy as np
-    from picamera import PiCamera
-    from picamera.array import PiRGBArray
-    import RPi.GPIO as GPIO
-    import csv
-
-    def nothing(x):
-        pass
-
-    def distFromCenter (nonZero, lengthOfNonZero):
+def distFromCenter (leftOrRight, appendData, nonZero, lengthOfNonZero):
         criticalY = -1
         total = 0
         count = 0
+        dataLeftX = ['Left X Values']
+        dataLeftY = ['Left Y Values']
+        dataRightX = ['Right X Values']
+        dataRightY = ['Right Y Values']
+        
         
         # retrieve critical Y value and break loop
         for counter in range(0, lengthOfNonZero):
@@ -33,10 +27,10 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
                 else:
                     # difference of 1 between previous and current Y
                     if(count == 1):
-                        print("critical Y value is: ",prevY)
+##                        print("critical Y value is: ",prevY)
                         criticalX1 = nonZero[counter-1][0][0]
                         criticalX2 = nonZero[counter-1][0][0]
-                        print("critical X value is: ",criticalX1)
+##                        print("critical X value is: ",criticalX1)
                         criticalY = 0
                         indexY = counter - 1 
                         break
@@ -45,7 +39,6 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
                         count += 1
 
         # only add if X value is within critical range (first half range)
-        print(indexY)
         for counter in range(indexY,-1,-1):
             if(criticalY == -1):
                 break
@@ -55,6 +48,13 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
                 if(diffX1 >= -3 and diffX1 <= 3):
                     total += currentX1
                     criticalX1 = currentX1
+                    if(appendData == True):
+                        if(leftOrRight == "left"):
+                            dataLeftX.append(currentX1)
+                            dataLeftY.append(nonZero[counter][0][1])
+                        else:
+                            dataRightX.append(currentX1)
+                            dataRightY.append(nonZero[counter][0][1])
 
         # only add if X value is within critical range (second half range)
         for counter in range(indexY+1,lengthOfNonZero):
@@ -66,7 +66,30 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
                 if(diffX2 >= -3 and diffX2 <= 3):
                     total += currentX2
                     criticalX2 = currentX2
-        return total
+                    if(appendData == True):
+                        if(leftOrRight == "left"):
+                            dataLeftX.append(currentX1)
+                            dataLeftY.append(nonZero[counter][0][1])
+                        else:
+                            dataRightX.append(currentX1)
+                            dataRightY.append(nonZero[counter][0][1])
+
+        return total, dataLeftX, dataLeftY, dataRightX, dataRightY
+
+def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue):
+
+    print("starting camera in progress...")
+    
+    import time
+    time1 = time.time()
+    import cv2
+    import numpy as np
+    from picamera import PiCamera
+    from picamera.array import PiRGBArray
+    import RPi.GPIO as GPIO
+
+    def nothing(x):
+        pass
 
     def keyInput (key):
         if key == 82:
@@ -132,6 +155,10 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
             stopQueue.put_nowait("stop ultrasonic")
             cameraLeftQueue.put_nowait(nonZeroLeft)
             cameraRightQueue.put_nowait(nonZeroRight)
+
+            timeString = time.strftime("%Y%m%d-%H%M%S")
+            cv2.imwrite('/home/pi/Desktop/FYP/Data/%s.png' %timeString ,edges)
+            imageQueue.put_nowait(timeString)
             return True
         return False
 
@@ -263,17 +290,17 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue):
                 lengthNonZeroLeft = len(nonZeroLeft)
                 lengthNonZeroRight = len(nonZeroRight)
                 
-                print("length of non zero arrray left: ", lengthNonZeroLeft ," length of non zero arrray right: ", lengthNonZeroRight)
+##                print("length of non zero arrray left: ", lengthNonZeroLeft ," length of non zero arrray right: ", lengthNonZeroRight)
 
-                totalLeft = distFromCenter (nonZeroLeft, lengthNonZeroLeft)
+                totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
 
-                print("total Left: ",totalLeft)
+##                print("total Left: ",totalLeft)
                 print("left: ",leftX2 - (totalLeft/cameraHeight))
                 totalLeft = 0
 
-                totalRight = distFromCenter (nonZeroRight, lengthNonZeroRight)
+                totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
 
-                print("total right: ",totalRight)
+##                print("total right: ",totalRight)
                 print("right: ",(totalRight/cameraHeight)- rightX1)
                 totalRight = 0            
             
@@ -360,9 +387,10 @@ def ultrasonic(stopQueue, objectQueue):
             
             if(stopQueue.empty()):
                 dist = distance()
-                print ("Measured Distance = %.1f cm" % dist)          
+##                print("Measured Distance = %.1f cm" % dist)       
                 if(dist <= obstacleDist):
                     print("Obstacle detected")
+                    print("Measured Distance = %.1f cm" % dist)
                     objectQueue.put_nowait("obstacle")
                 else:
                     pass
@@ -377,7 +405,7 @@ def ultrasonic(stopQueue, objectQueue):
 
 if __name__ == '__main__':
 
-
+    imageQueue = Queue()
     stopQueue = Queue()
     objectQueue = Queue()
     cameraLeftQueue = Queue()
@@ -385,7 +413,7 @@ if __name__ == '__main__':
     
     ultrasonic = Process(target=ultrasonic,args=( (stopQueue),(objectQueue) ) )
     ultrasonic.start()
-    camera = Process( target=camera, args=( (stopQueue),(objectQueue),(cameraLeftQueue), (cameraRightQueue) ) )
+    camera = Process( target=camera, args=( (stopQueue),(objectQueue),(cameraLeftQueue), (cameraRightQueue), (imageQueue) ) )
     camera.start()
 
     while(camera.is_alive()):
@@ -393,33 +421,58 @@ if __name__ == '__main__':
     else:
         nonZeroLeft = cameraLeftQueue.get_nowait()
         nonZeroRight = cameraRightQueue.get_nowait()
+
+        imagePath = imageQueue.get_nowait()
+
+        lengthNonZeroLeft = len(nonZeroLeft)
+        lengthNonZeroRight = len(nonZeroRight)
                         
         saveOutput = input("Save File? Type 'Y' for yes and 'N' for no \n")
         if(saveOutput == "Y" or saveOutput == "y"):
+
+            totalLeft, myDataLeftX, myDataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
+
+            totalRight, dataLeftX, dataLeftY, myDataRightX, myDataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
+
             
-            for counter in range (0, len(nonZeroLeft)):                
-                dataLeftX.append(nonZeroLeft[counter][0][0])
-                dataLeftY.append(nonZeroLeft[counter][0][1])
-                
-            for counter in range (0, len(nonZeroRight)):
-                dataRightX.append(nonZeroRight[counter][0][0])
-                dataRightY.append(nonZeroRight[counter][0][1])
+            
+##            for counter in range (0, len(nonZeroLeft)):                
+##                dataLeftX.append(nonZeroLeft[counter][0][0])
+##                dataLeftY.append(nonZeroLeft[counter][0][1])
+##                
+##            for counter in range (0, len(nonZeroRight)):
+##                dataRightX.append(nonZeroRight[counter][0][0])
+##                dataRightY.append(nonZeroRight[counter][0][1])
 
 ##            print(dataLeftX)
 ##            print(dataLeftY)
 ##            print(dataRightX)
 ##            print(dataRightY)
 
+            
+
             timeString = time.strftime("%Y%m%d-%H%M%S")
 
-            with open ('/home/pi/Desktop/FYP/Data/%s.csv' %timeString,'w',newline='') as csvfile:
+            newPath = os.path.join('/home/pi/Desktop/FYP/Data/'+timeString)
+
+            os.makedirs(newPath)
+
+            print(newPath)
+
+            csvPath = os.path.join(newPath+'/'+timeString+'.csv')
+            pngPath = os.path.join(newPath+'/'+timeString+'.png')
+
+            print(csvPath, pngPath)
+            
+            with open (csvPath,'w' , newline='') as csvfile:
                 writer = csv.writer(csvfile, delimiter = ',')
-                writer.writerow(dataLeftX)
-                writer.writerow(dataLeftY)
-                writer.writerow(dataRightX)
-                writer.writerow(dataRightY)
+                writer.writerow(myDataLeftX)
+                writer.writerow(myDataLeftY)
+                writer.writerow(myDataRightX)
+                writer.writerow(myDataRightY)
+            
                 
-            cv2.imwrite('/home/pi/Desktop/FYP/Data/%s.png' %timeString ,edges)
+            
             print("Output is saved")
         else:
             print("Output not saved")
