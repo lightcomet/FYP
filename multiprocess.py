@@ -25,15 +25,15 @@ def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, B
             elif(increaseOrDecrease == "decrease"):
                 varRight -= stepSize
 
-        pwma.start(varRight)
-        GPIO.output(AIN1,1)
-        GPIO.output(AIN2,0)
-        pwmb.start(varLeft)
-        GPIO.output(BIN1,1)
-        GPIO.output(BIN2,0)
-        print("forward")
-        print("left: " ,varLeft)
-        print("right: " ,varRight)
+            pwma.start(varRight)
+            GPIO.output(AIN1,1)
+            GPIO.output(AIN2,0)
+            pwmb.start(varLeft)
+            GPIO.output(BIN1,1)
+            GPIO.output(BIN2,0)
+            print("forward")
+            print("left: " ,varLeft)
+            print("right: " ,varRight)
         
     elif(direction == "down"):
             if(increaseOrDecrease == "none"):
@@ -46,15 +46,15 @@ def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, B
             elif(increaseOrDecrease == "decrease"):
                 varRight -= stepSize
 
-        pwma.start(varRight)
-        GPIO.output(AIN1,0)
-        GPIO.output(AIN2,1)
-        pwmb.start(varLeft)
-        GPIO.output(BIN1,0)
-        GPIO.output(BIN2,1)
-        print("backward")
-        print("left: " ,varLeft)
-        print("right: " ,varRight)
+            pwma.start(varRight)
+            GPIO.output(AIN1,0)
+            GPIO.output(AIN2,1)
+            pwmb.start(varLeft)
+            GPIO.output(BIN1,0)
+            GPIO.output(BIN2,1)
+            print("backward")
+            print("left: " ,varLeft)
+            print("right: " ,varRight)
     
     elif(direction == "stop"):
         pwma.stop()
@@ -358,10 +358,12 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
                         lengthNonZeroLeft = len(nonZeroLeft)
                         lengthNonZeroRight = len(nonZeroRight)
                         totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
-                        print("left: ",leftX2 - (totalLeft/cameraHeight))
+                        leftDiffFromCenter = leftX2 - (totalLeft/cameraHeight)
+                        print("left: ", leftDiffFromCenter)
                         totalLeft = 0
                         totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
-                        print("right: ",(totalRight/cameraHeight)- rightX1)
+                        rightDiffFromCenter = (totalRight/cameraHeight)
+                        print("right: ",rightDiffFromCenter)
                         totalRight = 0
 
                     rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
@@ -377,10 +379,12 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
                     lengthNonZeroLeft = len(nonZeroLeft)
                     lengthNonZeroRight = len(nonZeroRight)
                     totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
-                    print("left: ",leftX2 - (totalLeft/cameraHeight))
+                    leftDiffFromCenter = leftX2 - (totalLeft/cameraHeight)
+                    print("left: ", leftDiffFromCenter)
                     totalLeft = 0
                     totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
-                    print("right: ",(totalRight/cameraHeight)- rightX1)
+                    rightDiffFromCenter = (totalRight/cameraHeight)
+                    print("right: ",rightDiffFromCenter)
                     totalRight = 0
 
                     rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
@@ -409,10 +413,12 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
                     lengthNonZeroLeft = len(nonZeroLeft)
                     lengthNonZeroRight = len(nonZeroRight)
                     totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
-                    print("left: ",leftX2 - (totalLeft/cameraHeight))
+                    leftDiffFromCenter = leftX2 - (totalLeft/cameraHeight)
+                    print("left: ", leftDiffFromCenter)
                     totalLeft = 0
                     totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
-                    print("right: ",(totalRight/cameraHeight)- rightX1)
+                    rightDiffFromCenter = (totalRight/cameraHeight)
+                    print("right: ",rightDiffFromCenter)
                     totalRight = 0
 
                     rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
