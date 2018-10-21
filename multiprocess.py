@@ -4,6 +4,7 @@ import os
 import csv
 
 def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight):
+    import RPi.GPIO as GPIO
     if(direction == "left"):
         pwma.start(varRight)
         GPIO.output(AIN1,1)
@@ -34,6 +35,7 @@ def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, B
             print("forward")
             print("left: " ,varLeft)
             print("right: " ,varRight)
+            return varLeft, varRight
         
     elif(direction == "down"):
             if(increaseOrDecrease == "none"):
@@ -55,10 +57,12 @@ def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, B
             print("backward")
             print("left: " ,varLeft)
             print("right: " ,varRight)
+            return varLeft, varRight
     
     elif(direction == "stop"):
         pwma.stop()
         pwmb.stop()
+        return varLeft, varRight
     #################### END OF movement FUNCTION ####################
 
 def masking (image, Xaxis):
@@ -239,8 +243,8 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
         BIN2 = 6
 
         #default motor speed
-        varLeft = 35
-        varRight = 35
+        varLeft = 20
+        varRight = 20
 
         GPIO.setwarnings(False) # no gpio warnings
         GPIO.setmode(GPIO.BCM)
@@ -366,13 +370,13 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
                         print("right: ",rightDiffFromCenter)
                         totalRight = 0
 
-                    rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
-                    if(rightLeftDiff <=20 and rightLeftDiff >= 0):
-                        varLeft, varRight = movement("up","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
-                    elif(rightLeftDiff < 0):
-                        varLeft, varRight = movement("up","increase",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
-                    else:
-                        varLeft, varRight = movement("up","decrease",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                        rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
+                        if(rightLeftDiff <=20 and rightLeftDiff >= 0):
+                            varLeft, varRight = movement("up","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                        elif(rightLeftDiff < 0):
+                            varLeft, varRight = movement("up","increase",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                        else:
+                            varLeft, varRight = movement("up","decrease",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
 
                 else:
                     print("minor difference between left and right, normal processing")
