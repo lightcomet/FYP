@@ -3,89 +3,149 @@ import time
 import os
 import csv
 
+def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight):
+    if(direction == "left"):
+        pwma.start(varRight)
+        GPIO.output(AIN1,1)
+        GPIO.output(AIN2,0)
+        pwmb.start(varLeft)
+        GPIO.output(BIN1,0)
+        GPIO.output(BIN2,0)
+        print("turning left: " ,varRight)
+        return varLeft, varRight
+
+    elif(direction == "up"):
+            if(increaseOrDecrease == "none"):
+                varRight = varRight
+                varLeft = varLeft
+
+            elif(increaseOrDecrease == "increase"):
+                varRight += stepSize
+
+            elif(increaseOrDecrease == "decrease"):
+                varRight -= stepSize
+
+        pwma.start(varRight)
+        GPIO.output(AIN1,1)
+        GPIO.output(AIN2,0)
+        pwmb.start(varLeft)
+        GPIO.output(BIN1,1)
+        GPIO.output(BIN2,0)
+        print("forward")
+        print("left: " ,varLeft)
+        print("right: " ,varRight)
+        
+    elif(direction == "down"):
+            if(increaseOrDecrease == "none"):
+                varRight = varRight
+                varLeft = varLeft
+
+            elif(increaseOrDecrease == "increase"):
+                varRight += stepSize
+
+            elif(increaseOrDecrease == "decrease"):
+                varRight -= stepSize
+
+        pwma.start(varRight)
+        GPIO.output(AIN1,0)
+        GPIO.output(AIN2,1)
+        pwmb.start(varLeft)
+        GPIO.output(BIN1,0)
+        GPIO.output(BIN2,1)
+        print("backward")
+        print("left: " ,varLeft)
+        print("right: " ,varRight)
+    
+    elif(direction == "stop"):
+        pwma.stop()
+        pwmb.stop()
+    #################### END OF movement FUNCTION ####################
+
 def masking (image, Xaxis):
     leftMask = image[0:480, 0:int(Xaxis/2)]
     rightMask = image[0:480, int(Xaxis/2):int(Xaxis)]
+
     return leftMask, rightMask
+    #################### END OF masking FUNCTION ####################
 
-def distFromCenter (leftOrRight, appendData, nonZero, lengthOfNonZero):
-        criticalY = -1
-        indexY = 0
-        total = 0
-        count = 0
-        dataLeftX = ['Left X Values']
-        dataLeftY = ['Left Y Values']
-        dataRightX = ['Right X Values']
-        dataRightY = ['Right Y Values']
+def distFromCenter (leftOrRight, appendData, nonZero, arrayLengthOfNonZero):
+    criticalY = -1
+    indexY = 0
+    total = 0
+    count = 0
+    dataLeftX = ['Left X Values']
+    dataLeftY = ['Left Y Values']
+    dataRightX = ['Right X Values']
+    dataRightY = ['Right Y Values']
         
-        
-        # retrieve critical Y value and break loop
-        for counter in range(0, lengthOfNonZero):
-            if(criticalY != -1):
-                break
-            if(counter == 0):
-                prevY = nonZero[counter][0][1]
+    # retrieve critical Y value and break loop
+    for counter in range(0, arrayLengthOfNonZero):
+        if(criticalY != -1):
+            break
+        if(counter == 0):
+            prevY = nonZero[counter][0][1]
+        else:
+            currentY = nonZero[counter][0][1]
+            diffY = currentY - prevY
+            if(diffY == 0):
+                count = 0
             else:
-                currentY = nonZero[counter][0][1]
-                diffY = currentY - prevY
-                if(diffY == 0):
-                    count = 0
-                else:
-                    # difference of 1 between previous and current Y
-                    if(count == 1):
+                # difference of 1 between previous and current Y
+                if(count == 1):
 ##                        print("critical Y value is: ",prevY)
-                        criticalX1 = nonZero[counter-1][0][0]
-                        criticalX2 = nonZero[counter-1][0][0]
+                    criticalX1 = nonZero[counter-1][0][0]
+                    criticalX2 = nonZero[counter-1][0][0]
 ##                        print("critical X value is: ",criticalX1)
-                        criticalY = 0
-                        indexY = counter - 1 
-                        break
+                    criticalY = 0
+                    indexY = counter - 1 
+                    break
+                else:
+                    prevY = currentY
+                    count += 1
+
+    # only add if X value is within critical range (first half range)
+    for counter in range(indexY,-1,-1):
+        if(criticalY == -1):
+            break
+        else:
+            currentX1 = nonZero[counter][0][0]
+            diffX1 = currentX1 - criticalX1
+            if(diffX1 >= -3 and diffX1 <= 3):
+                total += currentX1
+                criticalX1 = currentX1
+                if(appendData == True):
+                    if(leftOrRight == "left"):
+                        dataLeftX.append(currentX1)
+                        dataLeftY.append(nonZero[counter][0][1])
                     else:
-                        prevY = currentY
-                        count += 1
+                        dataRightX.append(currentX1)
+                        dataRightY.append(nonZero[counter][0][1])
 
-        # only add if X value is within critical range (first half range)
-        for counter in range(indexY,-1,-1):
-            if(criticalY == -1):
-                break
-            else:
-                currentX1 = nonZero[counter][0][0]
-                diffX1 = currentX1 - criticalX1
-                if(diffX1 >= -3 and diffX1 <= 3):
-                    total += currentX1
-                    criticalX1 = currentX1
-                    if(appendData == True):
-                        if(leftOrRight == "left"):
-                            dataLeftX.append(currentX1)
-                            dataLeftY.append(nonZero[counter][0][1])
-                        else:
-                            dataRightX.append(currentX1)
-                            dataRightY.append(nonZero[counter][0][1])
+    # only add if X value is within critical range (second half range)
+    for counter in range(indexY+1,arrayLengthOfNonZero):
+        if(criticalY == -1):
+            break
+        else:
+            currentX2 = nonZero[counter][0][0]
+            diffX2 = currentX2 - criticalX2
+            if(diffX2 >= -3 and diffX2 <= 3):
+                total += currentX2
+                criticalX2 = currentX2
+                if(appendData == True):
+                    if(leftOrRight == "left"):
+                        dataLeftX.append(currentX1)
+                        dataLeftY.append(nonZero[counter][0][1])
+                    else:
+                        dataRightX.append(currentX1)
+                        dataRightY.append(nonZero[counter][0][1])
 
-        # only add if X value is within critical range (second half range)
-        for counter in range(indexY+1,lengthOfNonZero):
-            if(criticalY == -1):
-                break
-            else:
-                currentX2 = nonZero[counter][0][0]
-                diffX2 = currentX2 - criticalX2
-                if(diffX2 >= -3 and diffX2 <= 3):
-                    total += currentX2
-                    criticalX2 = currentX2
-                    if(appendData == True):
-                        if(leftOrRight == "left"):
-                            dataLeftX.append(currentX1)
-                            dataLeftY.append(nonZero[counter][0][1])
-                        else:
-                            dataRightX.append(currentX1)
-                            dataRightY.append(nonZero[counter][0][1])
-
-        return total, dataLeftX, dataLeftY, dataRightX, dataRightY
+    return total, dataLeftX, dataLeftY, dataRightX, dataRightY
+    #################### END OF distFromCenter FUNCTION ####################
 
 def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue):
 
     print("starting camera in progress...")
-    
+
     import time
     time1 = time.time()
     import cv2
@@ -267,17 +327,10 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
             # image array, processing done here
             image = frame.array
 
-            hsv = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-            
+            hsv = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)            
             edges = cv2.Canny(hsv, cannyMin ,cannyMax)
 
-        ##    edges = cv2.line(edges, middleBottom, middleTop, white, 1)
-
             cv2.imshow('mask',hsv)
-        ##    cv2.imshow('edges',edges)
-
-            leftMask = edges[0:480, 0:320]
-            rightMask = edges[0:480, 320:640]
 
             leftMask, rightMask = masking(edges, edges.shape[1])
             
@@ -297,9 +350,47 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
                         print("ignore right side")
                         print("recursive")
                         newLeftMask, newRightMask = masking(leftMask, leftMask.shape[1])
-                        print(newLeftMask.shape , newRightMask.shape)
+                        countZeroNewLeft = cv2.countNonZero(newLeftMask)
+                        countZeroNewRight = cv2.countNonZero(newRightMask)              
+
+                    else:
+                        print("normal processing")
+                        lengthNonZeroLeft = len(nonZeroLeft)
+                        lengthNonZeroRight = len(nonZeroRight)
+                        totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
+                        print("left: ",leftX2 - (totalLeft/cameraHeight))
+                        totalLeft = 0
+                        totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
+                        print("right: ",(totalRight/cameraHeight)- rightX1)
+                        totalRight = 0
+
+                    rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
+                    if(rightLeftDiff <=20 and rightLeftDiff >= 0):
+                        varLeft, varRight = movement("up","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    elif(rightLeftDiff < 0):
+                        varLeft, varRight = movement("up","increase",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    else:
+                        varLeft, varRight = movement("up","decrease",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+
                 else:
                     print("minor difference between left and right, normal processing")
+                    lengthNonZeroLeft = len(nonZeroLeft)
+                    lengthNonZeroRight = len(nonZeroRight)
+                    totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
+                    print("left: ",leftX2 - (totalLeft/cameraHeight))
+                    totalLeft = 0
+                    totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
+                    print("right: ",(totalRight/cameraHeight)- rightX1)
+                    totalRight = 0
+
+                    rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
+                    if(rightLeftDiff <=20 and rightLeftDiff >= 0):
+                        varLeft, varRight = movement("up","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    elif(rightLeftDiff < 0):
+                        varLeft, varRight = movement("up","increase",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    else:
+                        varLeft, varRight = movement("up","decrease",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    
             elif(countZeroRight > countZeroLeft):
                 print("more on right")
                 differenceRL = countZeroRight - countZeroLeft
@@ -310,13 +401,33 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
                         print("ignore left side")
                         print("recursive")
                         newLeftMask, newRightMask = masking(rightMask, rightMask.shape[1])
-                        print(newLeftMask.shape , newRightMask.shape)
+                        countZeroNewLeft = cv2.countNonZero(newLeftMask)
+                        countZeroNewRight = cv2.countNonZero(newRightMask)    
                 else:
                     print("minor difference between left and right, normal processing")
+
+                    lengthNonZeroLeft = len(nonZeroLeft)
+                    lengthNonZeroRight = len(nonZeroRight)
+                    totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
+                    print("left: ",leftX2 - (totalLeft/cameraHeight))
+                    totalLeft = 0
+                    totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
+                    print("right: ",(totalRight/cameraHeight)- rightX1)
+                    totalRight = 0
+
+                    rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
+                    if(rightLeftDiff <=20 and rightLeftDiff >= 0):
+                        varLeft, varRight = movement("up","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    elif(rightLeftDiff < 0):
+                        varLeft, varRight = movement("up","increase",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    else:
+                        varLeft, varRight = movement("up","decrease",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    
                 
             else:
                 if(countZeroRight <= 50 or countZeroLeft <= 50):
                     print("empty")
+                    varLeft, varRight = movement("left","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
                 else:
                     print("cl,cr", countZeroLeft, " ", countZeroRight)
                     print("both have same amount")
@@ -325,40 +436,26 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
                     lengthNonZeroLeft = len(nonZeroLeft)
                     lengthNonZeroRight = len(nonZeroRight)
                     totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
-                    print("left: ",leftX2 - (totalLeft/cameraHeight))
+                    leftDiffFromCenter = leftX2 - (totalLeft/cameraHeight)
+                    print("left: ", leftDiffFromCenter)
                     totalLeft = 0
                     totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
-                    print("right: ",(totalRight/cameraHeight)- rightX1)
-                    totalRight = 0 
+                    rightDiffFromCenter = (totalRight/cameraHeight)
+                    print("right: ",rightDiffFromCenter)
+                    totalRight = 0
+
+                    rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
+                    if(rightLeftDiff <=20 and rightLeftDiff >= 0):
+                        varLeft, varRight = movement("up","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    elif(rightLeftDiff < 0):
+                        varLeft, varRight = movement("up","increase",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                    else:
+                        varLeft, varRight = movement("up","decrease",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
 
             #check if empty
             if(nonZeroLeft is None or nonZeroRight is None):
-                pass
-            
-            else:
-                lengthNonZeroLeft = len(nonZeroLeft)
-                lengthNonZeroRight = len(nonZeroRight)
-                
-##                print("length of non zero arrray left: ", lengthNonZeroLeft ," length of non zero arrray right: ", lengthNonZeroRight)
-
-                totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
-
-##                print("total Left: ",totalLeft)
-                print("left: ",leftX2 - (totalLeft/cameraHeight))
-                totalLeft = 0
-
-                totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
-
-##                print("total right: ",totalRight)
-                print("right: ",(totalRight/cameraHeight)- rightX1)
-                totalRight = 0            
-            
-
-            # count number of pixels on masked image
-        ##    nonZeroLeft = cv2.countNonZero(leftMask)
-        ##    nonZeroRight = cv2.countNonZero(rightMask)
-            
-        ##    print("left: ",nonZeroLeft," right: ",nonZeroRight)
+                print("empty")
+                varLeft, varRight = movement("left","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
             
             cv2.imshow('mask1',leftMask)
             cv2.imshow('mask2',rightMask)
@@ -388,7 +485,7 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
         time2 = time.time()
         print ('Elapsed time : ', time2-time1,'secs')
         GPIO.cleanup() #important to have to reset the GPIOs
-        
+    #################### END OF camera FUNCTION ####################
 
 
 def ultrasonic(stopQueue, objectQueue):
@@ -451,7 +548,9 @@ def ultrasonic(stopQueue, objectQueue):
                     print("Stop measurement")
                     GPIO.cleanup()
                     break
+    #################### END OF ultrasonic FUNCTION ####################
 
+#################### MAIN FUNCTION ####################
 if __name__ == '__main__':
 
     imageQueue = Queue()
@@ -498,8 +597,6 @@ if __name__ == '__main__':
 ##            print(dataRightX)
 ##            print(dataRightY)
 
-            
-
             timeString = time.strftime("%Y%m%d-%H%M%S")
 
             newPath = os.path.join('/home/pi/Desktop/FYP/Data/'+timeString)
@@ -519,8 +616,6 @@ if __name__ == '__main__':
                 writer.writerow(myDataLeftY)
                 writer.writerow(myDataRightX)
                 writer.writerow(myDataRightY)
-            
-                
             
             print("Output is saved")
         else:
