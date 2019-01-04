@@ -65,9 +65,11 @@ if __name__ == '__main__':
     # capture frames from camera
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
-        pathFullList = []
+        pathXList = []
         pathList = []
         pathFilteredList = []
+        pathDiffList = []
+        pathIndex = []
             
         # image array, processing is done here
         image = frame.array
@@ -76,53 +78,49 @@ if __name__ == '__main__':
         
         edges = autoCanny(hsv) #settings["cannyMin"] , settings["cannyMax"]
 
-##        lines = cv2.HoughLinesP(edges, cv2.HOUGH_PROBABILISTIC, theta = np.pi/180, threshold =  10, minLineLength = settings["minLineLength"], maxLineGap = settings["maxLineGap"])
-
         lines = cv2.HoughLinesP(edges, rho = 1, theta = np.pi/360, threshold =  100, minLineLength = settings["minLineLength"], maxLineGap = settings["maxLineGap"])
-
+        timeStart = time.time()
         if(lines is not None):
-            print(lines)
             for line in lines:
-##                counts = np.bincount(line[0])
-##                print(np.argmax(counts))
                 for x1,y1,x2,y2 in line:
-                    pathFullList.append(x1,y1,x2,y2)
-##                    pts = np.array([[x1,y1], [x2,y2]])
+                    pathXList.extend([x1,x2])
                     print("x1: ",x1, "| y1: ", y1, "| x2: ",x2, "| y2: ",y2)
-                    cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
-                    cv2.putText(image, str(x1)+ "|"+str(y1)+"|"+str(x2)+"|"+str(y2),(x1-20,y1+20), font, 1, (255,255,255),2,cv2.LINE_AA)
-##                    cv2.polylines(image,[pts], 2, (0,255,0))
-                    if(x2-x1 <= 50):
-                        average = (x2 + x1)//2
-                        pathList.append(average)
+##                    cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
+##                    cv2.putText(image, str(x1)+ "|"+str(y1)+"|"+str(x2)+"|"+str(y2),(x1-20,y1+20), font, 1, (255,255,255),2,cv2.LINE_AA)
             pathList.sort()
-            print(pathList)
-        print(pathFullList)
-        print("length of pathlist : ",len(pathList))
-        for i in range(len(pathList)):
+
+        pathXList = list(set(pathXList))
+        pathXList.sort()
+        print("pathXList : ",pathXList)
+        print("length of pathXlist : ",len(pathXList))
+        i = 0
+        while i < len(pathXList):
+##            print("i : ", i)
             if(i == 0):
-                print("i in 1st item : ",i)
-                pathFilteredList.append(pathList[i])
-                pass
-            elif(i == len(pathList)-1):
-                print("i in last item : ",i)
-                if(pathList[i] - pathList[i-1] <= 10):
-                    average = (pathList[i] + pathList[i-1])//2
-                    pathFilteredList.append(average)
-                else:
-                    pathFilteredList.append(pathList[i])
-                
+                pass   
             else:
-                print("i in other item : ",i)
-                if(pathList[i] - pathList[i-1] <= 10):
-                    average = (pathList[i] + pathList[i-1])//2
-                    pathFilteredList.append(average)
+                if(pathXList[i] - pathXList[i-1] <= 30):
+                    average = (pathXList[i] + pathXList[i-1])//2
+##                    print(average," index:",i)
+                    del pathXList[i]
+                    del pathXList[i-1]
+                    pathXList.insert(i-1,average)
+##                    print(pathXList)
+                    i-= 1
                 else:
                     pass
-##                    pathFilteredList.append(pathList[i])
-                
-                    
-        print(pathFilteredList)
+            i+= 1
+        print("final pathXList : ", pathXList)
+        timeStop = time.time()
+        print("time taken : ",(timeStop-timeStart)*1000, "ms")
+        left = pathXList[0]
+        right = pathXList[1]
+        if(250 <= left and right <= 400):
+            print("forward")
+        elif(right > 401):
+            print("right")
+        elif(left<249):
+            print("left")
         
         # show frame
         cv2.imshow("Image", edges)
