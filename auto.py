@@ -1,11 +1,39 @@
+
 import time
 time1 = time.time()
 import cv2
 import numpy as np
+import math
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import RPi.GPIO as GPIO
 from settings import config
+
+def movement (varLeft, varRight, pwma, pwmb, direction):
+    print("left: " ,varLeft)
+    print("right: " ,varRight)
+    print("direction: ", direction)
+
+    if(direction == "up"):
+        pwma.start(50)
+        pwmb.start(50)
+        GPIO.output(settings["AIN1"],1)
+        GPIO.output(settings["AIN2"],0)
+        GPIO.output(settings["BIN1"],1)
+        GPIO.output(settings["BIN2"],0)
+        pwma.ChangeFrequency(varRight)
+        pwmb.ChangeFrequency(varLeft)
+    elif(direction == "down"):
+        pwma.start(50)
+        pwmb.start(50)
+        GPIO.output(settings["AIN1"],0)
+        GPIO.output(settings["AIN2"],1)
+        GPIO.output(settings["BIN1"],0)
+        GPIO.output(settings["BIN2"],1)
+        pwma.ChangeFrequency(varRight)
+        pwmb.ChangeFrequency(varLeft)
+    time.sleep(1)
+    
 
 def autoCanny (image, sigma = 0.33):
     # compute the median of the single channel pixel intensities
@@ -24,6 +52,7 @@ if __name__ == '__main__':
 
     settings = config()
 
+    #initialise
     GPIO.setwarnings(False) # no gpio wanrings
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(settings["PWMA"], GPIO.OUT)
@@ -44,6 +73,13 @@ if __name__ == '__main__':
     GPIO.output(settings["BIN1"],0)
     GPIO.output(settings["BIN2"],0)
 
+    startFlag = False
+    direction = False
+    varLeft = 1
+    varRight = 1
+
+    font = cv2.FONT_HERSHEY_SIMPLEX
+
 
     # camera settings
     setResolution = (640,480)
@@ -56,8 +92,6 @@ if __name__ == '__main__':
     # set up time
     time3 = time.time()
     print ('Set up time : ', time3-time1,'secs')
-
-    font = cv2.FONT_HERSHEY_SIMPLEX
 
     # camera warm up
     time.sleep(2)
@@ -83,44 +117,55 @@ if __name__ == '__main__':
         if(lines is not None):
             for line in lines:
                 for x1,y1,x2,y2 in line:
-                    pathXList.extend([x1,x2])
+                    dy = y2-y1
+                    dx = x2-x1
+                    angle = math.degrees(math.atan2(dy,dx))
+                    print(" angle : ", angle)
+                    if(angle <= -10 or angle >= 10):
+                        print("legit angle")
+                        pathXList.extend([x1,x2])
                     print("x1: ",x1, "| y1: ", y1, "| x2: ",x2, "| y2: ",y2)
-##                    cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
+                    cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
 ##                    cv2.putText(image, str(x1)+ "|"+str(y1)+"|"+str(x2)+"|"+str(y2),(x1-20,y1+20), font, 1, (255,255,255),2,cv2.LINE_AA)
-            pathList.sort()
 
         pathXList = list(set(pathXList))
         pathXList.sort()
         print("pathXList : ",pathXList)
-        print("length of pathXlist : ",len(pathXList))
-        i = 0
-        while i < len(pathXList):
-##            print("i : ", i)
-            if(i == 0):
-                pass   
-            else:
-                if(pathXList[i] - pathXList[i-1] <= 30):
-                    average = (pathXList[i] + pathXList[i-1])//2
-##                    print(average," index:",i)
-                    del pathXList[i]
-                    del pathXList[i-1]
-                    pathXList.insert(i-1,average)
-##                    print(pathXList)
-                    i-= 1
-                else:
-                    pass
-            i+= 1
-        print("final pathXList : ", pathXList)
-        timeStop = time.time()
-        print("time taken : ",(timeStop-timeStart)*1000, "ms")
-        left = pathXList[0]
-        right = pathXList[1]
-        if(250 <= left and right <= 400):
-            print("forward")
-        elif(right > 401):
-            print("right")
-        elif(left<249):
-            print("left")
+        print("boundary of path = ",pathXList[0]," and ",pathXList[len(pathXList)-1])
+##        print("length of pathXlist : ",len(pathXList))
+##        i = 0
+##        while i < len(pathXList):
+##            if(i == 0):
+##                pass   
+##            else:
+##                if(pathXList[i] - pathXList[i-1] <= 30):
+##                    average = (pathXList[i] + pathXList[i-1])//2
+##                    del pathXList[i]
+##                    del pathXList[i-1]
+##                    pathXList.insert(i-1,average)
+##                    i-= 1
+##                else:
+##                    pass
+##            i+= 1
+##        print("final pathXList : ", pathXList)
+##        timeStop = time.time()
+##        print("time taken : ",(timeStop-timeStart)*1000, "ms")
+##        if(len(pathXList) == 2):
+##            left = pathXList[0]
+##            right = pathXList[1]
+##            if(250 <= left and right <= 400):
+##                print("gp forward")
+##                varLeft = 1000
+##                varRight = 2000
+##            elif(right > 401):
+##                print("turn right")
+##                varLeft = 2000
+##                varRight = 2000
+##            elif(left<249):
+##                print("turn left")
+##                varLeft = 1000
+##                varRight = 3000
+        
         
         # show frame
         cv2.imshow("Image", edges)
@@ -131,64 +176,30 @@ if __name__ == '__main__':
         
         # wait for input
         key = cv2.waitKey(1) & 0xFF
-        
-        if key == 82:
-            print ('up')
-            # duty cycle of 40%
-            pwma.start(40)
-            GPIO.output(AIN1,1)
-            GPIO.output(AIN2,0)
-            
-            # duty cycle of 40%
-            pwmb.start(40)
-            GPIO.output(BIN1,1)
-            GPIO.output(BIN2,0)
-            
-        if key == 84:
-            print ('down')
-##            GPIO.output(PWMA,1)
-            pwma.start(40)
-            GPIO.output(AIN1,0)
-            GPIO.output(AIN2,1)
-##            GPIO.output(PWMB,1)
-            pwmb.start(40)
-            GPIO.output(BIN1,0)
-            GPIO.output(BIN2,1)
-            
-        if key == 81:
-            print ('left')
-##            GPIO.output(PWMA,1)
-            pwma.start(40)
-            GPIO.output(AIN1,1)
-            GPIO.output(AIN2,0)
-##            GPIO.output(PWMB,1)
-            pwmb.start(40)
-            GPIO.output(BIN1,0)
-            GPIO.output(BIN2,0)
-            
-        if key == 83:
-            print ('right')
-##            GPIO.output(PWMA,1)
-            pwma.start(40)
-            GPIO.output(AIN1,0)
-            GPIO.output(AIN2,0)
-##            GPIO.output(PWMB,1)
-            pwmb.start(40)
-            GPIO.output(BIN1,1)
-            GPIO.output(BIN2,0)
+
+        # stop movement if keyboard p is pressed
+        if key & 0xFF == ord("s"):
+            print('start')
+            startFlag = True
+            direction = "up"
         
         # stop movement if keyboard p is pressed
         if key & 0xFF == ord("p"):
             print('pause')
+            startFlag = False
             pwma.stop()
             pwmb.stop()
 
         # exit from loop if keyboard q is pressed
         if key & 0xFF == ord("q"):
             print('quit')
+            startFlag = False
             pwma.stop()
             pwmb.stop()
             break
+
+        if(startFlag == True):
+            movement(varLeft,varRight,pwma,pwmb,direction)
         
     time2 = time.time()
     print ('Elapsed time : ', time2-time1,'secs')
