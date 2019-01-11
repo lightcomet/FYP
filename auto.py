@@ -15,14 +15,14 @@ def movement (varLeft, varRight, pwma, pwmb, direction):
     print("direction: ", direction)
 
     if(direction == "up"):
-        pwma.start(50)
-        pwmb.start(50)
         GPIO.output(settings["AIN1"],1)
         GPIO.output(settings["AIN2"],0)
         GPIO.output(settings["BIN1"],1)
         GPIO.output(settings["BIN2"],0)
         pwma.ChangeFrequency(varRight)
         pwmb.ChangeFrequency(varLeft)
+        pwma.start(50)
+        pwmb.start(50)
     elif(direction == "down"):
         pwma.start(50)
         pwmb.start(50)
@@ -32,7 +32,7 @@ def movement (varLeft, varRight, pwma, pwmb, direction):
         GPIO.output(settings["BIN2"],1)
         pwma.ChangeFrequency(varRight)
         pwmb.ChangeFrequency(varLeft)
-    time.sleep(1)
+##    time.sleep(1)
     
 
 def autoCanny (image, sigma = 0.33):
@@ -108,7 +108,10 @@ if __name__ == '__main__':
         # image array, processing is done here
         image = frame.array
 
-        hsv = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        blur = cv2.GaussianBlur(image,(5,5),0)
+
+        hsv = cv2.cvtColor(blur, cv2.COLOR_RGB2GRAY)
+
         
         edges = autoCanny(hsv) #settings["cannyMin"] , settings["cannyMax"]
 
@@ -120,18 +123,50 @@ if __name__ == '__main__':
                     dy = y2-y1
                     dx = x2-x1
                     angle = math.degrees(math.atan2(dy,dx))
-                    print(" angle : ", angle)
-                    if(angle <= -10 or angle >= 10):
-                        print("legit angle")
+##                    print(" angle : ", angle)
+                    if(angle <= -20 or angle >= 20):
+##                        print("legit angle")
                         pathXList.extend([x1,x2])
-                    print("x1: ",x1, "| y1: ", y1, "| x2: ",x2, "| y2: ",y2)
+##                    print("x1: ",x1, "| y1: ", y1, "| x2: ",x2, "| y2: ",y2)
                     cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
 ##                    cv2.putText(image, str(x1)+ "|"+str(y1)+"|"+str(x2)+"|"+str(y2),(x1-20,y1+20), font, 1, (255,255,255),2,cv2.LINE_AA)
 
+        #remove duplicates in list
         pathXList = list(set(pathXList))
+        #sort list from smallest to biggest
         pathXList.sort()
-        print("pathXList : ",pathXList)
-        print("boundary of path = ",pathXList[0]," and ",pathXList[len(pathXList)-1])
+        amtOfPathXList = len(pathXList)
+        if(amtOfPathXList != 0):
+            if(amtOfPathXList > 12):
+                print("too many lines detected, do nothing")
+                rawCapture.truncate(0)
+                continue
+            else:
+                print("pathXList : ",pathXList)
+                leftBoundary = pathXList[0]
+                rightBoundary = pathXList[len(pathXList)-1]
+                print("boundary of path = ",leftBoundary," and ",rightBoundary)
+
+                if(250 <= leftBoundary and rightBoundary <= 400):
+                    print("gp forward")
+                    varLeft = 1000
+                    varRight = 2000
+                elif(rightBoundary > 401):
+                    print("turn right")
+                    varLeft = 2000
+                    varRight = 2000
+                elif(leftBoundary<249):
+                    print("turn left")
+                    varLeft = 1000
+                    varRight = 3000
+        else:
+##            movement(1,2000, pwma,pwmb, "up")
+            print("finding path")
+            varLeft = 1
+            varRight = 2000
+
+        movement (varLeft, varRight, pwma, pwmb, "up")
+        
 ##        print("length of pathXlist : ",len(pathXList))
 ##        i = 0
 ##        while i < len(pathXList):
@@ -148,8 +183,8 @@ if __name__ == '__main__':
 ##                    pass
 ##            i+= 1
 ##        print("final pathXList : ", pathXList)
-##        timeStop = time.time()
-##        print("time taken : ",(timeStop-timeStart)*1000, "ms")
+        timeStop = time.time()
+        print("time taken : ",(timeStop-timeStart)*1000, "ms")
 ##        if(len(pathXList) == 2):
 ##            left = pathXList[0]
 ##            right = pathXList[1]
