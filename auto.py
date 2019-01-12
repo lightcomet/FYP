@@ -9,30 +9,54 @@ from picamera.array import PiRGBArray
 import RPi.GPIO as GPIO
 from settings import config
 
-def movement (varLeft, varRight, pwma, pwmb, direction):
+def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
     print("left: " ,varLeft)
     print("right: " ,varRight)
     print("direction: ", direction)
+    print("pathFlag: ",findPath)
 
-    if(direction == "up"):
+    if(findPath == True):
+        print("finding path")
+        pwma.start(1)
+        pwmb.start(20)
         GPIO.output(settings["AIN1"],1)
         GPIO.output(settings["AIN2"],0)
         GPIO.output(settings["BIN1"],1)
         GPIO.output(settings["BIN2"],0)
-        pwma.ChangeFrequency(varRight)
-        pwmb.ChangeFrequency(varLeft)
-        pwma.start(50)
-        pwmb.start(50)
-    elif(direction == "down"):
-        pwma.start(50)
-        pwmb.start(50)
-        GPIO.output(settings["AIN1"],0)
-        GPIO.output(settings["AIN2"],1)
-        GPIO.output(settings["BIN1"],0)
-        GPIO.output(settings["BIN2"],1)
-        pwma.ChangeFrequency(varRight)
-        pwmb.ChangeFrequency(varLeft)
-##    time.sleep(1)
+
+    else:
+        if(direction == "up"):
+            print("up movement")
+            pwma.start(50)
+            pwmb.start(50)
+            GPIO.output(settings["AIN1"],1)
+            GPIO.output(settings["AIN2"],0)
+            GPIO.output(settings["BIN1"],1)
+            GPIO.output(settings["BIN2"],0)
+            pwma.ChangeFrequency(varRight)
+            pwmb.ChangeFrequency(varLeft)
+            
+        elif(direction == "left"):
+            print("left movement")
+            pwma.start(30)
+            pwmb.start(10)
+            GPIO.output(settings["AIN1"],1)
+            GPIO.output(settings["AIN2"],0)
+            GPIO.output(settings["BIN1"],1)
+            GPIO.output(settings["BIN2"],0)
+            pwma.ChangeFrequency(varRight)
+            pwmb.ChangeFrequency(varLeft)
+            
+        elif(direction == "right"):
+            print("right movement")
+            pwma.start(10)
+            pwmb.start(30)
+            GPIO.output(settings["AIN1"],1)
+            GPIO.output(settings["AIN2"],0)
+            GPIO.output(settings["BIN1"],1)
+            GPIO.output(settings["BIN2"],0)
+            pwma.ChangeFrequency(varRight)
+            pwmb.ChangeFrequency(varLeft)
     
 
 def autoCanny (image, sigma = 0.33):
@@ -75,6 +99,7 @@ if __name__ == '__main__':
 
     startFlag = False
     direction = False
+    pathFlag = False
     varLeft = 1
     varRight = 1
 
@@ -86,7 +111,7 @@ if __name__ == '__main__':
     camera = PiCamera()
     camera.resolution = setResolution
     camera.exposure_mode = 'antishake'
-    camera.framerate = 60
+    camera.framerate = 90
     rawCapture = PiRGBArray(camera, size=setResolution)
 
     # set up time
@@ -100,10 +125,6 @@ if __name__ == '__main__':
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
         pathXList = []
-        pathList = []
-        pathFilteredList = []
-        pathDiffList = []
-        pathIndex = []
             
         # image array, processing is done here
         image = frame.array
@@ -113,8 +134,9 @@ if __name__ == '__main__':
         hsv = cv2.cvtColor(blur, cv2.COLOR_RGB2GRAY)
 
         
-        edges = autoCanny(hsv) #settings["cannyMin"] , settings["cannyMax"]
-
+##        edges = autoCanny(hsv) #settings["cannyMin"] , settings["cannyMax"]
+        edges = cv2.Canny(hsv, 80, 100)
+        
         lines = cv2.HoughLinesP(edges, rho = 1, theta = np.pi/360, threshold =  100, minLineLength = settings["minLineLength"], maxLineGap = settings["maxLineGap"])
         timeStart = time.time()
         if(lines is not None):
@@ -136,6 +158,7 @@ if __name__ == '__main__':
         #sort list from smallest to biggest
         pathXList.sort()
         amtOfPathXList = len(pathXList)
+        print("len of path x list : ",amtOfPathXList)
         if(amtOfPathXList != 0):
             if(amtOfPathXList > 12):
                 print("too many lines detected, do nothing")
@@ -151,55 +174,30 @@ if __name__ == '__main__':
                     print("gp forward")
                     varLeft = 1000
                     varRight = 2000
+                    movement(varLeft,varRight,pwma,pwmb,"up",pathFlag)
+                    
                 elif(rightBoundary > 401):
                     print("turn right")
-                    varLeft = 2000
+                    varLeft = 2500
                     varRight = 2000
+                    movement(varLeft,varRight,pwma,pwmb,"right",pathFlag)
+                    
                 elif(leftBoundary<249):
                     print("turn left")
                     varLeft = 1000
-                    varRight = 3000
+                    varRight = 4000
+                    movement(varLeft,varRight,pwma,pwmb,"left",pathFlag)
         else:
-##            movement(1,2000, pwma,pwmb, "up")
             print("finding path")
-            varLeft = 1
+            pathFlag = True
+            varLeft = 1000
             varRight = 2000
+            movement(varLeft,varRight,pwma,pwmb,"up",pathFlag)
+            
+        pathFlag = False
 
-        movement (varLeft, varRight, pwma, pwmb, "up")
-        
-##        print("length of pathXlist : ",len(pathXList))
-##        i = 0
-##        while i < len(pathXList):
-##            if(i == 0):
-##                pass   
-##            else:
-##                if(pathXList[i] - pathXList[i-1] <= 30):
-##                    average = (pathXList[i] + pathXList[i-1])//2
-##                    del pathXList[i]
-##                    del pathXList[i-1]
-##                    pathXList.insert(i-1,average)
-##                    i-= 1
-##                else:
-##                    pass
-##            i+= 1
-##        print("final pathXList : ", pathXList)
         timeStop = time.time()
         print("time taken : ",(timeStop-timeStart)*1000, "ms")
-##        if(len(pathXList) == 2):
-##            left = pathXList[0]
-##            right = pathXList[1]
-##            if(250 <= left and right <= 400):
-##                print("gp forward")
-##                varLeft = 1000
-##                varRight = 2000
-##            elif(right > 401):
-##                print("turn right")
-##                varLeft = 2000
-##                varRight = 2000
-##            elif(left<249):
-##                print("turn left")
-##                varLeft = 1000
-##                varRight = 3000
         
         
         # show frame
@@ -232,9 +230,6 @@ if __name__ == '__main__':
             pwma.stop()
             pwmb.stop()
             break
-
-        if(startFlag == True):
-            movement(varLeft,varRight,pwma,pwmb,direction)
         
     time2 = time.time()
     print ('Elapsed time : ', time2-time1,'secs')
