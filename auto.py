@@ -1,4 +1,3 @@
-
 import time
 time1 = time.time()
 import cv2
@@ -10,11 +9,7 @@ import RPi.GPIO as GPIO
 from settings import config
 
 def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
-    print("left: " ,varLeft)
-    print("right: " ,varRight)
-    print("direction: ", direction)
-    print("pathFlag: ",findPath)
-
+    print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
     if(findPath == True):
         print("finding path")
         pwma.start(1)
@@ -23,7 +18,8 @@ def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
         GPIO.output(settings["AIN2"],0)
         GPIO.output(settings["BIN1"],1)
         GPIO.output(settings["BIN2"],0)
-
+        pwma.ChangeFrequency(varRight)
+        pwmb.ChangeFrequency(varLeft)
     else:
         if(direction == "up"):
             print("up movement")
@@ -90,12 +86,13 @@ if __name__ == '__main__':
     pwma = GPIO.PWM(settings["PWMA"],settings["PWMA_PW"]) # pulse width of 100 Hz
     pwmb = GPIO.PWM(settings["PWMB"],settings["PWMB_PW"]) # pulse width of 100 Hz
 
-    GPIO.output(settings["PWMA"],0)
+##    GPIO.output(settings["PWMA"],0)
     GPIO.output(settings["AIN1"],0)
     GPIO.output(settings["AIN2"],0)
-    GPIO.output(settings["PWMB"],0)
+##    GPIO.output(settings["PWMB"],0)
     GPIO.output(settings["BIN1"],0)
     GPIO.output(settings["BIN2"],0)
+    GPIO.output(settings["STNBY"],1)
 
     startFlag = False
     direction = False
@@ -158,6 +155,7 @@ if __name__ == '__main__':
         #sort list from smallest to biggest
         pathXList.sort()
         amtOfPathXList = len(pathXList)
+        print("--------------------------------------------------------------------------------")
         print("len of path x list : ",amtOfPathXList)
         if(amtOfPathXList != 0):
             if(amtOfPathXList > 12):
