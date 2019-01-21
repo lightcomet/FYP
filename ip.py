@@ -3,4 +3,5 @@ output = check_output(['hostname', '-I']).decode("utf-8")
 output = output.replace('\n','a')
 output = output.replace(' ','a')
 output = output.replace('a','\n')
-print(output) #2 \n is behind the last ip address
+output = output[:-2] # remove last 2 characters as 2 '\n' are behind the ip address
+print(output)
