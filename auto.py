@@ -136,26 +136,32 @@ if __name__ == '__main__':
         
         lines = cv2.HoughLinesP(edges, rho = 1, theta = np.pi/360, threshold =  100, minLineLength = settings["minLineLength"], maxLineGap = settings["maxLineGap"])
         timeStart = time.time()
+        print("--------------------------------------------------------------------------------")
         if(lines is not None):
-            for line in lines:
-                for x1,y1,x2,y2 in line:
-                    dy = y2-y1
-                    dx = x2-x1
-                    angle = math.degrees(math.atan2(dy,dx))
-##                    print(" angle : ", angle)
-                    if(angle <= -20 or angle >= 20):
-##                        print("legit angle")
-                        pathXList.extend([x1,x2])
-##                    print("x1: ",x1, "| y1: ", y1, "| x2: ",x2, "| y2: ",y2)
-                    cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
-##                    cv2.putText(image, str(x1)+ "|"+str(y1)+"|"+str(x2)+"|"+str(y2),(x1-20,y1+20), font, 1, (255,255,255),2,cv2.LINE_AA)
+            lenlines = len(lines)
+            print("number of lines : ",lenlines)
+            if(lenlines <= 6):
+                for line in lines:
+                    for x1,y1,x2,y2 in line:
+                        dy = y2-y1
+                        dx = x2-x1
+                        angle = math.degrees(math.atan2(dy,dx))
+    ##                    print(" angle : ", angle)
+                        if(angle <= -20 or angle >= 20):
+    ##                        print("legit angle")
+                            pathXList.extend([x1,x2])
+    ##                    print("x1: ",x1, "| y1: ", y1, "| x2: ",x2, "| y2: ",y2)
+                        cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
+    ##                    cv2.putText(image, str(x1)+ "|"+str(y1)+"|"+str(x2)+"|"+str(y2),(x1-20,y1+20), font, 1, (255,255,255),2,cv2.LINE_AA)
+            else:
+                print("passing")
+                pass
 
         #remove duplicates in list
         pathXList = list(set(pathXList))
         #sort list from smallest to biggest
         pathXList.sort()
         amtOfPathXList = len(pathXList)
-        print("--------------------------------------------------------------------------------")
         print("len of path x list : ",amtOfPathXList)
         if(amtOfPathXList != 0):
             if(amtOfPathXList > 12):
@@ -199,7 +205,7 @@ if __name__ == '__main__':
         
         
         # show frame
-        cv2.imshow("Image", edges)
+##        cv2.imshow("Image", edges)
         cv2.imshow("Line Image", image)
                 
         # clear stream in preparation for next frame
