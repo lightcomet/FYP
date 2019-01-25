@@ -34,7 +34,7 @@ def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
             
         elif(direction == "left"):
             print("left movement")
-            pwma.start(30)
+            pwma.start(20)
             pwmb.start(10)
             GPIO.output(settings["AIN1"],1)
             GPIO.output(settings["AIN2"],0)
@@ -46,7 +46,7 @@ def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
         elif(direction == "right"):
             print("right movement")
             pwma.start(10)
-            pwmb.start(30)
+            pwmb.start(20)
             GPIO.output(settings["AIN1"],1)
             GPIO.output(settings["AIN2"],0)
             GPIO.output(settings["BIN1"],1)
