@@ -10,48 +10,48 @@ from settings import config
 
 def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
     print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
-    if(findPath == True):
-        pwma.start(1)
-        pwmb.start(30)
-        GPIO.output(settings["AIN1"],1)
-        GPIO.output(settings["AIN2"],0)
-        GPIO.output(settings["BIN1"],1)
-        GPIO.output(settings["BIN2"],0)
-        pwma.ChangeFrequency(varRight)
-        pwmb.ChangeFrequency(varLeft)
-    else:
-        if(direction == "up"):
-            print("up movement")
-            pwma.start(50)
-            pwmb.start(50)
-            GPIO.output(settings["AIN1"],1)
-            GPIO.output(settings["AIN2"],0)
-            GPIO.output(settings["BIN1"],1)
-            GPIO.output(settings["BIN2"],0)
-            pwma.ChangeFrequency(varRight)
-            pwmb.ChangeFrequency(varLeft)
-            
-        elif(direction == "left"):
-            print("left movement")
-            pwma.start(20)
-            pwmb.start(10)
-            GPIO.output(settings["AIN1"],1)
-            GPIO.output(settings["AIN2"],0)
-            GPIO.output(settings["BIN1"],1)
-            GPIO.output(settings["BIN2"],0)
-            pwma.ChangeFrequency(varRight)
-            pwmb.ChangeFrequency(varLeft)
-            
-        elif(direction == "right"):
-            print("right movement")
-            pwma.start(10)
-            pwmb.start(20)
-            GPIO.output(settings["AIN1"],1)
-            GPIO.output(settings["AIN2"],0)
-            GPIO.output(settings["BIN1"],1)
-            GPIO.output(settings["BIN2"],0)
-            pwma.ChangeFrequency(varRight)
-            pwmb.ChangeFrequency(varLeft)
+##    if(findPath == True):
+##        pwma.start(1)
+##        pwmb.start(30)
+##        GPIO.output(settings["AIN1"],1)
+##        GPIO.output(settings["AIN2"],0)
+##        GPIO.output(settings["BIN1"],1)
+##        GPIO.output(settings["BIN2"],0)
+##        pwma.ChangeFrequency(varRight)
+##        pwmb.ChangeFrequency(varLeft)
+##    else:
+##        if(direction == "up"):
+##            print("up movement")
+##            pwma.start(50)
+##            pwmb.start(50)
+##            GPIO.output(settings["AIN1"],1)
+##            GPIO.output(settings["AIN2"],0)
+##            GPIO.output(settings["BIN1"],1)
+##            GPIO.output(settings["BIN2"],0)
+##            pwma.ChangeFrequency(varRight)
+##            pwmb.ChangeFrequency(varLeft)
+##            
+##        elif(direction == "left"):
+##            print("left movement")
+##            pwma.start(20)
+##            pwmb.start(10)
+##            GPIO.output(settings["AIN1"],1)
+##            GPIO.output(settings["AIN2"],0)
+##            GPIO.output(settings["BIN1"],1)
+##            GPIO.output(settings["BIN2"],0)
+##            pwma.ChangeFrequency(varRight)
+##            pwmb.ChangeFrequency(varLeft)
+##            
+##        elif(direction == "right"):
+##            print("right movement")
+##            pwma.start(10)
+##            pwmb.start(20)
+##            GPIO.output(settings["AIN1"],1)
+##            GPIO.output(settings["AIN2"],0)
+##            GPIO.output(settings["BIN1"],1)
+##            GPIO.output(settings["BIN2"],0)
+##            pwma.ChangeFrequency(varRight)
+##            pwmb.ChangeFrequency(varLeft)
 
 if __name__ == '__main__':
 
@@ -83,7 +83,7 @@ if __name__ == '__main__':
     varRight = 1
 
     lower_black = np.array([0,0,0])
-    upper_black = np.array([0,0,10])
+    upper_black = np.array([235,80,10])
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -106,23 +106,18 @@ if __name__ == '__main__':
     # capture frames from camera
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         pathXList = []
+        angleList = []
             
         # image array, processing is done here
         image = frame.array
         
         timeStart = time.time()
 
-        blur = cv2.GaussianBlur(image,(5,5),0)
-
-        hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
         mask = cv2.inRange(hsv, lower_black, upper_black)
 
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 1))
-        
-        opened_mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
-
-        result = cv2.bitwise_and(cv2.bitwise_not(image), cv2. bitwise_not(image), mask = opened_mask)
+        result = cv2.bitwise_and(cv2.bitwise_not(image), cv2. bitwise_not(image), mask = mask)
 
         edges = cv2.Canny(result, 80, 300)
         
@@ -137,21 +132,24 @@ if __name__ == '__main__':
                         dy = y2-y1
                         dx = x2-x1
                         angle = math.degrees(math.atan2(dy,dx))
-    ##                    print(" angle : ", angle)
+##                        print(" angle : ", angle)
                         if(angle <= -20 or angle >= 20):
-    ##                        print("legit angle")
+##                            print("legit angle")
+                            angleList.extend([angle])
                             pathXList.extend([x1,x2])
-    ##                    print("x1: ",x1, "| y1: ", y1, "| x2: ",x2, "| y2: ",y2)
+##                        print("x1: ",x1, "| y1: ", y1, "| x2: ",x2, "| y2: ",y2)
                         cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
-    ##                    cv2.putText(image, str(x1)+ "|"+str(y1)+"|"+str(x2)+"|"+str(y2),(x1-20,y1+20), font, 1, (255,255,255),2,cv2.LINE_AA)
+##                        cv2.putText(image, str(x1)+ "|"+str(y1)+"|"+str(x2)+"|"+str(y2),(x1-20,y1+20), font, 1, (255,255,255),2,cv2.LINE_AA)
             else:
                 print("passing")
                 pass
 
+        angleList.extend([0])
         #remove duplicates in list
         pathXList = list(set(pathXList))
         #sort list from smallest to biggest
         pathXList.sort()
+        angleList.sort()
         amtOfPathXList = len(pathXList)
         print("len of path x list : ",amtOfPathXList)
         if(amtOfPathXList != 0):
@@ -161,27 +159,44 @@ if __name__ == '__main__':
                 continue
             else:
                 print("pathXList : ",pathXList)
+                print("angleList : ",angleList)
                 leftBoundary = pathXList[0]
                 rightBoundary = pathXList[len(pathXList)-1]
                 print("boundary of path = ",leftBoundary," and ",rightBoundary)
+                zeroAngleIndex = angleList.index(0)
+                midPointAngleList = int(math.floor(len(angleList)/2))
+                
+                print("zero angle index : ",zeroAngleIndex)
 
                 if(250 <= leftBoundary and rightBoundary <= 400):
                     print("gp forward")
                     varLeft = 1000
                     varRight = 2000
                     movement(varLeft,varRight,pwma,pwmb,"up",pathFlag)
-                    
-                elif(rightBoundary > 401 or leftBoundary > 401):
+
+                elif(zeroAngleIndex < midPointAngleList): #more positive angles
+                    print("turn left")
+                    varLeft = 1000
+                    varRight = 4000
+                    movement(varLeft,varRight,pwma,pwmb,"left",pathFlag)
+
+                elif(zeroAngleIndex > midPointAngleList): #more negative angles
                     print("turn right")
                     varLeft = 2500
                     varRight = 2000
                     movement(varLeft,varRight,pwma,pwmb,"right",pathFlag)
                     
-                elif(leftBoundary < 249 or rightBoundary < 249):
-                    print("turn left")
-                    varLeft = 1000
-                    varRight = 4000
-                    movement(varLeft,varRight,pwma,pwmb,"left",pathFlag)
+##                elif(rightBoundary > 401 or leftBoundary > 401):
+##                    print("turn right")
+##                    varLeft = 2500
+##                    varRight = 2000
+##                    movement(varLeft,varRight,pwma,pwmb,"right",pathFlag)
+##                    
+##                elif(leftBoundary < 249 or rightBoundary < 249):
+##                    print("turn left")
+##                    varLeft = 1000
+##                    varRight = 4000
+##                    movement(varLeft,varRight,pwma,pwmb,"left",pathFlag)
         else:
             print("finding path")
             pathFlag = True
