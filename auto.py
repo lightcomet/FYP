@@ -1,5 +1,5 @@
 import time
-time1 = time.time()
+startProgramTime = time.time()
 import cv2
 import numpy as np
 import math
@@ -11,9 +11,8 @@ from settings import config
 def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
     print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
     if(findPath == True):
-        print("finding path")
         pwma.start(1)
-        pwmb.start(20)
+        pwmb.start(30)
         GPIO.output(settings["AIN1"],1)
         GPIO.output(settings["AIN2"],0)
         GPIO.output(settings["BIN1"],1)
@@ -53,20 +52,6 @@ def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
             GPIO.output(settings["BIN2"],0)
             pwma.ChangeFrequency(varRight)
             pwmb.ChangeFrequency(varLeft)
-    
-
-def autoCanny (image, sigma = 0.33):
-    # compute the median of the single channel pixel intensities
-    median = np.median(image)
-    
-    # apply automatic Canny edge detection using the computed median
-    lower = int(max(0, (1.0 - sigma) * median))
-    upper = int(min(255, (1.0 + sigma) * median))
-    edged = cv2.Canny(image, lower, upper)
-
-    # return the edged image
-    return edged
-    
 
 if __name__ == '__main__':
 
@@ -86,19 +71,19 @@ if __name__ == '__main__':
     pwma = GPIO.PWM(settings["PWMA"],settings["PWMA_PW"]) # pulse width of 100 Hz
     pwmb = GPIO.PWM(settings["PWMB"],settings["PWMB_PW"]) # pulse width of 100 Hz
 
-##    GPIO.output(settings["PWMA"],0)
     GPIO.output(settings["AIN1"],0)
     GPIO.output(settings["AIN2"],0)
-##    GPIO.output(settings["PWMB"],0)
     GPIO.output(settings["BIN1"],0)
     GPIO.output(settings["BIN2"],0)
     GPIO.output(settings["STNBY"],1)
 
-    startFlag = False
     direction = False
     pathFlag = False
     varLeft = 1
     varRight = 1
+
+    lower_black = np.array([0,0,0])
+    upper_black = np.array([0,0,10])
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -113,29 +98,35 @@ if __name__ == '__main__':
 
     # set up time
     time3 = time.time()
-    print ('Set up time : ', time3-time1,'secs')
+    print ('Set up time : ', time3-startProgramTime,'secs')
 
     # camera warm up
     time.sleep(2)
 
     # capture frames from camera
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-
         pathXList = []
             
         # image array, processing is done here
         image = frame.array
+        
+        timeStart = time.time()
 
         blur = cv2.GaussianBlur(image,(5,5),0)
 
-        hsv = cv2.cvtColor(blur, cv2.COLOR_RGB2GRAY)
+        hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
 
+        mask = cv2.inRange(hsv, lower_black, upper_black)
+
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 1))
         
-##        edges = autoCanny(hsv) #settings["cannyMin"] , settings["cannyMax"]
-        edges = cv2.Canny(hsv, 80, 100)
+        opened_mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+
+        result = cv2.bitwise_and(cv2.bitwise_not(image), cv2. bitwise_not(image), mask = opened_mask)
+
+        edges = cv2.Canny(result, 80, 300)
         
         lines = cv2.HoughLinesP(edges, rho = 1, theta = np.pi/360, threshold =  100, minLineLength = settings["minLineLength"], maxLineGap = settings["maxLineGap"])
-        timeStart = time.time()
         print("--------------------------------------------------------------------------------")
         if(lines is not None):
             lenlines = len(lines)
@@ -180,13 +171,13 @@ if __name__ == '__main__':
                     varRight = 2000
                     movement(varLeft,varRight,pwma,pwmb,"up",pathFlag)
                     
-                elif(rightBoundary > 401):
+                elif(rightBoundary > 401 or leftBoundary > 401):
                     print("turn right")
                     varLeft = 2500
                     varRight = 2000
                     movement(varLeft,varRight,pwma,pwmb,"right",pathFlag)
                     
-                elif(leftBoundary<249):
+                elif(leftBoundary < 249 or rightBoundary < 249):
                     print("turn left")
                     varLeft = 1000
                     varRight = 4000
@@ -207,6 +198,9 @@ if __name__ == '__main__':
         # show frame
 ##        cv2.imshow("Image", edges)
         cv2.imshow("Line Image", image)
+##        cv2.imshow("canny",edges)
+##        cv2.imshow("mask",mask)
+        cv2.imshow("Result", result)
                 
         # clear stream in preparation for next frame
         rawCapture.truncate(0)
@@ -217,24 +211,21 @@ if __name__ == '__main__':
         # stop movement if keyboard p is pressed
         if key & 0xFF == ord("s"):
             print('start')
-            startFlag = True
             direction = "up"
         
         # stop movement if keyboard p is pressed
         if key & 0xFF == ord("p"):
             print('pause')
-            startFlag = False
             pwma.stop()
             pwmb.stop()
 
         # exit from loop if keyboard q is pressed
         if key & 0xFF == ord("q"):
             print('quit')
-            startFlag = False
             pwma.stop()
             pwmb.stop()
             break
         
-    time2 = time.time()
-    print ('Elapsed time : ', time2-time1,'secs')
+    endProgramTime = time.time()
+    print ('Elapsed time : ', endProgramTime-startProgramTime,'secs')
     GPIO.cleanup() #important to have to reset the GPIOs
