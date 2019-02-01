@@ -1,8 +1,5 @@
-import RPi.GPIO as GPIO
-
 
 settings = {
-    
 "PWMA" : 17,
 "AIN1" : 22,
 "AIN2" : 27,
@@ -15,7 +12,8 @@ settings = {
 "cannyMin" : 80,
 "cannyMax" : 100,
 "minLineLength" : 100,
-"maxLineGap" : 100
+"maxLineGap" : 100,
+
 }
 
 def config ():
@@ -31,3 +29,7 @@ if __name__ == '__main__':
     print("STNBY pin: ", settings["STNBY"])
     print("PWMB pulse width: ", settings["PWMA_PW"])
     print("PWMB pulse width: ", settings["PWMB_PW"])
+    print("Canny Min: ", settings["cannyMin"])
+    print("Canny Max: ", settings["cannyMax"])
+    print("Min Line Length: ", settings["minLineLength"])
+    print("Max Line Gap: ", settings["maxLineGap"])
