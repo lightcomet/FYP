@@ -8,10 +8,12 @@ from picamera.array import PiRGBArray
 import RPi.GPIO as GPIO
 from settings import config
 
-def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
+def movement (varLeft, varRight, moreSide, lessSide, pwma, pwmb, direction, findPath):
     print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
     if(findPath == True):
         print("finding path")
+        pwma.stop()
+        pwmb.stop()
 ##        pwma.start(1)
 ##        pwmb.start(20)
 ##        GPIO.output(settings["AIN1"],1)
@@ -23,36 +25,39 @@ def movement (varLeft, varRight, pwma, pwmb, direction, findPath):
     else:
         if(direction == "up"):
             print("up movement")
-##            pwma.start(50)
-##            pwmb.start(50)
-##            GPIO.output(settings["AIN1"],1)
-##            GPIO.output(settings["AIN2"],0)
-##            GPIO.output(settings["BIN1"],1)
-##            GPIO.output(settings["BIN2"],0)
-##            pwma.ChangeFrequency(varRight)
-##            pwmb.ChangeFrequency(varLeft)
+            print("more side : ", moreSide, "less side : ", lessSide)
+            pwma.start(moreSide)
+            pwmb.start(lessSide)
+            GPIO.output(settings["AIN1"],1)
+            GPIO.output(settings["AIN2"],0)
+            GPIO.output(settings["BIN1"],1)
+            GPIO.output(settings["BIN2"],0)
+            pwma.ChangeFrequency(varRight)
+            pwmb.ChangeFrequency(varLeft)
             
         elif(direction == "left"):
             print("left movement")
-##            pwma.start(20)
-##            pwmb.start(10)
-##            GPIO.output(settings["AIN1"],1)
-##            GPIO.output(settings["AIN2"],0)
-##            GPIO.output(settings["BIN1"],1)
-##            GPIO.output(settings["BIN2"],0)
-##            pwma.ChangeFrequency(varRight)
-##            pwmb.ChangeFrequency(varLeft)
+            print("more side : ", moreSide, "less side : ", lessSide)
+            pwma.start(moreSide)
+            pwmb.start(lessSide)
+            GPIO.output(settings["AIN1"],1)
+            GPIO.output(settings["AIN2"],0)
+            GPIO.output(settings["BIN1"],1)
+            GPIO.output(settings["BIN2"],0)
+            pwma.ChangeFrequency(varRight)
+            pwmb.ChangeFrequency(varLeft)
             
         elif(direction == "right"):
             print("right movement")
-##            pwma.start(10)
-##            pwmb.start(20)
-##            GPIO.output(settings["AIN1"],1)
-##            GPIO.output(settings["AIN2"],0)
-##            GPIO.output(settings["BIN1"],1)
-##            GPIO.output(settings["BIN2"],0)
-##            pwma.ChangeFrequency(varRight)
-##            pwmb.ChangeFrequency(varLeft)
+            print("more side : ", moreSide, "less side : ", lessSide)
+            pwma.start(lessSide)
+            pwmb.start(moreSide)
+            GPIO.output(settings["AIN1"],1)
+            GPIO.output(settings["AIN2"],0)
+            GPIO.output(settings["BIN1"],1)
+            GPIO.output(settings["BIN2"],0)
+            pwma.ChangeFrequency(varRight)
+            pwmb.ChangeFrequency(varLeft)
     
 
 if __name__ == '__main__':
@@ -117,7 +122,6 @@ if __name__ == '__main__':
 ##        blur = cv2.GaussianBlur(image,(5,5),0)
 
         hsv = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-
         
 ##        edges = autoCanny(hsv) #settings["cannyMin"] , settings["cannyMax"]
         edges = cv2.Canny(hsv, 80, 100)
@@ -144,7 +148,7 @@ if __name__ == '__main__':
         angleList.sort()
         consolidatedList.sort(key = lambda tup : tup[0])#sort by 1st tuple item (angle)
 ##        print(consolidatedList)
-##        print(angleList)
+        print(angleList)
 
         angleDifference = [j-i for i, j in zip(angleList[:-1],angleList[1:])] #find difference between elements of list
         
@@ -176,39 +180,80 @@ if __name__ == '__main__':
         amtOfPathXList = len(pathXList)
         print("len of path x list : ",amtOfPathXList)
         if(amtOfPathXList != 0):
-            if(amtOfPathXList > 12):
+            if(amtOfPathXList > 16):
                 print("too many lines detected, do nothing")
                 rawCapture.truncate(0)
                 continue
             else:
+                averageAngle = sum(angleList)/len(angleList)
+                print("averageAngle : ",averageAngle)
                 print("pathXList : ",pathXList)
                 leftBoundary = pathXList[0]
                 rightBoundary = pathXList[len(pathXList)-1]
                 print("boundary of path = ",leftBoundary," and ",rightBoundary)
 
-                if(250 <= leftBoundary and rightBoundary <= 400):
+                if(200 <= leftBoundary and rightBoundary <= 450):
                     print("gp forward")
                     varLeft = 1000
                     varRight = 2000
-                    movement(varLeft,varRight,pwma,pwmb,"up",pathFlag)
+                    moreSide = 50
+                    lessSide = 50
+                    movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"up",pathFlag)
+
+##                elif(averageAngle <= 0):
+##                    print("turn right")
+##                    if(averageAngle <= -20 and averageAngle > -37.5):
+##                        moreSide = 30
+##                        lessSide = 10
+##                    elif(averageAngle <= -37.5 and averageAngle > -55):
+##                        moreSide = 26
+##                        lessSide = 10
+##                    elif(averageAngle <= -55 and averageAngle > -72.5):
+##                        moreSide = 23
+##                        lessSide = 10    
+##                    elif(averageAngle <= -72.5 and averageAngle > -90):
+##                        moreSide = 20
+##                        lessSide = 10
+##                        
+##                    varLeft = 1000
+##                    varRight = 2000
+##                    movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"right",pathFlag)
+##
+##                elif(averageAngle >= 0):
+##                    print("turn left")
+##                    if(averageAngle >= 20 and averageAngle < 37.5):
+##                        moreSide = 30
+##                        lessSide = 10
+##                    elif(averageAngle >= 37.5 and averageAngle < 55):
+##                        moreSide = 26
+##                        lessSide = 10
+##                    elif(averageAngle >= 55 and averageAngle < 72.5):
+##                        moreSide = 23
+##                        lessSide = 10
+##                    elif(averageAngle >= 72.5 and averageAngle < 90):
+##                        moreSide = 20
+##                        lessSide = 10
+##                    varLeft = 1000
+##                    varRight = 2000
+##                    movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"left",pathFlag)                    
                     
-                elif(rightBoundary > 401):
-                    print("turn right")
-                    varLeft = 2500
-                    varRight = 2000
-                    movement(varLeft,varRight,pwma,pwmb,"right",pathFlag)
-                    
-                elif(leftBoundary<249):
-                    print("turn left")
-                    varLeft = 1000
-                    varRight = 4000
-                    movement(varLeft,varRight,pwma,pwmb,"left",pathFlag)
+##                elif(rightBoundary > 401):
+##                    print("turn right")
+##                    varLeft = 2500
+##                    varRight = 2000
+##                    movement(varLeft,varRight,pwma,pwmb,"right",pathFlag)
+##                    
+##                elif(leftBoundary<249):
+##                    print("turn left")
+##                    varLeft = 1000
+##                    varRight = 4000
+##                    movement(varLeft,varRight,pwma,pwmb,"left",pathFlag)
         else:
             print("finding path")
             pathFlag = True
             varLeft = 1000
             varRight = 2000
-            movement(varLeft,varRight,pwma,pwmb,"up",pathFlag)
+            movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"up",pathFlag)
             
         pathFlag = False
 
