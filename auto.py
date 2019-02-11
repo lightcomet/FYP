@@ -115,6 +115,8 @@ if __name__ == '__main__':
         angleList = []
         consolidatedList = []
         toBeRemoved = []
+        varLeft = 2000
+        varRight = 1000
             
         # image array, processing is done here
         image = frame.array
@@ -163,7 +165,7 @@ if __name__ == '__main__':
 ##                    print("parellel")
                 else:
 ##                    print("remove this index : ",counter)
-                    toBeRemoved.append(counter)
+                    toBeRemoved.append(counter-1)
                 counter += 1
             for i in toBeRemoved:
                 del consolidatedList[i]
@@ -192,67 +194,91 @@ if __name__ == '__main__':
                 rightBoundary = pathXList[len(pathXList)-1]
                 print("boundary of path = ",leftBoundary," and ",rightBoundary)
 
-                if(200 <= leftBoundary and rightBoundary <= 450):
+                if(229 <= leftBoundary and rightBoundary <= 409): # 0 - 229 = 230 pixels, 409 - 639 = 230 pixels, center pixels = 640 - 230 - 230 = 180
                     print("gp forward")
-                    varLeft = 1000
-                    varRight = 2000
                     moreSide = 50
                     lessSide = 50
                     movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"up",pathFlag)
-
-##                elif(averageAngle <= 0):
-##                    print("turn right")
-##                    if(averageAngle <= -20 and averageAngle > -37.5):
-##                        moreSide = 30
-##                        lessSide = 10
-##                    elif(averageAngle <= -37.5 and averageAngle > -55):
-##                        moreSide = 26
-##                        lessSide = 10
-##                    elif(averageAngle <= -55 and averageAngle > -72.5):
-##                        moreSide = 23
-##                        lessSide = 10    
-##                    elif(averageAngle <= -72.5 and averageAngle > -90):
-##                        moreSide = 20
-##                        lessSide = 10
-##                        
-##                    varLeft = 1000
-##                    varRight = 2000
-##                    movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"right",pathFlag)
-##
-##                elif(averageAngle >= 0):
-##                    print("turn left")
-##                    if(averageAngle >= 20 and averageAngle < 37.5):
-##                        moreSide = 30
-##                        lessSide = 10
-##                    elif(averageAngle >= 37.5 and averageAngle < 55):
-##                        moreSide = 26
-##                        lessSide = 10
-##                    elif(averageAngle >= 55 and averageAngle < 72.5):
-##                        moreSide = 23
-##                        lessSide = 10
-##                    elif(averageAngle >= 72.5 and averageAngle < 90):
-##                        moreSide = 20
-##                        lessSide = 10
-##                    varLeft = 1000
-##                    varRight = 2000
-##                    movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"left",pathFlag)                    
                     
-##                elif(rightBoundary > 401):
-##                    print("turn right")
-##                    varLeft = 2500
-##                    varRight = 2000
-##                    movement(varLeft,varRight,pwma,pwmb,"right",pathFlag)
-##                    
-##                elif(leftBoundary<249):
-##                    print("turn left")
-##                    varLeft = 1000
-##                    varRight = 4000
-##                    movement(varLeft,varRight,pwma,pwmb,"left",pathFlag)
+                elif(rightBoundary > 409):
+                    print("right boundary")
+                    if(averageAngle < 0):
+                        print("turn right")
+                        if(averageAngle <= -20 and averageAngle > -37.5):
+                            moreSide = 35
+                            lessSide = 10
+                        elif(averageAngle <= -37.5 and averageAngle > -55):
+                            moreSide = 30
+                            lessSide = 10
+                        elif(averageAngle <= -55 and averageAngle > -72.5):
+                            moreSide = 25
+                            lessSide = 10    
+                        elif(averageAngle <= -72.5 and averageAngle > -90):
+                            moreSide = 20
+                            lessSide = 10
+                        else:
+                            moreSide = 10
+                            lessSide = 10
+                        movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"right",pathFlag)
+                    elif(averageAngle > 0):
+                        print("turn left")
+                        if(averageAngle >= 20 and averageAngle < 37.5):
+                            moreSide = 35
+                            lessSide = 10
+                        elif(averageAngle >= 37.5 and averageAngle < 55):
+                            moreSide = 30
+                            lessSide = 10
+                        elif(averageAngle >= 55 and averageAngle < 72.5):
+                            moreSide = 25
+                            lessSide = 10
+                        elif(averageAngle >= 72.5 and averageAngle < 90):
+                            moreSide = 20
+                            lessSide = 10
+                        else:
+                            moreSide = 10
+                            lessSide = 10
+                        movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"left",pathFlag) 
+                    
+                    
+                elif(leftBoundary < 229):
+                    print("left boundary")
+                    if(averageAngle <= 0):
+                        print("turn right")
+                        if(averageAngle <= -20 and averageAngle > -37.5):
+                            moreSide = 35
+                            lessSide = 10
+                        elif(averageAngle <= -37.5 and averageAngle > -55):
+                            moreSide = 30
+                            lessSide = 10
+                        elif(averageAngle <= -55 and averageAngle > -72.5):
+                            moreSide = 25
+                            lessSide = 10    
+                        elif(averageAngle <= -72.5 and averageAngle > -90):
+                            moreSide = 20
+                            lessSide = 10
+                        movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"right",pathFlag)
+
+                    elif(averageAngle >= 0):
+                        print("turn left")
+                        if(averageAngle >= 20 and averageAngle < 37.5):
+                            moreSide = 35
+                            lessSide = 10
+                        elif(averageAngle >= 37.5 and averageAngle < 55):
+                            moreSide = 30
+                            lessSide = 10
+                        elif(averageAngle >= 55 and averageAngle < 72.5):
+                            moreSide = 25
+                            lessSide = 10
+                        elif(averageAngle >= 72.5 and averageAngle < 90):
+                            moreSide = 20
+                            lessSide = 10
+                        movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"left",pathFlag)                    
+
         else:
             print("finding path")
             pathFlag = True
-            varLeft = 1000
-            varRight = 2000
+            moreSide = 50
+            lessSide = 50
             movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"up",pathFlag)
             
         pathFlag = False

@@ -26,7 +26,7 @@ def forward(varLeft, varRight, pwma, pwmb, direction):
         GPIO.output(BIN2,1)
     pwma.ChangeFrequency(varRight)
     pwmb.ChangeFrequency(varLeft)
-    sleep(1)
+
     
 if __name__ == '__main__':
 
@@ -40,8 +40,8 @@ if __name__ == '__main__':
     STNBY = 18
 
     #default motor speed
-    varLeft = 1000
-    varRight = 2000
+    varLeft = 2000
+    varRight = 1000
     direction = "up"
 
     GPIO.setwarnings(False) # no gpio wanrings
