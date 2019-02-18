@@ -12,6 +12,7 @@ def movement (varLeft, varRight, moreSide, lessSide, pwma, pwmb, direction, find
     print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
     if(findPath == True):
         print("finding path")
+        print("no path detected")
         pwma.stop()
         pwmb.stop()
 ##        pwma.start(1)
@@ -113,6 +114,7 @@ if __name__ == '__main__':
 
         pathXList = []
         angleList = []
+        parallelAngle = []
         consolidatedList = []
         toBeRemoved = []
         varLeft = 2000
@@ -139,7 +141,7 @@ if __name__ == '__main__':
                     for x1,y1,x2,y2 in line:
                         dy = y2-y1
                         dx = x2-x1
-                        angle = math.degrees(math.atan2(dy,dx))
+                        angle = round(math.degrees(math.atan2(dy,dx)))
 ##                        print(" angle : ", angle)
                         if(angle <= -20 or angle >= 20):
                             consolidatedList.append((angle,x1,y1,x2,y2))
@@ -151,34 +153,44 @@ if __name__ == '__main__':
         consolidatedList.sort(key = lambda tup : tup[0])#sort by 1st tuple item (angle)
 ##        print(consolidatedList)
         print(angleList)
+        parallelAngle = set(currentParallelAngle for currentParallelAngle in angleList if angleList.count(currentParallelAngle) > 1)
 
-        angleDifference = [j-i for i, j in zip(angleList[:-1],angleList[1:])] #find difference between elements of list
-        
-##        print(angleDifference)
-        counter = 0
-        if(len(angleDifference) == 1):
-            pass
-        else:
-            for i in angleDifference:
-                if(abs(i) < 5):
-                    pass
-##                    print("parellel")
-                else:
-##                    print("remove this index : ",counter)
-                    toBeRemoved.append(counter-1)
-                counter += 1
-            for i in toBeRemoved:
-                del consolidatedList[i]
-        print(consolidatedList)
+
+##        angleDifference = [j-i for i, j in zip(angleList[:-1],angleList[1:])] #find difference between elements of list
+##        
+####        print(angleDifference)
+##        counter = 0
+##        if(len(angleDifference) == 1):
+##            pass
+##        else:
+##            for i in angleDifference:
+##                if(abs(i) < 5):
+##                    pass
+####                    print("parellel")
+##                else:
+####                    print("remove this index : ",counter)
+##                    toBeRemoved.append(counter-1)
+##                counter += 1
+##            for i in toBeRemoved:
+##                del consolidatedList[i]
+        print("consolidated list : ", consolidatedList)
         for i in consolidatedList:
             angle,x1,y1,x2,y2 = i
-            cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
-            pathXList.extend([x1,x2])
+            for currentParallelAngle in parallelAngle:
+##                print(currentParallelAngle)
+                difference = currentParallelAngle - angle
+                if(abs(difference) <= 2):
+                    cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
+                    pathXList.extend([x1,x2])
+                    break
+                else:
+                    pass
                 
         #remove duplicates in list
         pathXList = list(set(pathXList))
         #sort list from smallest to biggest
         pathXList.sort()
+##        print(pathXList)
         amtOfPathXList = len(pathXList)
         print("len of path x list : ",amtOfPathXList)
         if(amtOfPathXList != 0):
@@ -187,7 +199,8 @@ if __name__ == '__main__':
                 rawCapture.truncate(0)
                 continue
             else:
-                averageAngle = sum(angleList)/len(angleList)
+                averageAngle = currentParallelAngle
+##                sum(angleList)/len(angleList)
                 print("averageAngle : ",averageAngle)
                 print("pathXList : ",pathXList)
                 leftBoundary = pathXList[0]
@@ -196,8 +209,8 @@ if __name__ == '__main__':
 
                 if(229 <= leftBoundary and rightBoundary <= 409): # 0 - 229 = 230 pixels, 409 - 639 = 230 pixels, center pixels = 640 - 230 - 230 = 180
                     print("gp forward")
-                    moreSide = 50
-                    lessSide = 50
+                    moreSide = 10
+                    lessSide = 10
                     movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"up",pathFlag)
                     
                 elif(rightBoundary > 409):
