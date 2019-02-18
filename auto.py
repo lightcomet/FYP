@@ -123,9 +123,9 @@ if __name__ == '__main__':
         # image array, processing is done here
         image = frame.array
 
-##        blur = cv2.GaussianBlur(image,(5,5),0)
+        blur = cv2.GaussianBlur(image,(5,5),0)
 
-        hsv = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        hsv = cv2.cvtColor(blur, cv2.COLOR_RGB2GRAY)
         
 ##        edges = autoCanny(hsv) #settings["cannyMin"] , settings["cannyMax"]
         edges = cv2.Canny(hsv, 80, 100)
@@ -152,7 +152,7 @@ if __name__ == '__main__':
         angleList.sort()
         consolidatedList.sort(key = lambda tup : tup[0])#sort by 1st tuple item (angle)
 ##        print(consolidatedList)
-        print(angleList)
+        print("angleList : ",angleList)
         parallelAngle = set(currentParallelAngle for currentParallelAngle in angleList if angleList.count(currentParallelAngle) > 1)
 
 
@@ -177,7 +177,7 @@ if __name__ == '__main__':
         for i in consolidatedList:
             angle,x1,y1,x2,y2 = i
             for currentParallelAngle in parallelAngle:
-##                print(currentParallelAngle)
+                print("currentParallelAngle : ",currentParallelAngle)
                 difference = currentParallelAngle - angle
                 if(abs(difference) <= 2):
                     cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)
@@ -218,16 +218,16 @@ if __name__ == '__main__':
                     if(averageAngle < 0):
                         print("turn right")
                         if(averageAngle <= -20 and averageAngle > -37.5):
-                            moreSide = 35
-                            lessSide = 10
-                        elif(averageAngle <= -37.5 and averageAngle > -55):
                             moreSide = 30
                             lessSide = 10
-                        elif(averageAngle <= -55 and averageAngle > -72.5):
+                        elif(averageAngle <= -37.5 and averageAngle > -55):
                             moreSide = 25
+                            lessSide = 10
+                        elif(averageAngle <= -55 and averageAngle > -72.5):
+                            moreSide = 20
                             lessSide = 10    
                         elif(averageAngle <= -72.5 and averageAngle > -90):
-                            moreSide = 20
+                            moreSide = 15
                             lessSide = 10
                         else:
                             moreSide = 10
@@ -236,16 +236,16 @@ if __name__ == '__main__':
                     elif(averageAngle > 0):
                         print("turn left")
                         if(averageAngle >= 20 and averageAngle < 37.5):
-                            moreSide = 35
-                            lessSide = 10
-                        elif(averageAngle >= 37.5 and averageAngle < 55):
                             moreSide = 30
                             lessSide = 10
-                        elif(averageAngle >= 55 and averageAngle < 72.5):
+                        elif(averageAngle >= 37.5 and averageAngle < 55):
                             moreSide = 25
                             lessSide = 10
-                        elif(averageAngle >= 72.5 and averageAngle < 90):
+                        elif(averageAngle >= 55 and averageAngle < 72.5):
                             moreSide = 20
+                            lessSide = 10
+                        elif(averageAngle >= 72.5 and averageAngle < 90):
+                            moreSide = 15
                             lessSide = 10
                         else:
                             moreSide = 10
@@ -258,32 +258,32 @@ if __name__ == '__main__':
                     if(averageAngle <= 0):
                         print("turn right")
                         if(averageAngle <= -20 and averageAngle > -37.5):
-                            moreSide = 35
-                            lessSide = 10
-                        elif(averageAngle <= -37.5 and averageAngle > -55):
                             moreSide = 30
                             lessSide = 10
-                        elif(averageAngle <= -55 and averageAngle > -72.5):
+                        elif(averageAngle <= -37.5 and averageAngle > -55):
                             moreSide = 25
+                            lessSide = 10
+                        elif(averageAngle <= -55 and averageAngle > -72.5):
+                            moreSide = 20
                             lessSide = 10    
                         elif(averageAngle <= -72.5 and averageAngle > -90):
-                            moreSide = 20
+                            moreSide = 15
                             lessSide = 10
                         movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"right",pathFlag)
 
                     elif(averageAngle >= 0):
                         print("turn left")
                         if(averageAngle >= 20 and averageAngle < 37.5):
-                            moreSide = 35
-                            lessSide = 10
-                        elif(averageAngle >= 37.5 and averageAngle < 55):
                             moreSide = 30
                             lessSide = 10
-                        elif(averageAngle >= 55 and averageAngle < 72.5):
+                        elif(averageAngle >= 37.5 and averageAngle < 55):
                             moreSide = 25
                             lessSide = 10
-                        elif(averageAngle >= 72.5 and averageAngle < 90):
+                        elif(averageAngle >= 55 and averageAngle < 72.5):
                             moreSide = 20
+                            lessSide = 10
+                        elif(averageAngle >= 72.5 and averageAngle < 90):
+                            moreSide = 15
                             lessSide = 10
                         movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"left",pathFlag)                    
 
