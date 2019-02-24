@@ -79,8 +79,8 @@ if __name__ == '__main__':
     GPIO.setup(settings["BIN2"], GPIO.OUT)
     GPIO.setup(settings["STNBY"], GPIO.OUT)
 
-    pwma = GPIO.PWM(settings["PWMA"],settings["PWMA_PW"]) # pulse width of 100 Hz
-    pwmb = GPIO.PWM(settings["PWMB"],settings["PWMB_PW"]) # pulse width of 100 Hz
+##    pwma = GPIO.PWM(settings["PWMA"],settings["PWMA_PW"]) # pulse width of 100 Hz
+##    pwmb = GPIO.PWM(settings["PWMB"],settings["PWMB_PW"]) # pulse width of 100 Hz
 
     GPIO.output(settings["AIN1"],0)
     GPIO.output(settings["AIN2"],0)
@@ -93,6 +93,16 @@ if __name__ == '__main__':
     pathFlag = False
     varLeft = 1
     varRight = 1
+
+    pwma = GPIO.PWM(settings["PWMA"],1) # pulse width of 1000 Hz
+    pwmb = GPIO.PWM(settings["PWMB"],1) # pulse width of 1000 Hz
+    GPIO.output(settings["AIN1"],1)
+    GPIO.output(settings["AIN2"],0)
+    GPIO.output(settings["BIN1"],1)
+    GPIO.output(settings["BIN2"],0)
+    GPIO.output(settings["STNBY"],1)
+    pwma.start(1)
+    pwmb.start(1)
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -143,7 +153,6 @@ if __name__ == '__main__':
 
         nonzero = cv2.findNonZero(edges)
         counter = 0
-
         if(nonzero is None):
             pass
         else:
@@ -167,14 +176,17 @@ if __name__ == '__main__':
                 slidingWindow = slidingWindow[amtToRemove:]
                 amtToRemove = counter
                 print("sliding window : ",slidingWindow, " counter : ",amtToRemove)
-                
+            
         pathFlag = False
         timeStop = time.time()
         print("time taken : ",(timeStop-timeStart)*1000, "ms")
+
         
+        pwma.ChangeFrequency(1000)
+        pwmb.ChangeFrequency(1200)
+        pwma.ChangeDutyCycle(20)
+        pwmb.ChangeDutyCycle(20)
         
-        
-                
         # clear stream in preparation for next frame
         rawCapture.truncate(0)
         
