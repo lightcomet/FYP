@@ -94,15 +94,15 @@ if __name__ == '__main__':
     varLeft = 1
     varRight = 1
 
-    pwma = GPIO.PWM(settings["PWMA"],1) # pulse width of 1000 Hz
-    pwmb = GPIO.PWM(settings["PWMB"],1) # pulse width of 1000 Hz
-    GPIO.output(settings["AIN1"],1)
-    GPIO.output(settings["AIN2"],0)
-    GPIO.output(settings["BIN1"],1)
-    GPIO.output(settings["BIN2"],0)
-    GPIO.output(settings["STNBY"],1)
-    pwma.start(1)
-    pwmb.start(1)
+##    pwma = GPIO.PWM(settings["PWMA"],1) # pulse width of 1 Hz
+##    pwmb = GPIO.PWM(settings["PWMB"],1) # pulse width of 1 Hz
+##    GPIO.output(settings["AIN1"],1)
+##    GPIO.output(settings["AIN2"],0)
+##    GPIO.output(settings["BIN1"],1)
+##    GPIO.output(settings["BIN2"],0)
+##    GPIO.output(settings["STNBY"],1)
+##    pwma.start(1)
+##    pwmb.start(1)
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -125,13 +125,21 @@ if __name__ == '__main__':
     # capture frames from camera
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
-        pathXList = []
-        x1List = []
-        y1List = []
-        x2List = []
-        y2List = []
-        lineList = []
+##        pathXList = []
+##        x1List = []
+##        y1List = []
+##        x2List = []
+##        y2List = []
+##        lineList = []
+        currentMTpastList = []
+        currentLTpastList = []
+        noDiffList = []
         tempWindow = []
+        diffInX = []
+        centerPoint = (319,479)
+        currentMTPastFlag = False
+        currentLTPastFlag = False
+        noDiffFlag = False
         varLeft = 1000
         varRight = 1250
             
@@ -156,19 +164,103 @@ if __name__ == '__main__':
         if(nonzero is None):
             pass
         else:
-            for index in nonzero:
-                if(index[0][1] == 0 or index[0][1] == 479):
+            #appending
+            nonzeroReverse = nonzero[::-1]
+            for index in nonzeroReverse:
+##                if(index[0][1] == 0 or index[0][1] == 479):
+##                    print("x is : ",index[0][0], " y is ", index[0][1])
+##                    tempWindow.append((index[0][0],index[0][1]))
+##                    counter += 1
+##                elif(index[0][0] == 0 or index[0][0] == 639):
+##                    print("x`is : ",index[0][0], " y is ", index[0][1])
+##                    tempWindow.append((index[0][0],index[0][1]))
+##                    counter += 1
+                if(index[0][1] == 479):
                     print("x is : ",index[0][0], " y is ", index[0][1])
-                    tempWindow.append((index[0][0],index[0][1]))
-                    counter += 1
-                elif(index[0][0] == 0 or index[0][0] == 639):
-                    print("x`is : ",index[0][0], " y is ", index[0][1])
                     tempWindow.append((index[0][0],index[0][1]))
                     counter += 1
             
             print(counter)
             tempWindow.sort(key=lambda k : [k[0],k[1]])
+            #comparing
+            lenTempWindow = len(tempWindow)
+            lenSlidingWindow = len(slidingWindow)
+            if(lenTempWindow == lenSlidingWindow):
+                for i in range(lenTempWindow):
+                    currentMoreThanPast  = tempWindow[i] > slidingWindow[i]
+                    currentLessThanPast = slidingWindow[i] > tempWindow[i]
+                    noDifference = tempWindow[i] == slidingWindow[i]
+                    if(currentMoreThanPast == True):
+                        currentMTpastList.append(1)
+                        diffX = tempWindow[i][0] - slidingWindow[i][0]
+                        diffY = tempWindow[i][1] - slidingWindow[i][1]
+                        print("diff in x : ",diffX," diff in y : ",diffY)
+                        diffInX.append(diffX)
+                    else:
+                        currentMTpastList.append(0)
+                        
+                    if(currentLessThanPast == True):
+                        currentLTpastList.append(1)
+                        diffX = tempWindow[i][0] - slidingWindow[i][0]
+                        diffY = tempWindow[i][1] - slidingWindow[i][1]
+                        print("diff in x : ",diffX," diff in y : ",diffY)
+                        diffInX.append(diffX)
+                    else:
+                        currentLTpastList.append(0)
+                        
+                    if(noDifference == True):
+                        noDiffList.append(1)
+                    else:
+                        noDiffList.append(0)
+##                    print("positive difference between current and past : ", diffCurrentPast)
+##                    print("negative difference between current and past : ", diffPastCurrent)
+##                    print("no difference between current and past: ", sameDifference)
+            listSizeCurrentMTPast = len(currentMTpastList)
+            listSizeCurrentLTPast = len(currentLTpastList)
+            listSizenoDiff = len(noDiffList)
+            
+            if(listSizeCurrentMTPast == 0 or listSizeCurrentLTPast == 0 or listSizenoDiff ==0):
+                pass
+            else:
+                
+                commonCurrentMTPast = currentMTpastList.count(1)
+                commonCurrentLTPast = currentLTpastList.count(1)
+                commonNoDiff = noDiffList.count(1)
+
+                
+
+                if(commonCurrentMTPast >= listSizeCurrentMTPast//2):
+                    currentMTPastFlag = True
+                else:
+                    currentMTPastFlag = False
+                if(commonCurrentLTPast >= listSizeCurrentLTPast//2):
+                    currentLTPastFlag = True
+                else:
+                    currentLTPastFlag = False
+                if(commonNoDiff >= listSizenoDiff//2):
+                    noDiffFlag = True
+                else:
+                    noDiffFlag = False
+                
+##                print("currentMTPastFlag : ",currentMTPastFlag)
+##                print("currentLTPastFlag : ",currentLTPastFlag)
+##                print("noDiffFlag : ",noDiffFlag)
+
+            if(noDiffFlag):
+                print("move straight")
+            else:
+                if(currentMTPastFlag and currentLTPastFlag):
+                    print("move straight")
+                elif(currentMTPastFlag):
+                    print("move right")
+                elif(currentLTPastFlag):
+                    print("move left")
+
             slidingWindow.extend(tempWindow)
+##            print("currentMTpast : ",currentMTpastList)
+##            print("currentLTpast : ",currentLTpastList)
+##            print("noDifference : ",noDiffList)
+            #removing
             if(amtToRemove == 0):
                 amtToRemove = counter
             else:
@@ -182,10 +274,10 @@ if __name__ == '__main__':
         print("time taken : ",(timeStop-timeStart)*1000, "ms")
 
         
-        pwma.ChangeFrequency(1000)
-        pwmb.ChangeFrequency(1200)
-        pwma.ChangeDutyCycle(20)
-        pwmb.ChangeDutyCycle(20)
+##        pwma.ChangeFrequency(1000)
+##        pwmb.ChangeFrequency(1200)
+##        pwma.ChangeDutyCycle(20)
+##        pwmb.ChangeDutyCycle(20)
         
         # clear stream in preparation for next frame
         rawCapture.truncate(0)
@@ -210,8 +302,8 @@ if __name__ == '__main__':
         if key & 0xFF == ord("q"):
             print('quit')
             startFlag = False
-            pwma.stop()
-            pwmb.stop()
+##            pwma.stop()
+##            pwmb.stop()
             break
         
     time2 = time.time()
