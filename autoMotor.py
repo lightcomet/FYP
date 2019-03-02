@@ -136,7 +136,8 @@ if __name__ == '__main__':
         noDiffList = []
         tempWindow = []
         diffInX = []
-        centerPoint = (319,479)
+        diffCentreList = []
+        centrePoint = (319,479)
         currentMTPastFlag = False
         currentLTPastFlag = False
         noDiffFlag = False
@@ -165,20 +166,30 @@ if __name__ == '__main__':
             pass
         else:
             #appending
-            nonzeroReverse = nonzero[::-1]
-            for index in nonzeroReverse:
-##                if(index[0][1] == 0 or index[0][1] == 479):
+##            nonzeroReverse = nonzero[::-1]
+##            for index in nonzeroReverse:
+####                if(index[0][1] == 0 or index[0][1] == 479):
+####                    print("x is : ",index[0][0], " y is ", index[0][1])
+####                    tempWindow.append((index[0][0],index[0][1]))
+####                    counter += 1
+####                elif(index[0][0] == 0 or index[0][0] == 639):
+####                    print("x`is : ",index[0][0], " y is ", index[0][1])
+####                    tempWindow.append((index[0][0],index[0][1]))
+####                    counter += 1
+##                if(index[0][1] == 479):
 ##                    print("x is : ",index[0][0], " y is ", index[0][1])
 ##                    tempWindow.append((index[0][0],index[0][1]))
 ##                    counter += 1
-##                elif(index[0][0] == 0 or index[0][0] == 639):
-##                    print("x`is : ",index[0][0], " y is ", index[0][1])
-##                    tempWindow.append((index[0][0],index[0][1]))
-##                    counter += 1
-                if(index[0][1] == 479):
-                    print("x is : ",index[0][0], " y is ", index[0][1])
-                    tempWindow.append((index[0][0],index[0][1]))
+##                elif(index[0][1] == 478):
+##                    break
+            lengthNonZero = len(nonzero)
+            for index in range (lengthNonZero-1, 0 , -1):
+                if(nonzero[index][0][1] == 479):
+                    print("x is : ",nonzero[index][0][0], " y is ", nonzero[index][0][1])
+                    tempWindow.append((nonzero[index][0][0],nonzero[index][0][1]))
                     counter += 1
+                elif(nonzero[index][0][1] == 478):
+                    break
             
             print(counter)
             tempWindow.sort(key=lambda k : [k[0],k[1]])
@@ -195,7 +206,9 @@ if __name__ == '__main__':
                         diffX = tempWindow[i][0] - slidingWindow[i][0]
                         diffY = tempWindow[i][1] - slidingWindow[i][1]
                         print("diff in x : ",diffX," diff in y : ",diffY)
+                        diffCentre = tempWindow[i][0] - centrePoint[0]
                         diffInX.append(diffX)
+                        diffCentreList.append(diffCentre)
                     else:
                         currentMTpastList.append(0)
                         
@@ -204,7 +217,9 @@ if __name__ == '__main__':
                         diffX = tempWindow[i][0] - slidingWindow[i][0]
                         diffY = tempWindow[i][1] - slidingWindow[i][1]
                         print("diff in x : ",diffX," diff in y : ",diffY)
+                        diffCentre = tempWindow[i][0] - centrePoint[0]
                         diffInX.append(diffX)
+                        diffCentreList.append(diffCentre)
                     else:
                         currentLTpastList.append(0)
                         
@@ -245,6 +260,11 @@ if __name__ == '__main__':
 ##                print("currentMTPastFlag : ",currentMTPastFlag)
 ##                print("currentLTPastFlag : ",currentLTPastFlag)
 ##                print("noDiffFlag : ",noDiffFlag)
+                if(len(diffInX) != 0):
+                    print(max(diffInX))
+                if(len(diffCentreList) != 0 and len(diffCentreList) <= 2):
+                    for i in diffCentreList:
+                        print("difference from center : ",i)
 
             if(noDiffFlag):
                 print("move straight")
