@@ -135,6 +135,7 @@ if __name__ == '__main__':
         currentLTpastList = []
         noDiffList = []
         tempWindow = []
+        edittedTempWindow = []
         diffInX = []
         diffCentreList = []
         centrePoint = (319,479)
@@ -143,6 +144,10 @@ if __name__ == '__main__':
         noDiffFlag = False
         varLeft = 1000
         varRight = 1250
+        leftPointSum = 0
+        rightPointSum = 0
+        breakPoint = 0
+        toRemove = False
             
         # image array, processing is done here
         image = frame.array
@@ -162,136 +167,86 @@ if __name__ == '__main__':
 
         nonzero = cv2.findNonZero(edges)
         counter = 0
-        if(nonzero is None):
-            pass
-        else:
+        if(nonzero is not None):
             #appending
-##            nonzeroReverse = nonzero[::-1]
-##            for index in nonzeroReverse:
-####                if(index[0][1] == 0 or index[0][1] == 479):
-####                    print("x is : ",index[0][0], " y is ", index[0][1])
-####                    tempWindow.append((index[0][0],index[0][1]))
-####                    counter += 1
-####                elif(index[0][0] == 0 or index[0][0] == 639):
-####                    print("x`is : ",index[0][0], " y is ", index[0][1])
-####                    tempWindow.append((index[0][0],index[0][1]))
-####                    counter += 1
-##                if(index[0][1] == 479):
-##                    print("x is : ",index[0][0], " y is ", index[0][1])
-##                    tempWindow.append((index[0][0],index[0][1]))
-##                    counter += 1
-##                elif(index[0][1] == 478):
-##                    break
             lengthNonZero = len(nonzero)
+            print("length of nonzero : ", lengthNonZero)
             for index in range (lengthNonZero-1, 0 , -1):
                 if(nonzero[index][0][1] == 479):
                     print("x is : ",nonzero[index][0][0], " y is ", nonzero[index][0][1])
                     tempWindow.append((nonzero[index][0][0],nonzero[index][0][1]))
                     counter += 1
-                elif(nonzero[index][0][1] == 478):
+                elif(nonzero[index][0][1] <= 478):
+                    print("index to break : ",index)
                     break
-            
-            print(counter)
+            print("tempWindow : ", tempWindow)
+            print("counter : ",counter)
             tempWindow.sort(key=lambda k : [k[0],k[1]])
+            timeStopAppend = time.time()
+            print("time taken to append: ",(timeStopAppend-timeStart)*1000, "ms")
+            
             #comparing
             lenTempWindow = len(tempWindow)
             lenSlidingWindow = len(slidingWindow)
-            if(lenTempWindow == lenSlidingWindow):
-                for i in range(lenTempWindow):
-                    currentMoreThanPast  = tempWindow[i] > slidingWindow[i]
-                    currentLessThanPast = slidingWindow[i] > tempWindow[i]
-                    noDifference = tempWindow[i] == slidingWindow[i]
-                    if(currentMoreThanPast == True):
-                        currentMTpastList.append(1)
+            print("temp window length : ", lenTempWindow, "sliding window length : ",lenSlidingWindow)
+            if(lenSlidingWindow != 0):
+                toRemove = True
+                if(lenTempWindow == lenSlidingWindow and lenSlidingWindow == 2): #exactly 2 points
+                    for i in range(lenTempWindow):
                         diffX = tempWindow[i][0] - slidingWindow[i][0]
-                        diffY = tempWindow[i][1] - slidingWindow[i][1]
-                        print("diff in x : ",diffX," diff in y : ",diffY)
                         diffCentre = tempWindow[i][0] - centrePoint[0]
-                        diffInX.append(diffX)
-                        diffCentreList.append(diffCentre)
-                    else:
-                        currentMTpastList.append(0)
-                        
-                    if(currentLessThanPast == True):
-                        currentLTpastList.append(1)
+                        print("diff in x : ",diffX, " diff from centre : ",diffCentre)
+                    
+                elif(lenTempWindow > 2): #reduction of 3 or more points to 2
+                    for i in range(lenTempWindow):
+                        if(i != 0):
+                            diffTemp = tempWindow[i][0] - tempWindow[i-1][0]
+                            print("diffTemp",diffTemp)
+                            if(diffTemp >= 10):
+                                breakPoint = i
+                                break
+                    print("breakpoint :",breakPoint)
+                    for i in range(breakPoint):
+                        leftPointSum += tempWindow[i][0]
+                    averageLeft = leftPointSum//(breakPoint)
+                    for i in range(breakPoint,lenTempWindow):
+                        rightPointSum += tempWindow[i][0]
+                    averageRight = rightPointSum//(lenTempWindow-breakPoint)
+                    print("left : ", averageLeft, "right : ", averageRight)
+                    tempWindow = [(averageLeft,479),(averageRight,479)]
+                    for i in range(len(tempWindow)):
                         diffX = tempWindow[i][0] - slidingWindow[i][0]
-                        diffY = tempWindow[i][1] - slidingWindow[i][1]
-                        print("diff in x : ",diffX," diff in y : ",diffY)
                         diffCentre = tempWindow[i][0] - centrePoint[0]
-                        diffInX.append(diffX)
-                        diffCentreList.append(diffCentre)
-                    else:
-                        currentLTpastList.append(0)
+                        print("diff in x : ",diffX, " diff from centre : ",diffCentre)
+##                    diffLeftCentre = averageLeft - centrePoint[0]
+##                    diffRightCentre = averageRight - centrePoint[0]
+##                    diffX = tempWindow[i][0] - slidingWindow[i][0]
+                    counter = 2
                         
-                    if(noDifference == True):
-                        noDiffList.append(1)
-                    else:
-                        noDiffList.append(0)
-##                    print("positive difference between current and past : ", diffCurrentPast)
-##                    print("negative difference between current and past : ", diffPastCurrent)
-##                    print("no difference between current and past: ", sameDifference)
-            listSizeCurrentMTPast = len(currentMTpastList)
-            listSizeCurrentLTPast = len(currentLTpastList)
-            listSizenoDiff = len(noDiffList)
-            
-            if(listSizeCurrentMTPast == 0 or listSizeCurrentLTPast == 0 or listSizenoDiff ==0):
-                pass
-            else:
-                
-                commonCurrentMTPast = currentMTpastList.count(1)
-                commonCurrentLTPast = currentLTpastList.count(1)
-                commonNoDiff = noDiffList.count(1)
-
-                
-
-                if(commonCurrentMTPast >= listSizeCurrentMTPast//2):
-                    currentMTPastFlag = True
-                else:
-                    currentMTPastFlag = False
-                if(commonCurrentLTPast >= listSizeCurrentLTPast//2):
-                    currentLTPastFlag = True
-                else:
-                    currentLTPastFlag = False
-                if(commonNoDiff >= listSizenoDiff//2):
-                    noDiffFlag = True
-                else:
-                    noDiffFlag = False
-                
-##                print("currentMTPastFlag : ",currentMTPastFlag)
-##                print("currentLTPastFlag : ",currentLTPastFlag)
-##                print("noDiffFlag : ",noDiffFlag)
-                if(len(diffInX) != 0):
-                    print(max(diffInX))
-                if(len(diffCentreList) != 0 and len(diffCentreList) <= 2):
-                    for i in diffCentreList:
-                        print("difference from center : ",i)
-
-            if(noDiffFlag):
-                print("move straight")
-            else:
-                if(currentMTPastFlag and currentLTPastFlag):
-                    print("move straight")
-                elif(currentMTPastFlag):
-                    print("move right")
-                elif(currentLTPastFlag):
-                    print("move left")
-
+                else: # 1 points (measure from centre difference?
+                    diffCentre = tempWindow[0][0] - centrePoint[0]
+                    print(" diff from centre : ",diffCentre)
+                    tempWindow = []
+                    toRemove = False
+                    
+                    
+            print("extending sliding with ", tempWindow)
             slidingWindow.extend(tempWindow)
-##            print("currentMTpast : ",currentMTpastList)
-##            print("currentLTpast : ",currentLTpastList)
-##            print("noDifference : ",noDiffList)
+            timeStopCompare = time.time()
+            print("time taken to compare: ",(timeStopCompare-timeStart)*1000, "ms")
             #removing
             if(amtToRemove == 0):
                 amtToRemove = counter
             else:
-                print("sliding window : ",slidingWindow, " counter : ",amtToRemove)
-                slidingWindow = slidingWindow[amtToRemove:]
-                amtToRemove = counter
-                print("sliding window : ",slidingWindow, " counter : ",amtToRemove)
+                if(toRemove):
+                    print("sliding window : ",slidingWindow, " counter : ",amtToRemove)
+                    slidingWindow = slidingWindow[amtToRemove:]
+                    amtToRemove = counter
+                    print("sliding window : ",slidingWindow, " counter : ",amtToRemove)
             
         pathFlag = False
         timeStop = time.time()
-        print("time taken : ",(timeStop-timeStart)*1000, "ms")
+        print("time taken to remove: ",(timeStop-timeStart)*1000, "ms")
 
         
 ##        pwma.ChangeFrequency(1000)
