@@ -125,23 +125,11 @@ if __name__ == '__main__':
     # capture frames from camera
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
-##        pathXList = []
-##        x1List = []
-##        y1List = []
-##        x2List = []
-##        y2List = []
-##        lineList = []
-        currentMTpastList = []
-        currentLTpastList = []
-        noDiffList = []
+
         tempWindow = []
-        edittedTempWindow = []
         diffInX = []
-        diffCentreList = []
+        diffInCentre = []
         centrePoint = (319,479)
-        currentMTPastFlag = False
-        currentLTPastFlag = False
-        noDiffFlag = False
         varLeft = 1000
         varRight = 1250
         leftPointSum = 0
@@ -195,7 +183,9 @@ if __name__ == '__main__':
                     for i in range(lenTempWindow):
                         diffX = tempWindow[i][0] - slidingWindow[i][0]
                         diffCentre = tempWindow[i][0] - centrePoint[0]
-                        print("diff in x : ",diffX, " diff from centre : ",diffCentre)
+                        diffInX.append(diffX)
+                        diffInCentre.append(diffCentre)
+                        print("diff in x : ",diffX, " diff from centre : ",diffCentre, " diffXList : ",diffInX, " diffCentreList : ",diffInCentre)
                     
                 elif(lenTempWindow > 2): #reduction of 3 or more points to 2
                     for i in range(lenTempWindow):
@@ -217,15 +207,22 @@ if __name__ == '__main__':
                     for i in range(len(tempWindow)):
                         diffX = tempWindow[i][0] - slidingWindow[i][0]
                         diffCentre = tempWindow[i][0] - centrePoint[0]
-                        print("diff in x : ",diffX, " diff from centre : ",diffCentre)
+                        diffInX.append(diffX)
+                        diffInCentre.append(diffCentre)
+                        print("diff in x : ",diffX, " diff from centre : ",diffCentre, " diffXList : ",diffInX, " diffCentreList : ",diffInCentre)
 ##                    diffLeftCentre = averageLeft - centrePoint[0]
 ##                    diffRightCentre = averageRight - centrePoint[0]
 ##                    diffX = tempWindow[i][0] - slidingWindow[i][0]
                     counter = 2
                         
-                else: # 1 points (measure from centre difference?
+                elif(lenTempWindow == 1): # 1 points (measure from centre difference?
+                    
                     diffCentre = tempWindow[0][0] - centrePoint[0]
-                    print(" diff from centre : ",diffCentre)
+                    diffInCentre.append(diffCentre)
+                    print(" diff from centre : ",diffCentre, " diffCentreList : ",diffInCentre)
+                    tempWindow = []
+                    toRemove = False
+                else:
                     tempWindow = []
                     toRemove = False
                     
@@ -247,8 +244,27 @@ if __name__ == '__main__':
         pathFlag = False
         timeStop = time.time()
         print("time taken to remove: ",(timeStop-timeStart)*1000, "ms")
+    
+        #controlling
+        lenDiffInX = len(diffInX)
+        lenDiffInCentre = len(diffInCentre)
 
-        
+        if(lenDiffInX != 0): #left movement is -ve, right movement is  +ve
+            diffXValue = max(diffInX)
+            print("X value to use : ", diffXValue)
+            
+        if(lenDiffInCentre != 0):
+            diffCentreValue = sum(diffInCentre)/len(diffInCentre)
+            print("Centre value to use : ", diffCentreValue)
+
+        if(diffCentreValue < 20 or diffCentreValue > -20):
+            
+            if(diffXValue < 0):
+                #reduce right motor
+            elif(diffXValue > 0):
+                #increase right motor
+            elif(diffXValue == 0):
+            
 ##        pwma.ChangeFrequency(1000)
 ##        pwmb.ChangeFrequency(1200)
 ##        pwma.ChangeDutyCycle(20)
