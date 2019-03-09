@@ -10,6 +10,7 @@ from settings import config
 
 slidingWindow = []
 amtToRemove = 0
+initialMotor = True
 
 def movement (varLeft, varRight, moreSide, lessSide, pwma, pwmb, direction, findPath):
     print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
@@ -88,21 +89,21 @@ if __name__ == '__main__':
     GPIO.output(settings["BIN2"],0)
     GPIO.output(settings["STNBY"],1)
 
-    startFlag = False
-    direction = False
-    pathFlag = False
-    varLeft = 1
-    varRight = 1
+    varLeft = 300
+    varRight = 300
 
-##    pwma = GPIO.PWM(settings["PWMA"],1) # pulse width of 1 Hz
-##    pwmb = GPIO.PWM(settings["PWMB"],1) # pulse width of 1 Hz
-##    GPIO.output(settings["AIN1"],1)
-##    GPIO.output(settings["AIN2"],0)
-##    GPIO.output(settings["BIN1"],1)
-##    GPIO.output(settings["BIN2"],0)
-##    GPIO.output(settings["STNBY"],1)
-##    pwma.start(1)
-##    pwmb.start(1)
+    #pwma = left motor
+    #pwmb = right motor
+
+    pwma = GPIO.PWM(settings["PWMA"],1) # pulse width of 1 Hz
+    pwmb = GPIO.PWM(settings["PWMB"],1) # pulse width of 1 Hz
+    GPIO.output(settings["AIN1"],1)
+    GPIO.output(settings["AIN2"],0)
+    GPIO.output(settings["BIN1"],1)
+    GPIO.output(settings["BIN2"],0)
+    GPIO.output(settings["STNBY"],1)
+    pwma.start(1)
+    pwmb.start(1)
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -130,8 +131,6 @@ if __name__ == '__main__':
         diffInX = []
         diffInCentre = []
         centrePoint = (319,479)
-        varLeft = 1000
-        varRight = 1250
         leftPointSum = 0
         rightPointSum = 0
         breakPoint = 0
@@ -257,44 +256,88 @@ if __name__ == '__main__':
             diffCentreValue = sum(diffInCentre)/len(diffInCentre)
             print("Centre value to use : ", diffCentreValue)
 
-        if(diffCentreValue < 20 or diffCentreValue > -20):
+        
+        if(initialMotor == False):
+            if(diffCentreValue < 0): #turn left, speed up right motor
+    ##            multiplier = diffCentreValue * diffXValue
+                if(diffXValue < 0): #path shift leftwards
+                    #increase right motor rapidly
+                    temp = varRight
+                    temp += (abs(diffCentreValue)*abs(diffXValue))/10
+                    if(temp == 0):
+                        temp += 1
+                    varRight = temp
+                    pwmb.ChangeFrequency(varRight)
+                elif(diffXValue > 0): #path shift leftwards
+                    #increase right motor slowly
+                    temp = varRight
+                    temp -= (abs(diffCentreValue)*abs(diffXValue))/50
+                    if(temp == 0):
+                        temp += 1
+                    varRight = temp
+                    pwmb.ChangeFrequency(varRight)
+                elif(diffXValue == 0): #path does not shift
+                    #increase right motor moderately
+                    temp = varRight
+                    temp += (abs(diffCentreValue)*(abs(diffXValue))+1)/20
+                    if(temp == 0):
+                        temp += 1
+                    varRight = temp
+                    pwmb.ChangeFrequency(varRight)
+            elif(diffCentreValue > 0): #turn right, slow down right motor
+                if(diffXValue < 0): #path shift leftwards
+                    #decrease right motor slowly
+                    temp = varRight
+                    temp += (abs(diffCentreValue)*abs(diffXValue))/50
+                    if(temp == 0):
+                        temp += 1
+                    varRight = temp
+                    pwmb.ChangeFrequency(varRight)
+                elif(diffXValue > 0): #path shift leftwards
+                    #decrease right motor rapidly
+                    temp = varRight
+                    temp -= (abs(diffCentreValue)*abs(diffXValue))/10
+                    if(temp == 0):
+                        temp += 1
+                    varRight = temp
+                    pwmb.ChangeFrequency(varRight)
+                elif(diffXValue == 0): #path does not shift
+                    #decrease right motor moderately
+                    temp = varRight
+                    temp -= (abs(diffCentreValue)*(abs(diffXValue)+1))/20
+                    if(temp == 0):
+                        temp += 1
+                    varRight = temp
+                    pwmb.ChangeFrequency(varRight)
+            elif(diffCentreValue == 0): #path at middle
+                pass
+
+        print("varLeft : ",varLeft, " varRight : ",varRight)
             
-            if(diffXValue < 0):
-                #reduce right motor
-            elif(diffXValue > 0):
-                #increase right motor
-            elif(diffXValue == 0):
+
+        if(initialMotor):
+            pwma.ChangeFrequency(300)
+            pwmb.ChangeFrequency(300)
+            pwma.ChangeDutyCycle(20)
+            pwmb.ChangeDutyCycle(20)
+            initialMotor = False
             
-##        pwma.ChangeFrequency(1000)
-##        pwmb.ChangeFrequency(1200)
-##        pwma.ChangeDutyCycle(20)
-##        pwmb.ChangeDutyCycle(20)
         
         # clear stream in preparation for next frame
         rawCapture.truncate(0)
         
         # wait for input
         key = cv2.waitKey(1) & 0xFF
-
-        # stop movement if keyboard p is pressed
-        if key & 0xFF == ord("s"):
-            print('start')
-            startFlag = True
-            direction = "up"
         
         # stop movement if keyboard p is pressed
         if key & 0xFF == ord("p"):
             print('pause')
-            startFlag = False
             pwma.stop()
             pwmb.stop()
 
         # exit from loop if keyboard q is pressed
         if key & 0xFF == ord("q"):
             print('quit')
-            startFlag = False
-##            pwma.stop()
-##            pwmb.stop()
             break
         
     time2 = time.time()
