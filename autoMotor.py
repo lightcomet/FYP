@@ -224,6 +224,8 @@ if __name__ == '__main__':
                 else:
                     tempWindow = []
                     toRemove = False
+                    pwma.stop()
+                    pwmb.stop()
                     
                     
             print("extending sliding with ", tempWindow)
@@ -263,56 +265,60 @@ if __name__ == '__main__':
                 if(diffXValue < 0): #path shift leftwards
                     #increase right motor rapidly
                     temp = varRight
-                    temp += (abs(diffCentreValue)*abs(diffXValue))/10
+                    temp += (abs(diffCentreValue)/10)*abs(diffXValue)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
-                    pwmb.ChangeFrequency(varRight)
+##                    pwmb.ChangeFrequency(varRight)
                 elif(diffXValue > 0): #path shift leftwards
                     #increase right motor slowly
                     temp = varRight
-                    temp -= (abs(diffCentreValue)*abs(diffXValue))/50
+                    temp += (abs(diffCentreValue)/10)*abs(diffXValue)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
-                    pwmb.ChangeFrequency(varRight)
+##                    pwmb.ChangeFrequency(varRight)
                 elif(diffXValue == 0): #path does not shift
                     #increase right motor moderately
                     temp = varRight
-                    temp += (abs(diffCentreValue)*(abs(diffXValue))+1)/20
+                    temp += (abs(diffCentreValue)/10)*(abs(diffXValue)+1)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
-                    pwmb.ChangeFrequency(varRight)
+##                    pwmb.ChangeFrequency(varRight)
             elif(diffCentreValue > 0): #turn right, slow down right motor
                 if(diffXValue < 0): #path shift leftwards
                     #decrease right motor slowly
                     temp = varRight
-                    temp += (abs(diffCentreValue)*abs(diffXValue))/50
+                    temp -= (abs(diffCentreValue)/10)*abs(diffXValue)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
-                    pwmb.ChangeFrequency(varRight)
+##                    pwmb.ChangeFrequency(varRight)
                 elif(diffXValue > 0): #path shift leftwards
                     #decrease right motor rapidly
                     temp = varRight
-                    temp -= (abs(diffCentreValue)*abs(diffXValue))/10
+                    temp -= (abs(diffCentreValue)/10)*abs(diffXValue)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
-                    pwmb.ChangeFrequency(varRight)
+##                    pwmb.ChangeFrequency(varRight)
                 elif(diffXValue == 0): #path does not shift
                     #decrease right motor moderately
                     temp = varRight
-                    temp -= (abs(diffCentreValue)*(abs(diffXValue)+1))/20
+                    temp -= (abs(diffCentreValue)/10)*(abs(diffXValue)+1)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
-                    pwmb.ChangeFrequency(varRight)
+            
             elif(diffCentreValue == 0): #path at middle
                 pass
 
-        print("varLeft : ",varLeft, " varRight : ",varRight)
+            if(varRight <= 20):
+                varRight = 100
+            print("varLeft : ",varLeft, " varRight : ",varRight)
+            pwmb.ChangeFrequency(varRight)
+
             
 
         if(initialMotor):
