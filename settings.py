@@ -13,7 +13,8 @@ settings = {
 "cannyMax" : 100,
 "minLineLength" : 100,
 "maxLineGap" : 100,
-
+"trigger" : 26,
+"echo" : 19
 }
 
 def config ():
@@ -33,3 +34,5 @@ if __name__ == '__main__':
     print("Canny Max: ", settings["cannyMax"])
     print("Min Line Length: ", settings["minLineLength"])
     print("Max Line Gap: ", settings["maxLineGap"])
+    print("trigger pin: ", settings["trigger"])
+    print("echo pin: ", settings["echo"])
