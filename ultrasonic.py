@@ -2,6 +2,7 @@ import time
 time1 = time.time()
 import RPi.GPIO as GPIO
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 US_trigger = 26
 US_echo = 19
