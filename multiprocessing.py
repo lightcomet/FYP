@@ -309,40 +309,42 @@ def camera(stopQueue, obstacleQueue):
     print ('Elapsed time : ', time2-time1,'secs')
     GPIO.cleanup() #important to have to reset the GPIOs
 
+#################### END OF CAMERA FUNCTION ####################
 
 def ultrasonic(stopQueue, obstacleQueue):
     import time
     import RPi.GPIO as GPIO
-    
+
+    settings = config()
+
     GPIO.setwarnings(False) # no gpio warnings
     GPIO.setmode(GPIO.BCM)
-    trigger = 26
-    echo = 19
+
     GPIO.setup(settings["STNBY"], GPIO.OUT)
     GPIO.output(settings["STNBY"],1)
 
-    GPIO.setup(trigger, GPIO.OUT)
-    GPIO.setup(echo, GPIO.IN)
+    GPIO.setup(settings["trigger"], GPIO.OUT)
+    GPIO.setup(settings[["echo"], GPIO.IN)
 
     obstacleDist = 20.0
 
     def distance():
         # set Trigger to HIGH
-        GPIO.output(trigger, True)
+        GPIO.output(settings["trigger"], True)
      
         # set Trigger after 10microseconds to LOW
         time.sleep(0.00001)
-        GPIO.output(trigger, False)
+        GPIO.output(settings["trigger"], False)
      
         StartTime = time.time()
         StopTime = time.time()
      
         # save StartTime
-        while GPIO.input(echo) == 0:
+        while GPIO.input(settings[["echo"]) == 0:
             StartTime = time.time()
      
         # save time of arrival
-        while GPIO.input(echo) == 1:
+        while GPIO.input(settings[["echo"]) == 1:
             StopTime = time.time()
      
         # time difference between start and arrival
@@ -373,7 +375,7 @@ def ultrasonic(stopQueue, obstacleQueue):
                 print("Stop measurement")
                 GPIO.cleanup()
                 break
-    #################### END OF ultrasonic FUNCTION ####################
+#################### END OF ULTRASONIC FUNCTION ####################
 
 #################### MAIN FUNCTION ####################
 if __name__ == '__main__':
