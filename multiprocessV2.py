@@ -293,17 +293,9 @@ def camera(stopQueue, obstacleQueue):
 
             # exit from loop if keyboard q is pressed
             if key & 0xFF == ord("q"):
-                print('quit')
-                stopQueue.put_nowait("stop ultrasonic")
+                print('quit camera process')
+                stopQueue.put_nowait("end")
                 break
-
-            if(obstacleQueue.empty()):
-                pass
-            else:
-                objectFlag = obstacleQueue.get_nowait()
-                print("object queue content: ",objectFlag)
-                if(objectFlag == "obstacle"):
-                    print("stop car")
             
         time2 = time.time()
         print ('Elapsed time : ', time2-time1,'secs')
@@ -372,8 +364,8 @@ def ultrasonic(stopQueue, obstacleQueue):
         else:
             stopFlag = stopQueue.get_nowait()
             print("queue content: ",stopFlag)
-            if(stopFlag == "stop ultrasonic"):
-                print("Stop measurement")
+            if(stopFlag == "end"):
+                print("Stop ultrasonic process")
                 GPIO.cleanup()
                 break
 #################### END OF ULTRASONIC FUNCTION ####################
@@ -383,17 +375,8 @@ if __name__ == '__main__':
 
     stopQueue = Queue()
     obstacleQueue = Queue()
-
     
     ultrasonic = Process(target=ultrasonic,args=( (stopQueue),(obstacleQueue) ) )
     ultrasonic.start()
     camera = Process( target=camera, args=( (stopQueue),(obstacleQueue) ) )
     camera.start()
-
-    while(camera.is_alive()):
-        pass
-    else:
-        nonZeroLeft = cameraLeftQueue.get_nowait()
-        nonZeroRight = cameraRightQueue.get_nowait()
-
-        imagePath = imageQueue.get_nowait()
