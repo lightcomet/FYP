@@ -12,59 +12,6 @@ slidingWindow = []
 amtToRemove = 0
 initialMotor = True
 
-def movement (varLeft, varRight, moreSide, lessSide, pwma, pwmb, direction, findPath):
-    print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
-    if(findPath == True):
-        print("finding path")
-        print("no path detected")
-        pwma.stop()
-        pwmb.stop()
-##        pwma.start(1)
-##        pwmb.start(20)
-##        GPIO.output(settings["AIN1"],1)
-##        GPIO.output(settings["AIN2"],0)
-##        GPIO.output(settings["BIN1"],1)
-##        GPIO.output(settings["BIN2"],0)
-##        pwma.ChangeFrequency(varRight)
-##        pwmb.ChangeFrequency(varLeft)
-    else:
-        if(direction == "up"):
-            print("up movement")
-            print("more side : ", moreSide, "less side : ", lessSide)
-##            pwma.start(moreSide)
-##            pwmb.start(lessSide)
-##            GPIO.output(settings["AIN1"],1)
-##            GPIO.output(settings["AIN2"],0)
-##            GPIO.output(settings["BIN1"],1)
-##            GPIO.output(settings["BIN2"],0)
-##            pwma.ChangeFrequency(varRight)
-##            pwmb.ChangeFrequency(varLeft)
-            
-        elif(direction == "left"):
-            print("left movement")
-            print("more side : ", moreSide, "less side : ", lessSide)
-##            pwma.start(moreSide)
-##            pwmb.start(lessSide)
-##            GPIO.output(settings["AIN1"],1)
-##            GPIO.output(settings["AIN2"],0)
-##            GPIO.output(settings["BIN1"],1)
-##            GPIO.output(settings["BIN2"],0)
-##            pwma.ChangeFrequency(varRight)
-##            pwmb.ChangeFrequency(varLeft)
-            
-        elif(direction == "right"):
-            print("right movement")
-            print("more side : ", moreSide, "less side : ", lessSide)
-##            pwma.start(lessSide)
-##            pwmb.start(moreSide)
-##            GPIO.output(settings["AIN1"],1)
-##            GPIO.output(settings["AIN2"],0)
-##            GPIO.output(settings["BIN1"],1)
-##            GPIO.output(settings["BIN2"],0)
-##            pwma.ChangeFrequency(varRight)
-##            pwmb.ChangeFrequency(varLeft)
-    
-
 if __name__ == '__main__':
 
     settings = config()
@@ -89,8 +36,8 @@ if __name__ == '__main__':
     GPIO.output(settings["BIN2"],0)
     GPIO.output(settings["STNBY"],1)
 
-    varLeft = 300
-    varRight = 300
+    varLeft = 400
+    varRight = 400
 
     #pwma = left motor
     #pwmb = right motor
@@ -273,7 +220,7 @@ if __name__ == '__main__':
                 elif(diffXValue > 0): #path shift leftwards
                     #increase right motor slowly
                     temp = varRight
-                    temp += (abs(diffCentreValue)/10)*abs(diffXValue)
+                    temp += (abs(diffCentreValue)/50)*abs(diffXValue)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
@@ -281,7 +228,7 @@ if __name__ == '__main__':
                 elif(diffXValue == 0): #path does not shift
                     #increase right motor moderately
                     temp = varRight
-                    temp += (abs(diffCentreValue)/10)*(abs(diffXValue)+1)
+                    temp += (abs(diffCentreValue)/20)*(abs(diffXValue)+1)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
@@ -290,7 +237,7 @@ if __name__ == '__main__':
                 if(diffXValue < 0): #path shift leftwards
                     #decrease right motor slowly
                     temp = varRight
-                    temp -= (abs(diffCentreValue)/10)*abs(diffXValue)
+                    temp -= (abs(diffCentreValue)/50)*abs(diffXValue)
                     if(temp == 0):
                         temp += 1
                     varRight = temp
@@ -306,7 +253,7 @@ if __name__ == '__main__':
                 elif(diffXValue == 0): #path does not shift
                     #decrease right motor moderately
                     temp = varRight
-                    temp -= (abs(diffCentreValue)/10)*(abs(diffXValue)+1)
+                    temp -= (abs(diffCentreValue)/20)*(abs(diffXValue)+1)
                     if(temp == 0):
                         temp += 1
                     varRight = temp

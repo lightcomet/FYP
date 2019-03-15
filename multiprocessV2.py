@@ -1,7 +1,7 @@
 from multiprocessing import Process, Queue
 import time
 
-def camera(stopQueue, obstacleQueue):
+def camera(stopQueue):
 
     print("starting camera process...")
 
@@ -41,8 +41,8 @@ def camera(stopQueue, obstacleQueue):
         GPIO.output(settings["BIN1"],0)
         GPIO.output(settings["BIN2"],0)
 
-        varLeft = 300
-        varRight = 300
+        varLeft = 400
+        varRight = 400
 
         #pwma = left motor
         #pwmb = right motor
@@ -223,7 +223,7 @@ def camera(stopQueue, obstacleQueue):
                     elif(diffXValue > 0): #path shift leftwards
                         #increase right motor slowly
                         temp = varRight
-                        temp += (abs(diffCentreValue)/10)*abs(diffXValue)
+                        temp += (abs(diffCentreValue)/50)*abs(diffXValue)
                         if(temp == 0):
                             temp += 1
                         varRight = temp
@@ -231,7 +231,7 @@ def camera(stopQueue, obstacleQueue):
                     elif(diffXValue == 0): #path does not shift
                         #increase right motor moderately
                         temp = varRight
-                        temp += (abs(diffCentreValue)/10)*(abs(diffXValue)+1)
+                        temp += (abs(diffCentreValue)/20)*(abs(diffXValue)+1)
                         if(temp == 0):
                             temp += 1
                         varRight = temp
@@ -240,7 +240,7 @@ def camera(stopQueue, obstacleQueue):
                     if(diffXValue < 0): #path shift leftwards
                         #decrease right motor slowly
                         temp = varRight
-                        temp -= (abs(diffCentreValue)/10)*abs(diffXValue)
+                        temp -= (abs(diffCentreValue)/50)*abs(diffXValue)
                         if(temp == 0):
                             temp += 1
                         varRight = temp
@@ -256,7 +256,7 @@ def camera(stopQueue, obstacleQueue):
                     elif(diffXValue == 0): #path does not shift
                         #decrease right motor moderately
                         temp = varRight
-                        temp -= (abs(diffCentreValue)/10)*(abs(diffXValue)+1)
+                        temp -= (abs(diffCentreValue)/20)*(abs(diffXValue)+1)
                         if(temp == 0):
                             temp += 1
                         varRight = temp
@@ -303,10 +303,12 @@ def camera(stopQueue, obstacleQueue):
 
 #################### END OF CAMERA FUNCTION ####################
 
-def ultrasonic(stopQueue, obstacleQueue):
+def ultrasonic(stopQueue):
     import time
     import RPi.GPIO as GPIO
     from settings import config
+
+    print("starting ultrasonic process...")
     
     settings = config()
 
@@ -319,7 +321,7 @@ def ultrasonic(stopQueue, obstacleQueue):
     GPIO.setup(settings["trigger"], GPIO.OUT)
     GPIO.setup(settings["echo"], GPIO.IN)
 
-    obstacleDist = 20.0
+    obstacleDist = 10.0
 
     def distance():
         # set Trigger to HIGH
@@ -347,27 +349,26 @@ def ultrasonic(stopQueue, obstacleQueue):
         distance = (TimeElapsed * 34300) / 2 
         return distance
     
-    # if __name__ == '__main__':
-    while True:
-        
-        if(stopQueue.empty()):
-            dist = distance()
-##                print("Measured Distance = %.1f cm" % dist)       
-            if(dist <= obstacleDist):
-                print("Obstacle detected")
-                print("Measured Distance = %.1f cm" % dist)
-                obstacleQueue.put_nowait("obstacle")
-                GPIO.output(settings["STNBY"],0)
+    if __name__ == '__main__':
+        while True:
+            
+            if(stopQueue.empty()):
+                dist = distance()
+    ##                print("Measured Distance = %.1f cm" % dist)       
+                if(dist <= obstacleDist):
+                    print("Obstacle detected")
+                    print("Measured Distance = %.1f cm" % dist)
+                    GPIO.output(settings["STNBY"],0)
+                else:
+                    GPIO.output(settings["STNBY"],1)
+                time.sleep(0.5)
             else:
-                GPIO.output(settings["STNBY"],1)
-            time.sleep(0.5)
-        else:
-            stopFlag = stopQueue.get_nowait()
-            print("queue content: ",stopFlag)
-            if(stopFlag == "end"):
-                print("Stop ultrasonic process")
-                GPIO.cleanup()
-                break
+                stopFlag = stopQueue.get_nowait()
+                print("queue content: ",stopFlag)
+                if(stopFlag == "end"):
+                    print("Stop ultrasonic process")
+                    GPIO.cleanup()
+                    break
 #################### END OF ULTRASONIC FUNCTION ####################
 
 #################### MAIN FUNCTION ####################
@@ -376,7 +377,7 @@ if __name__ == '__main__':
     stopQueue = Queue()
     obstacleQueue = Queue()
     
-    ultrasonic = Process(target=ultrasonic,args=( (stopQueue),(obstacleQueue) ) )
+    ultrasonic = Process(target=ultrasonic,args=( stopQueue,) )
     ultrasonic.start()
-    camera = Process( target=camera, args=( (stopQueue),(obstacleQueue) ) )
+    camera = Process( target=camera, args=( stopQueue,) )
     camera.start()
