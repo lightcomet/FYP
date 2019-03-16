@@ -1,7 +1,10 @@
 from multiprocessing import Process, Queue
 import time
+from settings import config
 
-def camera(stopQueue):
+settings = config()
+
+def camera(stopQueue,settings):
 
     print("starting camera process...")
 
@@ -13,15 +16,13 @@ def camera(stopQueue):
     from picamera import PiCamera
     from picamera.array import PiRGBArray
     import RPi.GPIO as GPIO
-    from settings import config
+##    from settings import config
 
     slidingWindow = []
     amtToRemove = 0
     initialMotor = True
 
     if __name__ == '__main__':
-
-        settings = config()
 
         #initialise
         GPIO.setwarnings(False) # no gpio wanrings
@@ -303,14 +304,12 @@ def camera(stopQueue):
 
 #################### END OF CAMERA FUNCTION ####################
 
-def ultrasonic(stopQueue):
+def ultrasonic(stopQueue,settings):
     import time
     import RPi.GPIO as GPIO
-    from settings import config
+##    from settings import config
 
     print("starting ultrasonic process...")
-    
-    settings = config()
 
     GPIO.setwarnings(False) # no gpio warnings
     GPIO.setmode(GPIO.BCM)
@@ -321,7 +320,7 @@ def ultrasonic(stopQueue):
     GPIO.setup(settings["trigger"], GPIO.OUT)
     GPIO.setup(settings["echo"], GPIO.IN)
 
-    obstacleDist = 10.0
+    obstacleDist = 20.0
 
     def distance():
         # set Trigger to HIGH
@@ -349,26 +348,27 @@ def ultrasonic(stopQueue):
         distance = (TimeElapsed * 34300) / 2 
         return distance
     
-    if __name__ == '__main__':
-        while True:
+##    if __name__ == '__main__':
+    while True:
+        print(stopQueue.empty())
+        if(stopQueue.empty()):
             
-            if(stopQueue.empty()):
-                dist = distance()
-    ##                print("Measured Distance = %.1f cm" % dist)       
-                if(dist <= obstacleDist):
-                    print("Obstacle detected")
-                    print("Measured Distance = %.1f cm" % dist)
-                    GPIO.output(settings["STNBY"],0)
-                else:
-                    GPIO.output(settings["STNBY"],1)
-                time.sleep(0.5)
+            dist = distance()
+            print("Measured Distance = %.1f cm" % dist)       
+            if(dist <= obstacleDist):
+                print("Obstacle detected")
+                print("Measured Distance = %.1f cm" % dist)
+                GPIO.output(settings["STNBY"],0)
             else:
-                stopFlag = stopQueue.get_nowait()
-                print("queue content: ",stopFlag)
-                if(stopFlag == "end"):
-                    print("Stop ultrasonic process")
-                    GPIO.cleanup()
-                    break
+                GPIO.output(settings["STNBY"],1)
+            time.sleep(0.5)
+        else:
+            stopFlag = stopQueue.get_nowait()
+            print("queue content: ",stopFlag)
+            if(stopFlag == "end"):
+                print("Stop ultrasonic process")
+                GPIO.cleanup()
+                break
 #################### END OF ULTRASONIC FUNCTION ####################
 
 #################### MAIN FUNCTION ####################
@@ -377,7 +377,7 @@ if __name__ == '__main__':
     stopQueue = Queue()
     obstacleQueue = Queue()
     
-    ultrasonic = Process(target=ultrasonic,args=( stopQueue,) )
+    ultrasonic = Process(target=ultrasonic,args=( stopQueue,settings) )
     ultrasonic.start()
-    camera = Process( target=camera, args=( stopQueue,) )
+    camera = Process( target=camera, args=( stopQueue,settings) )
     camera.start()
