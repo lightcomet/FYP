@@ -42,8 +42,8 @@ def camera(stopQueue,settings):
         GPIO.output(settings["BIN1"],0)
         GPIO.output(settings["BIN2"],0)
 
-        varLeft = 400
-        varRight = 400
+        varLeft = 800
+        varRight = 800
 
         #pwma = left motor
         #pwmb = right motor
@@ -111,17 +111,17 @@ def camera(stopQueue,settings):
                 print("length of nonzero : ", lengthNonZero)
                 for index in range (lengthNonZero-1, 0 , -1):
                     if(nonzero[index][0][1] == 479):
-                        print("x is : ",nonzero[index][0][0], " y is ", nonzero[index][0][1])
+##                        print("x is : ",nonzero[index][0][0], " y is ", nonzero[index][0][1])
                         tempWindow.append((nonzero[index][0][0],nonzero[index][0][1]))
                         counter += 1
                     elif(nonzero[index][0][1] <= 478):
-                        print("index to break : ",index)
+##                        print("index to break : ",index)
                         break
-                print("tempWindow : ", tempWindow)
-                print("counter : ",counter)
+##                print("tempWindow : ", tempWindow)
+##                print("counter : ",counter)
                 tempWindow.sort(key=lambda k : [k[0],k[1]])
                 timeStopAppend = time.time()
-                print("time taken to append: ",(timeStopAppend-timeStart)*1000, "ms")
+##                print("time taken to append: ",(timeStopAppend-timeStart)*1000, "ms")
                 
                 #comparing
                 lenTempWindow = len(tempWindow)
@@ -145,14 +145,14 @@ def camera(stopQueue,settings):
                                 if(diffTemp >= 10):
                                     breakPoint = i
                                     break
-                        print("breakpoint :",breakPoint)
+##                        print("breakpoint :",breakPoint)
                         for i in range(breakPoint):
                             leftPointSum += tempWindow[i][0]
                         averageLeft = leftPointSum//(breakPoint)
                         for i in range(breakPoint,lenTempWindow):
                             rightPointSum += tempWindow[i][0]
                         averageRight = rightPointSum//(lenTempWindow-breakPoint)
-                        print("left : ", averageLeft, "right : ", averageRight)
+##                        print("left : ", averageLeft, "right : ", averageRight)
                         tempWindow = [(averageLeft,479),(averageRight,479)]
                         for i in range(len(tempWindow)):
                             diffX = tempWindow[i][0] - slidingWindow[i][0]
@@ -179,10 +179,10 @@ def camera(stopQueue,settings):
                         pwmb.stop()
                         
                         
-                print("extending sliding with ", tempWindow)
+##                print("extending sliding with ", tempWindow)
                 slidingWindow.extend(tempWindow)
                 timeStopCompare = time.time()
-                print("time taken to compare: ",(timeStopCompare-timeStart)*1000, "ms")
+##                print("time taken to compare: ",(timeStopCompare-timeStart)*1000, "ms")
                 #removing
                 if(amtToRemove == 0):
                     amtToRemove = counter
@@ -268,13 +268,16 @@ def camera(stopQueue,settings):
                 if(varRight <= 20):
                     varRight = 100
                 print("varLeft : ",varLeft, " varRight : ",varRight)
+                if(varRight >= 5000):
+                    varRight = 4000
+                print("varLeft : ",varLeft, " varRight : ",varRight)
                 pwmb.ChangeFrequency(varRight)
 
                 
 
             if(initialMotor):
-                pwma.ChangeFrequency(300)
-                pwmb.ChangeFrequency(300)
+                pwma.ChangeFrequency(800)
+                pwmb.ChangeFrequency(800)
                 pwma.ChangeDutyCycle(20)
                 pwmb.ChangeDutyCycle(20)
                 initialMotor = False
@@ -357,7 +360,7 @@ def ultrasonic(stopQueue,settings):
             print("Measured Distance = %.1f cm" % dist)       
             if(dist <= obstacleDist):
                 print("Obstacle detected")
-                print("Measured Distance = %.1f cm" % dist)
+##                print("Measured Distance = %.1f cm" % dist)
                 GPIO.output(settings["STNBY"],0)
             else:
                 GPIO.output(settings["STNBY"],1)
