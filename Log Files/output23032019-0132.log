@@ -1,0 +1,3195 @@
+starting camera process...
+Set up time :  3.8401780128479004 secs
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  591  y is  479
+x is :  475  y is  479
+index to break :  957
+tempWindow :  [(591, 479), (475, 479)]
+counter :  2
+time taken to append:  906.7630767822266 ms
+temp window length :  2 sliding window length :  0
+extending sliding with  [(475, 479), (591, 479)]
+time taken to compare:  907.099723815918 ms
+time taken to remove:  907.1750640869141 ms
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  589  y is  479
+x is :  473  y is  479
+index to break :  957
+tempWindow :  [(589, 479), (473, 479)]
+counter :  2
+time taken to append:  5.788087844848633 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -2  diff from centre :  154  diffXList :  [-2]  diffCentreList :  [154]
+diff in x :  -2  diff from centre :  270  diffXList :  [-2, -2]  diffCentreList :  [154, 270]
+extending sliding with  [(473, 479), (589, 479)]
+time taken to compare:  6.332159042358398 ms
+sliding window :  [(475, 479), (591, 479), (473, 479), (589, 479)]  counter :  2
+sliding window :  [(473, 479), (589, 479)]  counter :  2
+time taken to remove:  6.632566452026367 ms
+X value to use :  -2
+Centre value to use :  212.0
+varLeft :  800  varRight :  791.52
+varLeft :  800  varRight :  791.52
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  589  y is  479
+x is :  473  y is  479
+index to break :  957
+tempWindow :  [(589, 479), (473, 479)]
+counter :  2
+time taken to append:  5.468845367431641 ms
+temp window length :  2 sliding window length :  2
+diff in x :  0  diff from centre :  154  diffXList :  [0]  diffCentreList :  [154]
+diff in x :  0  diff from centre :  270  diffXList :  [0, 0]  diffCentreList :  [154, 270]
+extending sliding with  [(473, 479), (589, 479)]
+time taken to compare:  5.986452102661133 ms
+sliding window :  [(473, 479), (589, 479), (473, 479), (589, 479)]  counter :  2
+sliding window :  [(473, 479), (589, 479)]  counter :  2
+time taken to remove:  6.289005279541016 ms
+X value to use :  0
+Centre value to use :  212.0
+varLeft :  800  varRight :  780.92
+varLeft :  800  varRight :  780.92
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  589  y is  479
+x is :  473  y is  479
+index to break :  957
+tempWindow :  [(589, 479), (473, 479)]
+counter :  2
+time taken to append:  5.508899688720703 ms
+temp window length :  2 sliding window length :  2
+diff in x :  0  diff from centre :  154  diffXList :  [0]  diffCentreList :  [154]
+diff in x :  0  diff from centre :  270  diffXList :  [0, 0]  diffCentreList :  [154, 270]
+extending sliding with  [(473, 479), (589, 479)]
+time taken to compare:  6.034135818481445 ms
+sliding window :  [(473, 479), (589, 479), (473, 479), (589, 479)]  counter :  2
+sliding window :  [(473, 479), (589, 479)]  counter :  2
+time taken to remove:  6.328582763671875 ms
+X value to use :  0
+Centre value to use :  212.0
+varLeft :  800  varRight :  770.3199999999999
+varLeft :  800  varRight :  770.3199999999999
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  589  y is  479
+x is :  473  y is  479
+index to break :  957
+tempWindow :  [(589, 479), (473, 479)]
+counter :  2
+time taken to append:  5.802154541015625 ms
+temp window length :  2 sliding window length :  2
+diff in x :  0  diff from centre :  154  diffXList :  [0]  diffCentreList :  [154]
+diff in x :  0  diff from centre :  270  diffXList :  [0, 0]  diffCentreList :  [154, 270]
+extending sliding with  [(473, 479), (589, 479)]
+time taken to compare:  6.316661834716797 ms
+sliding window :  [(473, 479), (589, 479), (473, 479), (589, 479)]  counter :  2
+sliding window :  [(473, 479), (589, 479)]  counter :  2
+time taken to remove:  6.613254547119141 ms
+X value to use :  0
+Centre value to use :  212.0
+varLeft :  800  varRight :  759.7199999999999
+varLeft :  800  varRight :  759.7199999999999
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  589  y is  479
+x is :  473  y is  479
+index to break :  957
+tempWindow :  [(589, 479), (473, 479)]
+counter :  2
+time taken to append:  5.532026290893555 ms
+temp window length :  2 sliding window length :  2
+diff in x :  0  diff from centre :  154  diffXList :  [0]  diffCentreList :  [154]
+diff in x :  0  diff from centre :  270  diffXList :  [0, 0]  diffCentreList :  [154, 270]
+extending sliding with  [(473, 479), (589, 479)]
+time taken to compare:  6.082296371459961 ms
+sliding window :  [(473, 479), (589, 479), (473, 479), (589, 479)]  counter :  2
+sliding window :  [(473, 479), (589, 479)]  counter :  2
+time taken to remove:  6.3838958740234375 ms
+X value to use :  0
+Centre value to use :  212.0
+varLeft :  800  varRight :  749.1199999999999
+varLeft :  800  varRight :  749.1199999999999
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  589  y is  479
+x is :  473  y is  479
+index to break :  957
+tempWindow :  [(589, 479), (473, 479)]
+counter :  2
+time taken to append:  5.891084671020508 ms
+temp window length :  2 sliding window length :  2
+diff in x :  0  diff from centre :  154  diffXList :  [0]  diffCentreList :  [154]
+diff in x :  0  diff from centre :  270  diffXList :  [0, 0]  diffCentreList :  [154, 270]
+extending sliding with  [(473, 479), (589, 479)]
+time taken to compare:  6.620645523071289 ms
+sliding window :  [(473, 479), (589, 479), (473, 479), (589, 479)]  counter :  2
+sliding window :  [(473, 479), (589, 479)]  counter :  2
+time taken to remove:  6.962299346923828 ms
+X value to use :  0
+Centre value to use :  212.0
+varLeft :  800  varRight :  738.5199999999999
+varLeft :  800  varRight :  738.5199999999999
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  593  y is  479
+x is :  477  y is  479
+index to break :  957
+tempWindow :  [(593, 479), (477, 479)]
+counter :  2
+time taken to append:  5.527496337890625 ms
+temp window length :  2 sliding window length :  2
+diff in x :  4  diff from centre :  158  diffXList :  [4]  diffCentreList :  [158]
+diff in x :  4  diff from centre :  274  diffXList :  [4, 4]  diffCentreList :  [158, 274]
+extending sliding with  [(477, 479), (593, 479)]
+time taken to compare:  6.059408187866211 ms
+sliding window :  [(473, 479), (589, 479), (477, 479), (593, 479)]  counter :  2
+sliding window :  [(477, 479), (593, 479)]  counter :  2
+time taken to remove:  6.384372711181641 ms
+X value to use :  4
+Centre value to use :  216.0
+varLeft :  800  varRight :  652.1199999999999
+varLeft :  800  varRight :  652.1199999999999
+--------------------------------------------------------------------------------
+length of nonzero :  974
+x is :  494  y is  479
+x is :  381  y is  479
+index to break :  971
+tempWindow :  [(494, 479), (381, 479)]
+counter :  2
+time taken to append:  5.433797836303711 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -96  diff from centre :  62  diffXList :  [-96]  diffCentreList :  [62]
+diff in x :  -99  diff from centre :  175  diffXList :  [-96, -99]  diffCentreList :  [62, 175]
+extending sliding with  [(381, 479), (494, 479)]
+time taken to compare:  5.985260009765625 ms
+sliding window :  [(477, 479), (593, 479), (381, 479), (494, 479)]  counter :  2
+sliding window :  [(381, 479), (494, 479)]  counter :  2
+time taken to remove:  6.283283233642578 ms
+X value to use :  -96
+Centre value to use :  118.5
+varLeft :  800  varRight :  424.5999999999999
+varLeft :  800  varRight :  424.5999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1356
+x is :  468  y is  479
+x is :  355  y is  479
+index to break :  1353
+tempWindow :  [(468, 479), (355, 479)]
+counter :  2
+time taken to append:  5.686283111572266 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -26  diff from centre :  36  diffXList :  [-26]  diffCentreList :  [36]
+diff in x :  -26  diff from centre :  149  diffXList :  [-26, -26]  diffCentreList :  [36, 149]
+extending sliding with  [(355, 479), (468, 479)]
+time taken to compare:  7.176637649536133 ms
+sliding window :  [(381, 479), (494, 479), (355, 479), (468, 479)]  counter :  2
+sliding window :  [(355, 479), (468, 479)]  counter :  2
+time taken to remove:  7.9021453857421875 ms
+X value to use :  -26
+Centre value to use :  92.5
+varLeft :  800  varRight :  376.4999999999999
+varLeft :  800  varRight :  376.4999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  961
+x is :  421  y is  479
+x is :  307  y is  479
+index to break :  958
+tempWindow :  [(421, 479), (307, 479)]
+counter :  2
+time taken to append:  5.830049514770508 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -48  diff from centre :  -12  diffXList :  [-48]  diffCentreList :  [-12]
+diff in x :  -47  diff from centre :  102  diffXList :  [-48, -47]  diffCentreList :  [-12, 102]
+extending sliding with  [(307, 479), (421, 479)]
+time taken to compare:  6.346464157104492 ms
+sliding window :  [(355, 479), (468, 479), (307, 479), (421, 479)]  counter :  2
+sliding window :  [(307, 479), (421, 479)]  counter :  2
+time taken to remove:  6.641149520874023 ms
+X value to use :  -47
+Centre value to use :  45.0
+varLeft :  800  varRight :  334.1999999999999
+varLeft :  800  varRight :  334.1999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  998
+x is :  378  y is  479
+x is :  264  y is  479
+index to break :  995
+tempWindow :  [(378, 479), (264, 479)]
+counter :  2
+time taken to append:  5.599498748779297 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -43  diff from centre :  -55  diffXList :  [-43]  diffCentreList :  [-55]
+diff in x :  -43  diff from centre :  59  diffXList :  [-43, -43]  diffCentreList :  [-55, 59]
+extending sliding with  [(264, 479), (378, 479)]
+time taken to compare:  6.108999252319336 ms
+sliding window :  [(307, 479), (421, 479), (264, 479), (378, 479)]  counter :  2
+sliding window :  [(264, 479), (378, 479)]  counter :  2
+time taken to remove:  6.405115127563477 ms
+X value to use :  -43
+Centre value to use :  2.0
+varLeft :  800  varRight :  332.47999999999985
+varLeft :  800  varRight :  332.47999999999985
+--------------------------------------------------------------------------------
+length of nonzero :  1002
+x is :  339  y is  479
+x is :  224  y is  479
+index to break :  999
+tempWindow :  [(339, 479), (224, 479)]
+counter :  2
+time taken to append:  5.737066268920898 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -40  diff from centre :  -95  diffXList :  [-40]  diffCentreList :  [-95]
+diff in x :  -39  diff from centre :  20  diffXList :  [-40, -39]  diffCentreList :  [-95, 20]
+extending sliding with  [(224, 479), (339, 479)]
+time taken to compare:  6.256580352783203 ms
+sliding window :  [(264, 479), (378, 479), (224, 479), (339, 479)]  counter :  2
+sliding window :  [(224, 479), (339, 479)]  counter :  2
+time taken to remove:  6.547212600708008 ms
+X value to use :  -39
+Centre value to use :  -37.5
+varLeft :  800  varRight :  478.72999999999985
+varLeft :  800  varRight :  478.72999999999985
+--------------------------------------------------------------------------------
+length of nonzero :  1003
+x is :  311  y is  479
+x is :  196  y is  479
+index to break :  1000
+tempWindow :  [(311, 479), (196, 479)]
+counter :  2
+time taken to append:  5.815982818603516 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -28  diff from centre :  -123  diffXList :  [-28]  diffCentreList :  [-123]
+diff in x :  -28  diff from centre :  -8  diffXList :  [-28, -28]  diffCentreList :  [-123, -8]
+extending sliding with  [(196, 479), (311, 479)]
+time taken to compare:  6.424665451049805 ms
+sliding window :  [(224, 479), (339, 479), (196, 479), (311, 479)]  counter :  2
+sliding window :  [(196, 479), (311, 479)]  counter :  2
+time taken to remove:  6.752729415893555 ms
+X value to use :  -28
+Centre value to use :  -65.5
+varLeft :  800  varRight :  662.1299999999999
+varLeft :  800  varRight :  662.1299999999999
+--------------------------------------------------------------------------------
+length of nonzero :  983
+x is :  292  y is  479
+x is :  177  y is  479
+index to break :  980
+tempWindow :  [(292, 479), (177, 479)]
+counter :  2
+time taken to append:  6.183385848999023 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -19  diff from centre :  -142  diffXList :  [-19]  diffCentreList :  [-142]
+diff in x :  -19  diff from centre :  -27  diffXList :  [-19, -19]  diffCentreList :  [-142, -27]
+extending sliding with  [(177, 479), (292, 479)]
+time taken to compare:  6.722688674926758 ms
+sliding window :  [(196, 479), (311, 479), (177, 479), (292, 479)]  counter :  2
+sliding window :  [(177, 479), (292, 479)]  counter :  2
+time taken to remove:  7.023811340332031 ms
+X value to use :  -19
+Centre value to use :  -84.5
+varLeft :  800  varRight :  822.6799999999998
+varLeft :  800  varRight :  822.6799999999998
+--------------------------------------------------------------------------------
+length of nonzero :  962
+x is :  293  y is  479
+x is :  179  y is  479
+index to break :  959
+tempWindow :  [(293, 479), (179, 479)]
+counter :  2
+time taken to append:  6.094217300415039 ms
+temp window length :  2 sliding window length :  2
+diff in x :  2  diff from centre :  -140  diffXList :  [2]  diffCentreList :  [-140]
+diff in x :  1  diff from centre :  -26  diffXList :  [2, 1]  diffCentreList :  [-140, -26]
+extending sliding with  [(179, 479), (293, 479)]
+time taken to compare:  6.601810455322266 ms
+sliding window :  [(177, 479), (292, 479), (179, 479), (293, 479)]  counter :  2
+sliding window :  [(179, 479), (293, 479)]  counter :  2
+time taken to remove:  6.945371627807617 ms
+X value to use :  2
+Centre value to use :  -83.0
+varLeft :  800  varRight :  825.9999999999999
+varLeft :  800  varRight :  825.9999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  981
+x is :  301  y is  479
+x is :  187  y is  479
+index to break :  978
+tempWindow :  [(301, 479), (187, 479)]
+counter :  2
+time taken to append:  5.972146987915039 ms
+temp window length :  2 sliding window length :  2
+diff in x :  8  diff from centre :  -132  diffXList :  [8]  diffCentreList :  [-132]
+diff in x :  8  diff from centre :  -18  diffXList :  [8, 8]  diffCentreList :  [-132, -18]
+extending sliding with  [(187, 479), (301, 479)]
+time taken to compare:  6.586790084838867 ms
+sliding window :  [(179, 479), (293, 479), (187, 479), (301, 479)]  counter :  2
+sliding window :  [(187, 479), (301, 479)]  counter :  2
+time taken to remove:  6.885766983032227 ms
+X value to use :  8
+Centre value to use :  -75.0
+varLeft :  800  varRight :  837.9999999999999
+varLeft :  800  varRight :  837.9999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1015
+x is :  316  y is  479
+x is :  202  y is  479
+index to break :  1012
+tempWindow :  [(316, 479), (202, 479)]
+counter :  2
+time taken to append:  5.913972854614258 ms
+temp window length :  2 sliding window length :  2
+diff in x :  15  diff from centre :  -117  diffXList :  [15]  diffCentreList :  [-117]
+diff in x :  15  diff from centre :  -3  diffXList :  [15, 15]  diffCentreList :  [-117, -3]
+extending sliding with  [(202, 479), (316, 479)]
+time taken to compare:  6.458282470703125 ms
+sliding window :  [(187, 479), (301, 479), (202, 479), (316, 479)]  counter :  2
+sliding window :  [(202, 479), (316, 479)]  counter :  2
+time taken to remove:  6.796598434448242 ms
+X value to use :  15
+Centre value to use :  -60.0
+varLeft :  800  varRight :  855.9999999999999
+varLeft :  800  varRight :  855.9999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1053
+x is :  333  y is  479
+x is :  220  y is  479
+index to break :  1050
+tempWindow :  [(333, 479), (220, 479)]
+counter :  2
+time taken to append:  5.994558334350586 ms
+temp window length :  2 sliding window length :  2
+diff in x :  18  diff from centre :  -99  diffXList :  [18]  diffCentreList :  [-99]
+diff in x :  17  diff from centre :  14  diffXList :  [18, 17]  diffCentreList :  [-99, 14]
+extending sliding with  [(220, 479), (333, 479)]
+time taken to compare:  7.567644119262695 ms
+sliding window :  [(202, 479), (316, 479), (220, 479), (333, 479)]  counter :  2
+sliding window :  [(220, 479), (333, 479)]  counter :  2
+time taken to remove:  7.935762405395508 ms
+X value to use :  18
+Centre value to use :  -42.5
+varLeft :  800  varRight :  871.2999999999998
+varLeft :  800  varRight :  871.2999999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1100
+x is :  348  y is  479
+x is :  236  y is  479
+index to break :  1097
+tempWindow :  [(348, 479), (236, 479)]
+counter :  2
+time taken to append:  5.9680938720703125 ms
+temp window length :  2 sliding window length :  2
+diff in x :  16  diff from centre :  -83  diffXList :  [16]  diffCentreList :  [-83]
+diff in x :  15  diff from centre :  29  diffXList :  [16, 15]  diffCentreList :  [-83, 29]
+extending sliding with  [(236, 479), (348, 479)]
+time taken to compare:  6.561994552612305 ms
+sliding window :  [(220, 479), (333, 479), (236, 479), (348, 479)]  counter :  2
+sliding window :  [(236, 479), (348, 479)]  counter :  2
+time taken to remove:  6.897449493408203 ms
+X value to use :  16
+Centre value to use :  -27.0
+varLeft :  800  varRight :  879.9399999999998
+varLeft :  800  varRight :  879.9399999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1154
+x is :  368  y is  479
+x is :  256  y is  479
+index to break :  1151
+tempWindow :  [(368, 479), (256, 479)]
+counter :  2
+time taken to append:  3.299713134765625 ms
+temp window length :  2 sliding window length :  2
+diff in x :  20  diff from centre :  -63  diffXList :  [20]  diffCentreList :  [-63]
+diff in x :  20  diff from centre :  49  diffXList :  [20, 20]  diffCentreList :  [-63, 49]
+extending sliding with  [(256, 479), (368, 479)]
+time taken to compare:  3.6079883575439453 ms
+sliding window :  [(236, 479), (348, 479), (256, 479), (368, 479)]  counter :  2
+sliding window :  [(256, 479), (368, 479)]  counter :  2
+time taken to remove:  3.7560462951660156 ms
+X value to use :  20
+Centre value to use :  -7.0
+varLeft :  800  varRight :  882.7399999999998
+varLeft :  800  varRight :  882.7399999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1189
+x is :  383  y is  479
+x is :  270  y is  479
+index to break :  1186
+tempWindow :  [(383, 479), (270, 479)]
+counter :  2
+time taken to append:  3.2405853271484375 ms
+temp window length :  2 sliding window length :  2
+diff in x :  14  diff from centre :  -49  diffXList :  [14]  diffCentreList :  [-49]
+diff in x :  15  diff from centre :  64  diffXList :  [14, 15]  diffCentreList :  [-49, 64]
+extending sliding with  [(270, 479), (383, 479)]
+time taken to compare:  3.549337387084961 ms
+sliding window :  [(256, 479), (368, 479), (270, 479), (383, 479)]  counter :  2
+sliding window :  [(270, 479), (383, 479)]  counter :  2
+time taken to remove:  3.70025634765625 ms
+X value to use :  15
+Centre value to use :  7.5
+varLeft :  800  varRight :  871.4899999999998
+varLeft :  800  varRight :  871.4899999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1234
+x is :  396  y is  479
+x is :  282  y is  479
+index to break :  1231
+tempWindow :  [(396, 479), (282, 479)]
+counter :  2
+time taken to append:  6.079196929931641 ms
+temp window length :  2 sliding window length :  2
+diff in x :  12  diff from centre :  -37  diffXList :  [12]  diffCentreList :  [-37]
+diff in x :  13  diff from centre :  77  diffXList :  [12, 13]  diffCentreList :  [-37, 77]
+extending sliding with  [(282, 479), (396, 479)]
+time taken to compare:  6.623029708862305 ms
+sliding window :  [(270, 479), (383, 479), (282, 479), (396, 479)]  counter :  2
+sliding window :  [(282, 479), (396, 479)]  counter :  2
+time taken to remove:  6.989002227783203 ms
+X value to use :  13
+Centre value to use :  20.0
+varLeft :  800  varRight :  845.4899999999998
+varLeft :  800  varRight :  845.4899999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1515
+x is :  417  y is  479
+x is :  300  y is  479
+index to break :  1512
+tempWindow :  [(417, 479), (300, 479)]
+counter :  2
+time taken to append:  5.860567092895508 ms
+temp window length :  2 sliding window length :  2
+diff in x :  18  diff from centre :  -19  diffXList :  [18]  diffCentreList :  [-19]
+diff in x :  21  diff from centre :  98  diffXList :  [18, 21]  diffCentreList :  [-19, 98]
+extending sliding with  [(300, 479), (417, 479)]
+time taken to compare:  6.490230560302734 ms
+sliding window :  [(282, 479), (396, 479), (300, 479), (417, 479)]  counter :  2
+sliding window :  [(300, 479), (417, 479)]  counter :  2
+time taken to remove:  6.824970245361328 ms
+X value to use :  21
+Centre value to use :  39.5
+varLeft :  800  varRight :  762.5399999999997
+varLeft :  800  varRight :  762.5399999999997
+--------------------------------------------------------------------------------
+length of nonzero :  1334
+x is :  417  y is  479
+x is :  302  y is  479
+index to break :  1331
+tempWindow :  [(417, 479), (302, 479)]
+counter :  2
+time taken to append:  5.813837051391602 ms
+temp window length :  2 sliding window length :  2
+diff in x :  2  diff from centre :  -17  diffXList :  [2]  diffCentreList :  [-17]
+diff in x :  0  diff from centre :  98  diffXList :  [2, 0]  diffCentreList :  [-17, 98]
+extending sliding with  [(302, 479), (417, 479)]
+time taken to compare:  6.3152313232421875 ms
+sliding window :  [(300, 479), (417, 479), (302, 479), (417, 479)]  counter :  2
+sliding window :  [(302, 479), (417, 479)]  counter :  2
+time taken to remove:  6.666660308837891 ms
+X value to use :  2
+Centre value to use :  40.5
+varLeft :  800  varRight :  754.4399999999997
+varLeft :  800  varRight :  754.4399999999997
+--------------------------------------------------------------------------------
+length of nonzero :  1351
+x is :  413  y is  479
+x is :  297  y is  479
+index to break :  1348
+tempWindow :  [(413, 479), (297, 479)]
+counter :  2
+time taken to append:  5.493640899658203 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -5  diff from centre :  -22  diffXList :  [-5]  diffCentreList :  [-22]
+diff in x :  -4  diff from centre :  94  diffXList :  [-5, -4]  diffCentreList :  [-22, 94]
+extending sliding with  [(297, 479), (413, 479)]
+time taken to compare:  6.0024261474609375 ms
+sliding window :  [(302, 479), (417, 479), (297, 479), (413, 479)]  counter :  2
+sliding window :  [(297, 479), (413, 479)]  counter :  2
+time taken to remove:  6.295680999755859 ms
+X value to use :  -4
+Centre value to use :  36.0
+varLeft :  800  varRight :  751.5599999999997
+varLeft :  800  varRight :  751.5599999999997
+--------------------------------------------------------------------------------
+length of nonzero :  1352
+x is :  404  y is  479
+x is :  283  y is  479
+index to break :  1349
+tempWindow :  [(404, 479), (283, 479)]
+counter :  2
+time taken to append:  5.974531173706055 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -14  diff from centre :  -36  diffXList :  [-14]  diffCentreList :  [-36]
+diff in x :  -9  diff from centre :  85  diffXList :  [-14, -9]  diffCentreList :  [-36, 85]
+extending sliding with  [(283, 479), (404, 479)]
+time taken to compare:  6.515026092529297 ms
+sliding window :  [(297, 479), (413, 479), (283, 479), (404, 479)]  counter :  2
+sliding window :  [(283, 479), (404, 479)]  counter :  2
+time taken to remove:  6.804943084716797 ms
+X value to use :  -9
+Centre value to use :  24.5
+varLeft :  800  varRight :  747.1499999999997
+varLeft :  800  varRight :  747.1499999999997
+--------------------------------------------------------------------------------
+length of nonzero :  1324
+x is :  407  y is  479
+x is :  285  y is  479
+index to break :  1321
+tempWindow :  [(407, 479), (285, 479)]
+counter :  2
+time taken to append:  5.90825080871582 ms
+temp window length :  2 sliding window length :  2
+diff in x :  2  diff from centre :  -34  diffXList :  [2]  diffCentreList :  [-34]
+diff in x :  3  diff from centre :  88  diffXList :  [2, 3]  diffCentreList :  [-34, 88]
+extending sliding with  [(285, 479), (407, 479)]
+time taken to compare:  7.431507110595703 ms
+sliding window :  [(283, 479), (404, 479), (285, 479), (407, 479)]  counter :  2
+sliding window :  [(285, 479), (407, 479)]  counter :  2
+time taken to remove:  7.824182510375977 ms
+X value to use :  3
+Centre value to use :  27.0
+varLeft :  800  varRight :  739.0499999999997
+varLeft :  800  varRight :  739.0499999999997
+--------------------------------------------------------------------------------
+length of nonzero :  1289
+x is :  403  y is  479
+x is :  282  y is  479
+index to break :  1286
+tempWindow :  [(403, 479), (282, 479)]
+counter :  2
+time taken to append:  6.134033203125 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -3  diff from centre :  -37  diffXList :  [-3]  diffCentreList :  [-37]
+diff in x :  -4  diff from centre :  84  diffXList :  [-3, -4]  diffCentreList :  [-37, 84]
+extending sliding with  [(282, 479), (403, 479)]
+time taken to compare:  6.711721420288086 ms
+sliding window :  [(285, 479), (407, 479), (282, 479), (403, 479)]  counter :  2
+sliding window :  [(282, 479), (403, 479)]  counter :  2
+time taken to remove:  7.053375244140625 ms
+X value to use :  -3
+Centre value to use :  23.5
+varLeft :  800  varRight :  737.6399999999998
+varLeft :  800  varRight :  737.6399999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1258
+x is :  405  y is  479
+x is :  285  y is  479
+index to break :  1255
+tempWindow :  [(405, 479), (285, 479)]
+counter :  2
+time taken to append:  5.592584609985352 ms
+temp window length :  2 sliding window length :  2
+diff in x :  3  diff from centre :  -34  diffXList :  [3]  diffCentreList :  [-34]
+diff in x :  2  diff from centre :  86  diffXList :  [3, 2]  diffCentreList :  [-34, 86]
+extending sliding with  [(285, 479), (405, 479)]
+time taken to compare:  6.197929382324219 ms
+sliding window :  [(282, 479), (403, 479), (285, 479), (405, 479)]  counter :  2
+sliding window :  [(285, 479), (405, 479)]  counter :  2
+time taken to remove:  6.490945816040039 ms
+X value to use :  3
+Centre value to use :  26.0
+varLeft :  800  varRight :  729.8399999999998
+varLeft :  800  varRight :  729.8399999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1264
+x is :  405  y is  479
+x is :  285  y is  479
+index to break :  1261
+tempWindow :  [(405, 479), (285, 479)]
+counter :  2
+time taken to append:  8.930444717407227 ms
+temp window length :  2 sliding window length :  2
+diff in x :  0  diff from centre :  -34  diffXList :  [0]  diffCentreList :  [-34]
+diff in x :  0  diff from centre :  86  diffXList :  [0, 0]  diffCentreList :  [-34, 86]
+extending sliding with  [(285, 479), (405, 479)]
+time taken to compare:  9.462594985961914 ms
+sliding window :  [(285, 479), (405, 479), (285, 479), (405, 479)]  counter :  2
+sliding window :  [(285, 479), (405, 479)]  counter :  2
+time taken to remove:  10.522842407226562 ms
+X value to use :  0
+Centre value to use :  26.0
+varLeft :  800  varRight :  728.5399999999998
+varLeft :  800  varRight :  728.5399999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1269
+x is :  401  y is  479
+x is :  283  y is  479
+index to break :  1266
+tempWindow :  [(401, 479), (283, 479)]
+counter :  2
+time taken to append:  5.640745162963867 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -2  diff from centre :  -36  diffXList :  [-2]  diffCentreList :  [-36]
+diff in x :  -4  diff from centre :  82  diffXList :  [-2, -4]  diffCentreList :  [-36, 82]
+extending sliding with  [(283, 479), (401, 479)]
+time taken to compare:  6.158590316772461 ms
+sliding window :  [(285, 479), (405, 479), (283, 479), (401, 479)]  counter :  2
+sliding window :  [(283, 479), (401, 479)]  counter :  2
+time taken to remove:  6.467103958129883 ms
+X value to use :  -2
+Centre value to use :  23.0
+varLeft :  800  varRight :  727.6199999999999
+varLeft :  800  varRight :  727.6199999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1354
+x is :  387  y is  479
+x is :  269  y is  479
+index to break :  1351
+tempWindow :  [(387, 479), (269, 479)]
+counter :  2
+time taken to append:  5.5866241455078125 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -14  diff from centre :  -50  diffXList :  [-14]  diffCentreList :  [-50]
+diff in x :  -14  diff from centre :  68  diffXList :  [-14, -14]  diffCentreList :  [-50, 68]
+extending sliding with  [(269, 479), (387, 479)]
+time taken to compare:  6.104946136474609 ms
+sliding window :  [(283, 479), (401, 479), (269, 479), (387, 479)]  counter :  2
+sliding window :  [(269, 479), (387, 479)]  counter :  2
+time taken to remove:  6.397724151611328 ms
+X value to use :  -14
+Centre value to use :  9.0
+varLeft :  800  varRight :  725.0999999999999
+varLeft :  800  varRight :  725.0999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1309
+x is :  379  y is  479
+x is :  262  y is  479
+index to break :  1306
+tempWindow :  [(379, 479), (262, 479)]
+counter :  2
+time taken to append:  5.917072296142578 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -7  diff from centre :  -57  diffXList :  [-7]  diffCentreList :  [-57]
+diff in x :  -8  diff from centre :  60  diffXList :  [-7, -8]  diffCentreList :  [-57, 60]
+extending sliding with  [(262, 479), (379, 479)]
+time taken to compare:  6.455898284912109 ms
+sliding window :  [(269, 479), (387, 479), (262, 479), (379, 479)]  counter :  2
+sliding window :  [(262, 479), (379, 479)]  counter :  2
+time taken to remove:  6.761312484741211 ms
+X value to use :  -7
+Centre value to use :  1.5
+varLeft :  800  varRight :  724.8899999999999
+varLeft :  800  varRight :  724.8899999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1286
+x is :  362  y is  479
+x is :  247  y is  479
+index to break :  1283
+tempWindow :  [(362, 479), (247, 479)]
+counter :  2
+time taken to append:  5.966663360595703 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -15  diff from centre :  -72  diffXList :  [-15]  diffCentreList :  [-72]
+diff in x :  -17  diff from centre :  43  diffXList :  [-15, -17]  diffCentreList :  [-72, 43]
+extending sliding with  [(247, 479), (362, 479)]
+time taken to compare:  6.546497344970703 ms
+sliding window :  [(262, 479), (379, 479), (247, 479), (362, 479)]  counter :  2
+sliding window :  [(247, 479), (362, 479)]  counter :  2
+time taken to remove:  6.8378448486328125 ms
+X value to use :  -15
+Centre value to use :  -14.5
+varLeft :  800  varRight :  746.6399999999999
+varLeft :  800  varRight :  746.6399999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1335
+x is :  357  y is  479
+x is :  240  y is  479
+index to break :  1332
+tempWindow :  [(357, 479), (240, 479)]
+counter :  2
+time taken to append:  5.55109977722168 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -7  diff from centre :  -79  diffXList :  [-7]  diffCentreList :  [-79]
+diff in x :  -5  diff from centre :  38  diffXList :  [-7, -5]  diffCentreList :  [-79, 38]
+extending sliding with  [(240, 479), (357, 479)]
+time taken to compare:  6.059408187866211 ms
+sliding window :  [(247, 479), (362, 479), (240, 479), (357, 479)]  counter :  2
+sliding window :  [(240, 479), (357, 479)]  counter :  2
+time taken to remove:  6.351709365844727 ms
+X value to use :  -5
+Centre value to use :  -20.5
+varLeft :  800  varRight :  756.8899999999999
+varLeft :  800  varRight :  756.8899999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1368
+x is :  346  y is  479
+x is :  230  y is  479
+index to break :  1365
+tempWindow :  [(346, 479), (230, 479)]
+counter :  2
+time taken to append:  6.773233413696289 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -10  diff from centre :  -89  diffXList :  [-10]  diffCentreList :  [-89]
+diff in x :  -11  diff from centre :  27  diffXList :  [-10, -11]  diffCentreList :  [-89, 27]
+extending sliding with  [(230, 479), (346, 479)]
+time taken to compare:  7.343292236328125 ms
+sliding window :  [(240, 479), (357, 479), (230, 479), (346, 479)]  counter :  2
+sliding window :  [(230, 479), (346, 479)]  counter :  2
+time taken to remove:  7.686614990234375 ms
+X value to use :  -10
+Centre value to use :  -31.0
+varLeft :  800  varRight :  787.8899999999999
+varLeft :  800  varRight :  787.8899999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1349
+x is :  342  y is  479
+x is :  220  y is  479
+index to break :  1346
+tempWindow :  [(342, 479), (220, 479)]
+counter :  2
+time taken to append:  5.538225173950195 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -10  diff from centre :  -99  diffXList :  [-10]  diffCentreList :  [-99]
+diff in x :  -4  diff from centre :  23  diffXList :  [-10, -4]  diffCentreList :  [-99, 23]
+extending sliding with  [(220, 479), (342, 479)]
+time taken to compare:  6.040096282958984 ms
+sliding window :  [(230, 479), (346, 479), (220, 479), (342, 479)]  counter :  2
+sliding window :  [(220, 479), (342, 479)]  counter :  2
+time taken to remove:  6.343603134155273 ms
+X value to use :  -4
+Centre value to use :  -38.0
+varLeft :  800  varRight :  803.0899999999999
+varLeft :  800  varRight :  803.0899999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1376
+x is :  345  y is  479
+x is :  224  y is  479
+index to break :  1373
+tempWindow :  [(345, 479), (224, 479)]
+counter :  2
+time taken to append:  5.888223648071289 ms
+temp window length :  2 sliding window length :  2
+diff in x :  4  diff from centre :  -95  diffXList :  [4]  diffCentreList :  [-95]
+diff in x :  3  diff from centre :  26  diffXList :  [4, 3]  diffCentreList :  [-95, 26]
+extending sliding with  [(224, 479), (345, 479)]
+time taken to compare:  6.392955780029297 ms
+sliding window :  [(220, 479), (342, 479), (224, 479), (345, 479)]  counter :  2
+sliding window :  [(224, 479), (345, 479)]  counter :  2
+time taken to remove:  6.683826446533203 ms
+X value to use :  4
+Centre value to use :  -34.5
+varLeft :  800  varRight :  805.8499999999999
+varLeft :  800  varRight :  805.8499999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1403
+x is :  349  y is  479
+x is :  229  y is  479
+index to break :  1400
+tempWindow :  [(349, 479), (229, 479)]
+counter :  2
+time taken to append:  5.728244781494141 ms
+temp window length :  2 sliding window length :  2
+diff in x :  5  diff from centre :  -90  diffXList :  [5]  diffCentreList :  [-90]
+diff in x :  4  diff from centre :  30  diffXList :  [5, 4]  diffCentreList :  [-90, 30]
+extending sliding with  [(229, 479), (349, 479)]
+time taken to compare:  6.272792816162109 ms
+sliding window :  [(224, 479), (345, 479), (229, 479), (349, 479)]  counter :  2
+sliding window :  [(229, 479), (349, 479)]  counter :  2
+time taken to remove:  6.6051483154296875 ms
+X value to use :  5
+Centre value to use :  -30.0
+varLeft :  800  varRight :  808.8499999999999
+varLeft :  800  varRight :  808.8499999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1392
+x is :  351  y is  479
+x is :  231  y is  479
+index to break :  1389
+tempWindow :  [(351, 479), (231, 479)]
+counter :  2
+time taken to append:  6.2007904052734375 ms
+temp window length :  2 sliding window length :  2
+diff in x :  2  diff from centre :  -88  diffXList :  [2]  diffCentreList :  [-88]
+diff in x :  2  diff from centre :  32  diffXList :  [2, 2]  diffCentreList :  [-88, 32]
+extending sliding with  [(231, 479), (351, 479)]
+time taken to compare:  6.740808486938477 ms
+sliding window :  [(229, 479), (349, 479), (231, 479), (351, 479)]  counter :  2
+sliding window :  [(231, 479), (351, 479)]  counter :  2
+time taken to remove:  7.1163177490234375 ms
+X value to use :  2
+Centre value to use :  -28.0
+varLeft :  800  varRight :  809.9699999999999
+varLeft :  800  varRight :  809.9699999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1407
+x is :  355  y is  479
+x is :  236  y is  479
+index to break :  1404
+tempWindow :  [(355, 479), (236, 479)]
+counter :  2
+time taken to append:  6.059169769287109 ms
+temp window length :  2 sliding window length :  2
+diff in x :  5  diff from centre :  -83  diffXList :  [5]  diffCentreList :  [-83]
+diff in x :  4  diff from centre :  36  diffXList :  [5, 4]  diffCentreList :  [-83, 36]
+extending sliding with  [(236, 479), (355, 479)]
+time taken to compare:  6.55817985534668 ms
+sliding window :  [(231, 479), (351, 479), (236, 479), (355, 479)]  counter :  2
+sliding window :  [(236, 479), (355, 479)]  counter :  2
+time taken to remove:  6.851434707641602 ms
+X value to use :  5
+Centre value to use :  -23.5
+varLeft :  800  varRight :  812.3199999999999
+varLeft :  800  varRight :  812.3199999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1392
+x is :  363  y is  479
+x is :  244  y is  479
+index to break :  1389
+tempWindow :  [(363, 479), (244, 479)]
+counter :  2
+time taken to append:  5.631685256958008 ms
+temp window length :  2 sliding window length :  2
+diff in x :  8  diff from centre :  -75  diffXList :  [8]  diffCentreList :  [-75]
+diff in x :  8  diff from centre :  44  diffXList :  [8, 8]  diffCentreList :  [-75, 44]
+extending sliding with  [(244, 479), (363, 479)]
+time taken to compare:  6.140232086181641 ms
+sliding window :  [(236, 479), (355, 479), (244, 479), (363, 479)]  counter :  2
+sliding window :  [(244, 479), (363, 479)]  counter :  2
+time taken to remove:  6.450891494750977 ms
+X value to use :  8
+Centre value to use :  -15.5
+varLeft :  800  varRight :  814.8
+varLeft :  800  varRight :  814.8
+--------------------------------------------------------------------------------
+length of nonzero :  1373
+x is :  374  y is  479
+x is :  255  y is  479
+index to break :  1370
+tempWindow :  [(374, 479), (255, 479)]
+counter :  2
+time taken to append:  5.824804306030273 ms
+temp window length :  2 sliding window length :  2
+diff in x :  11  diff from centre :  -64  diffXList :  [11]  diffCentreList :  [-64]
+diff in x :  11  diff from centre :  55  diffXList :  [11, 11]  diffCentreList :  [-64, 55]
+extending sliding with  [(255, 479), (374, 479)]
+time taken to compare:  6.347417831420898 ms
+sliding window :  [(244, 479), (363, 479), (255, 479), (374, 479)]  counter :  2
+sliding window :  [(255, 479), (374, 479)]  counter :  2
+time taken to remove:  6.647586822509766 ms
+X value to use :  11
+Centre value to use :  -4.5
+varLeft :  800  varRight :  815.79
+varLeft :  800  varRight :  815.79
+--------------------------------------------------------------------------------
+length of nonzero :  1367
+x is :  383  y is  479
+x is :  263  y is  479
+index to break :  1364
+tempWindow :  [(383, 479), (263, 479)]
+counter :  2
+time taken to append:  6.937742233276367 ms
+temp window length :  2 sliding window length :  2
+diff in x :  8  diff from centre :  -56  diffXList :  [8]  diffCentreList :  [-56]
+diff in x :  9  diff from centre :  64  diffXList :  [8, 9]  diffCentreList :  [-56, 64]
+extending sliding with  [(263, 479), (383, 479)]
+time taken to compare:  7.440328598022461 ms
+sliding window :  [(255, 479), (374, 479), (263, 479), (383, 479)]  counter :  2
+sliding window :  [(263, 479), (383, 479)]  counter :  2
+time taken to remove:  7.735252380371094 ms
+X value to use :  9
+Centre value to use :  4.0
+varLeft :  800  varRight :  812.1899999999999
+varLeft :  800  varRight :  812.1899999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1360
+x is :  401  y is  479
+x is :  281  y is  479
+index to break :  1357
+tempWindow :  [(401, 479), (281, 479)]
+counter :  2
+time taken to append:  8.94308090209961 ms
+temp window length :  2 sliding window length :  2
+diff in x :  18  diff from centre :  -38  diffXList :  [18]  diffCentreList :  [-38]
+diff in x :  18  diff from centre :  82  diffXList :  [18, 18]  diffCentreList :  [-38, 82]
+extending sliding with  [(281, 479), (401, 479)]
+time taken to compare:  9.627819061279297 ms
+sliding window :  [(263, 479), (383, 479), (281, 479), (401, 479)]  counter :  2
+sliding window :  [(281, 479), (401, 479)]  counter :  2
+time taken to remove:  9.988784790039062 ms
+X value to use :  18
+Centre value to use :  22.0
+varLeft :  800  varRight :  772.5899999999999
+varLeft :  800  varRight :  772.5899999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1308
+x is :  417  y is  479
+x is :  297  y is  479
+index to break :  1305
+tempWindow :  [(417, 479), (297, 479)]
+counter :  2
+time taken to append:  5.904436111450195 ms
+temp window length :  2 sliding window length :  2
+diff in x :  16  diff from centre :  -22  diffXList :  [16]  diffCentreList :  [-22]
+diff in x :  16  diff from centre :  98  diffXList :  [16, 16]  diffCentreList :  [-22, 98]
+extending sliding with  [(297, 479), (417, 479)]
+time taken to compare:  6.529092788696289 ms
+sliding window :  [(281, 479), (401, 479), (297, 479), (417, 479)]  counter :  2
+sliding window :  [(297, 479), (417, 479)]  counter :  2
+time taken to remove:  8.348226547241211 ms
+X value to use :  16
+Centre value to use :  38.0
+varLeft :  800  varRight :  711.79
+varLeft :  800  varRight :  711.79
+--------------------------------------------------------------------------------
+length of nonzero :  1182
+x is :  441  y is  479
+x is :  321  y is  479
+index to break :  1179
+tempWindow :  [(441, 479), (321, 479)]
+counter :  2
+time taken to append:  6.031513214111328 ms
+temp window length :  2 sliding window length :  2
+diff in x :  24  diff from centre :  2  diffXList :  [24]  diffCentreList :  [2]
+diff in x :  24  diff from centre :  122  diffXList :  [24, 24]  diffCentreList :  [2, 122]
+extending sliding with  [(321, 479), (441, 479)]
+time taken to compare:  6.621837615966797 ms
+sliding window :  [(297, 479), (417, 479), (321, 479), (441, 479)]  counter :  2
+sliding window :  [(321, 479), (441, 479)]  counter :  2
+time taken to remove:  6.955862045288086 ms
+X value to use :  24
+Centre value to use :  62.0
+varLeft :  800  varRight :  562.99
+varLeft :  800  varRight :  562.99
+--------------------------------------------------------------------------------
+length of nonzero :  1058
+x is :  471  y is  479
+x is :  351  y is  479
+index to break :  1055
+tempWindow :  [(471, 479), (351, 479)]
+counter :  2
+time taken to append:  5.989551544189453 ms
+temp window length :  2 sliding window length :  2
+diff in x :  30  diff from centre :  32  diffXList :  [30]  diffCentreList :  [32]
+diff in x :  30  diff from centre :  152  diffXList :  [30, 30]  diffCentreList :  [32, 152]
+extending sliding with  [(351, 479), (471, 479)]
+time taken to compare:  6.552696228027344 ms
+sliding window :  [(321, 479), (441, 479), (351, 479), (471, 479)]  counter :  2
+sliding window :  [(351, 479), (471, 479)]  counter :  2
+time taken to remove:  6.893396377563477 ms
+X value to use :  30
+Centre value to use :  92.0
+varLeft :  800  varRight :  286.99
+varLeft :  800  varRight :  286.99
+--------------------------------------------------------------------------------
+length of nonzero :  880
+x is :  493  y is  479
+x is :  369  y is  479
+index to break :  877
+tempWindow :  [(493, 479), (369, 479)]
+counter :  2
+time taken to append:  5.756616592407227 ms
+temp window length :  2 sliding window length :  2
+diff in x :  18  diff from centre :  50  diffXList :  [18]  diffCentreList :  [50]
+diff in x :  22  diff from centre :  174  diffXList :  [18, 22]  diffCentreList :  [50, 174]
+extending sliding with  [(369, 479), (493, 479)]
+time taken to compare:  6.26683235168457 ms
+sliding window :  [(351, 479), (471, 479), (369, 479), (493, 479)]  counter :  2
+sliding window :  [(369, 479), (493, 479)]  counter :  2
+time taken to remove:  6.574392318725586 ms
+X value to use :  22
+Centre value to use :  112.0
+varLeft :  800  varRight :  40.59000000000003
+varLeft :  800  varRight :  40.59000000000003
+--------------------------------------------------------------------------------
+length of nonzero :  828
+x is :  513  y is  479
+x is :  510  y is  479
+x is :  379  y is  479
+index to break :  824
+tempWindow :  [(513, 479), (510, 479), (379, 479)]
+counter :  3
+time taken to append:  5.762338638305664 ms
+temp window length :  3 sliding window length :  2
+diffTemp 131
+breakpoint : 1
+left :  379 right :  511
+diff in x :  10  diff from centre :  60  diffXList :  [10]  diffCentreList :  [60]
+diff in x :  18  diff from centre :  192  diffXList :  [10, 18]  diffCentreList :  [60, 192]
+extending sliding with  [(379, 479), (511, 479)]
+time taken to compare:  6.464481353759766 ms
+sliding window :  [(369, 479), (493, 479), (379, 479), (511, 479)]  counter :  2
+sliding window :  [(379, 479), (511, 479)]  counter :  2
+time taken to remove:  6.79469108581543 ms
+X value to use :  18
+Centre value to use :  126.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  734
+x is :  540  y is  479
+x is :  380  y is  479
+index to break :  731
+tempWindow :  [(540, 479), (380, 479)]
+counter :  2
+time taken to append:  5.600214004516602 ms
+temp window length :  2 sliding window length :  2
+diff in x :  1  diff from centre :  61  diffXList :  [1]  diffCentreList :  [61]
+diff in x :  29  diff from centre :  221  diffXList :  [1, 29]  diffCentreList :  [61, 221]
+extending sliding with  [(380, 479), (540, 479)]
+time taken to compare:  6.109714508056641 ms
+sliding window :  [(379, 479), (511, 479), (380, 479), (540, 479)]  counter :  2
+sliding window :  [(380, 479), (540, 479)]  counter :  2
+time taken to remove:  6.389617919921875 ms
+X value to use :  29
+Centre value to use :  141.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  727
+x is :  544  y is  479
+x is :  391  y is  479
+index to break :  724
+tempWindow :  [(544, 479), (391, 479)]
+counter :  2
+time taken to append:  5.692005157470703 ms
+temp window length :  2 sliding window length :  2
+diff in x :  11  diff from centre :  72  diffXList :  [11]  diffCentreList :  [72]
+diff in x :  4  diff from centre :  225  diffXList :  [11, 4]  diffCentreList :  [72, 225]
+extending sliding with  [(391, 479), (544, 479)]
+time taken to compare:  6.201744079589844 ms
+sliding window :  [(380, 479), (540, 479), (391, 479), (544, 479)]  counter :  2
+sliding window :  [(391, 479), (544, 479)]  counter :  2
+time taken to remove:  6.500244140625 ms
+X value to use :  11
+Centre value to use :  148.5
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  751
+x is :  542  y is  479
+x is :  392  y is  479
+index to break :  748
+tempWindow :  [(542, 479), (392, 479)]
+counter :  2
+time taken to append:  5.660057067871094 ms
+temp window length :  2 sliding window length :  2
+diff in x :  1  diff from centre :  73  diffXList :  [1]  diffCentreList :  [73]
+diff in x :  -2  diff from centre :  223  diffXList :  [1, -2]  diffCentreList :  [73, 223]
+extending sliding with  [(392, 479), (542, 479)]
+time taken to compare:  6.155729293823242 ms
+sliding window :  [(391, 479), (544, 479), (392, 479), (542, 479)]  counter :  2
+sliding window :  [(392, 479), (542, 479)]  counter :  2
+time taken to remove:  6.452798843383789 ms
+X value to use :  1
+Centre value to use :  148.0
+varLeft :  800  varRight :  85.2
+varLeft :  800  varRight :  85.2
+--------------------------------------------------------------------------------
+length of nonzero :  770
+x is :  539  y is  479
+x is :  395  y is  479
+index to break :  767
+tempWindow :  [(539, 479), (395, 479)]
+counter :  2
+time taken to append:  5.756139755249023 ms
+temp window length :  2 sliding window length :  2
+diff in x :  3  diff from centre :  76  diffXList :  [3]  diffCentreList :  [76]
+diff in x :  -3  diff from centre :  220  diffXList :  [3, -3]  diffCentreList :  [76, 220]
+extending sliding with  [(395, 479), (539, 479)]
+time taken to compare:  7.491350173950195 ms
+sliding window :  [(392, 479), (542, 479), (395, 479), (539, 479)]  counter :  2
+sliding window :  [(395, 479), (539, 479)]  counter :  2
+time taken to remove:  7.816553115844727 ms
+X value to use :  3
+Centre value to use :  148.0
+varLeft :  800  varRight :  40.8
+varLeft :  800  varRight :  40.8
+--------------------------------------------------------------------------------
+length of nonzero :  855
+x is :  529  y is  479
+x is :  387  y is  479
+index to break :  852
+tempWindow :  [(529, 479), (387, 479)]
+counter :  2
+time taken to append:  5.823373794555664 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -8  diff from centre :  68  diffXList :  [-8]  diffCentreList :  [68]
+diff in x :  -10  diff from centre :  210  diffXList :  [-8, -10]  diffCentreList :  [68, 210]
+extending sliding with  [(387, 479), (529, 479)]
+time taken to compare:  6.3800811767578125 ms
+sliding window :  [(395, 479), (539, 479), (387, 479), (529, 479)]  counter :  2
+sliding window :  [(387, 479), (529, 479)]  counter :  2
+time taken to remove:  6.683111190795898 ms
+X value to use :  -8
+Centre value to use :  139.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  951
+x is :  508  y is  479
+x is :  371  y is  479
+index to break :  948
+tempWindow :  [(508, 479), (371, 479)]
+counter :  2
+time taken to append:  7.257699966430664 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -16  diff from centre :  52  diffXList :  [-16]  diffCentreList :  [52]
+diff in x :  -21  diff from centre :  189  diffXList :  [-16, -21]  diffCentreList :  [52, 189]
+extending sliding with  [(371, 479), (508, 479)]
+time taken to compare:  7.8277587890625 ms
+sliding window :  [(387, 479), (529, 479), (371, 479), (508, 479)]  counter :  2
+sliding window :  [(371, 479), (508, 479)]  counter :  2
+time taken to remove:  8.124828338623047 ms
+X value to use :  -16
+Centre value to use :  120.5
+varLeft :  800  varRight :  61.44
+varLeft :  800  varRight :  61.44
+--------------------------------------------------------------------------------
+length of nonzero :  1034
+x is :  491  y is  479
+x is :  357  y is  479
+index to break :  1031
+tempWindow :  [(491, 479), (357, 479)]
+counter :  2
+time taken to append:  7.295370101928711 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -14  diff from centre :  38  diffXList :  [-14]  diffCentreList :  [38]
+diff in x :  -17  diff from centre :  172  diffXList :  [-14, -17]  diffCentreList :  [38, 172]
+extending sliding with  [(357, 479), (491, 479)]
+time taken to compare:  7.813215255737305 ms
+sliding window :  [(371, 479), (508, 479), (357, 479), (491, 479)]  counter :  2
+sliding window :  [(357, 479), (491, 479)]  counter :  2
+time taken to remove:  8.152246475219727 ms
+X value to use :  -14
+Centre value to use :  105.0
+varLeft :  800  varRight :  32.03999999999999
+varLeft :  800  varRight :  32.03999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1078
+x is :  479  y is  479
+x is :  347  y is  479
+index to break :  1075
+tempWindow :  [(479, 479), (347, 479)]
+counter :  2
+time taken to append:  5.798101425170898 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -10  diff from centre :  28  diffXList :  [-10]  diffCentreList :  [28]
+diff in x :  -12  diff from centre :  160  diffXList :  [-10, -12]  diffCentreList :  [28, 160]
+extending sliding with  [(347, 479), (479, 479)]
+time taken to compare:  6.358861923217773 ms
+sliding window :  [(357, 479), (491, 479), (347, 479), (479, 479)]  counter :  2
+sliding window :  [(347, 479), (479, 479)]  counter :  2
+time taken to remove:  6.713151931762695 ms
+X value to use :  -10
+Centre value to use :  94.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  1123
+x is :  457  y is  479
+x is :  329  y is  479
+index to break :  1120
+tempWindow :  [(457, 479), (329, 479)]
+counter :  2
+time taken to append:  5.859851837158203 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -18  diff from centre :  10  diffXList :  [-18]  diffCentreList :  [10]
+diff in x :  -22  diff from centre :  138  diffXList :  [-18, -22]  diffCentreList :  [10, 138]
+extending sliding with  [(329, 479), (457, 479)]
+time taken to compare:  6.48045539855957 ms
+sliding window :  [(347, 479), (479, 479), (329, 479), (457, 479)]  counter :  2
+sliding window :  [(329, 479), (457, 479)]  counter :  2
+time taken to remove:  6.81757926940918 ms
+X value to use :  -18
+Centre value to use :  74.0
+varLeft :  800  varRight :  73.36
+varLeft :  800  varRight :  73.36
+--------------------------------------------------------------------------------
+length of nonzero :  1207
+x is :  438  y is  479
+x is :  312  y is  479
+index to break :  1204
+tempWindow :  [(438, 479), (312, 479)]
+counter :  2
+time taken to append:  7.006168365478516 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -17  diff from centre :  -7  diffXList :  [-17]  diffCentreList :  [-7]
+diff in x :  -19  diff from centre :  119  diffXList :  [-17, -19]  diffCentreList :  [-7, 119]
+extending sliding with  [(312, 479), (438, 479)]
+time taken to compare:  7.5778961181640625 ms
+sliding window :  [(329, 479), (457, 479), (312, 479), (438, 479)]  counter :  2
+sliding window :  [(312, 479), (438, 479)]  counter :  2
+time taken to remove:  7.89332389831543 ms
+X value to use :  -17
+Centre value to use :  56.0
+varLeft :  800  varRight :  54.31999999999999
+varLeft :  800  varRight :  54.31999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1295
+x is :  417  y is  479
+x is :  293  y is  479
+index to break :  1292
+tempWindow :  [(417, 479), (293, 479)]
+counter :  2
+time taken to append:  5.909204483032227 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -19  diff from centre :  -26  diffXList :  [-19]  diffCentreList :  [-26]
+diff in x :  -21  diff from centre :  98  diffXList :  [-19, -21]  diffCentreList :  [-26, 98]
+extending sliding with  [(293, 479), (417, 479)]
+time taken to compare:  6.415843963623047 ms
+sliding window :  [(312, 479), (438, 479), (293, 479), (417, 479)]  counter :  2
+sliding window :  [(293, 479), (417, 479)]  counter :  2
+time taken to remove:  6.757259368896484 ms
+X value to use :  -19
+Centre value to use :  36.0
+varLeft :  800  varRight :  40.63999999999999
+varLeft :  800  varRight :  40.63999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1364
+x is :  393  y is  479
+x is :  272  y is  479
+index to break :  1361
+tempWindow :  [(393, 479), (272, 479)]
+counter :  2
+time taken to append:  5.540370941162109 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -21  diff from centre :  -47  diffXList :  [-21]  diffCentreList :  [-47]
+diff in x :  -24  diff from centre :  74  diffXList :  [-21, -24]  diffCentreList :  [-47, 74]
+extending sliding with  [(272, 479), (393, 479)]
+time taken to compare:  6.066083908081055 ms
+sliding window :  [(293, 479), (417, 479), (272, 479), (393, 479)]  counter :  2
+sliding window :  [(272, 479), (393, 479)]  counter :  2
+time taken to remove:  6.364107131958008 ms
+X value to use :  -21
+Centre value to use :  13.5
+varLeft :  800  varRight :  34.96999999999999
+varLeft :  800  varRight :  34.96999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1455
+x is :  367  y is  479
+x is :  248  y is  479
+index to break :  1452
+tempWindow :  [(367, 479), (248, 479)]
+counter :  2
+time taken to append:  5.499362945556641 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -24  diff from centre :  -71  diffXList :  [-24]  diffCentreList :  [-71]
+diff in x :  -26  diff from centre :  48  diffXList :  [-24, -26]  diffCentreList :  [-71, 48]
+extending sliding with  [(248, 479), (367, 479)]
+time taken to compare:  8.611917495727539 ms
+sliding window :  [(272, 479), (393, 479), (248, 479), (367, 479)]  counter :  2
+sliding window :  [(248, 479), (367, 479)]  counter :  2
+time taken to remove:  8.965492248535156 ms
+X value to use :  -24
+Centre value to use :  -11.5
+varLeft :  800  varRight :  62.56999999999999
+varLeft :  800  varRight :  62.56999999999999
+--------------------------------------------------------------------------------
+length of nonzero :  1524
+x is :  333  y is  479
+x is :  216  y is  479
+index to break :  1521
+tempWindow :  [(333, 479), (216, 479)]
+counter :  2
+time taken to append:  5.830526351928711 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -32  diff from centre :  -103  diffXList :  [-32]  diffCentreList :  [-103]
+diff in x :  -34  diff from centre :  14  diffXList :  [-32, -34]  diffCentreList :  [-103, 14]
+extending sliding with  [(216, 479), (333, 479)]
+time taken to compare:  6.4239501953125 ms
+sliding window :  [(248, 479), (367, 479), (216, 479), (333, 479)]  counter :  2
+sliding window :  [(216, 479), (333, 479)]  counter :  2
+time taken to remove:  6.77943229675293 ms
+X value to use :  -32
+Centre value to use :  -44.5
+varLeft :  800  varRight :  204.97
+varLeft :  800  varRight :  204.97
+--------------------------------------------------------------------------------
+length of nonzero :  1570
+x is :  315  y is  479
+x is :  198  y is  479
+index to break :  1567
+tempWindow :  [(315, 479), (198, 479)]
+counter :  2
+time taken to append:  5.869150161743164 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -18  diff from centre :  -121  diffXList :  [-18]  diffCentreList :  [-121]
+diff in x :  -18  diff from centre :  -4  diffXList :  [-18, -18]  diffCentreList :  [-121, -4]
+extending sliding with  [(198, 479), (315, 479)]
+time taken to compare:  6.386280059814453 ms
+sliding window :  [(216, 479), (333, 479), (198, 479), (315, 479)]  counter :  2
+sliding window :  [(198, 479), (315, 479)]  counter :  2
+time taken to remove:  6.733179092407227 ms
+X value to use :  -18
+Centre value to use :  -62.5
+varLeft :  800  varRight :  317.47
+varLeft :  800  varRight :  317.47
+--------------------------------------------------------------------------------
+length of nonzero :  1624
+x is :  299  y is  479
+x is :  182  y is  479
+index to break :  1621
+tempWindow :  [(299, 479), (182, 479)]
+counter :  2
+time taken to append:  5.875825881958008 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -16  diff from centre :  -137  diffXList :  [-16]  diffCentreList :  [-137]
+diff in x :  -16  diff from centre :  -20  diffXList :  [-16, -16]  diffCentreList :  [-137, -20]
+extending sliding with  [(182, 479), (299, 479)]
+time taken to compare:  6.404876708984375 ms
+sliding window :  [(198, 479), (315, 479), (182, 479), (299, 479)]  counter :  2
+sliding window :  [(182, 479), (299, 479)]  counter :  2
+time taken to remove:  6.744146347045898 ms
+X value to use :  -16
+Centre value to use :  -78.5
+varLeft :  800  varRight :  443.07000000000005
+varLeft :  800  varRight :  443.07000000000005
+--------------------------------------------------------------------------------
+length of nonzero :  1654
+x is :  294  y is  479
+x is :  171  y is  479
+index to break :  1651
+tempWindow :  [(294, 479), (171, 479)]
+counter :  2
+time taken to append:  5.945444107055664 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -11  diff from centre :  -148  diffXList :  [-11]  diffCentreList :  [-148]
+diff in x :  -5  diff from centre :  -25  diffXList :  [-11, -5]  diffCentreList :  [-148, -25]
+extending sliding with  [(171, 479), (294, 479)]
+time taken to compare:  6.542205810546875 ms
+sliding window :  [(182, 479), (299, 479), (171, 479), (294, 479)]  counter :  2
+sliding window :  [(171, 479), (294, 479)]  counter :  2
+time taken to remove:  6.853818893432617 ms
+X value to use :  -5
+Centre value to use :  -86.5
+varLeft :  800  varRight :  486.32000000000005
+varLeft :  800  varRight :  486.32000000000005
+--------------------------------------------------------------------------------
+length of nonzero :  1613
+x is :  296  y is  479
+x is :  164  y is  479
+index to break :  1610
+tempWindow :  [(296, 479), (164, 479)]
+counter :  2
+time taken to append:  5.916595458984375 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -7  diff from centre :  -155  diffXList :  [-7]  diffCentreList :  [-155]
+diff in x :  2  diff from centre :  -23  diffXList :  [-7, 2]  diffCentreList :  [-155, -23]
+extending sliding with  [(164, 479), (296, 479)]
+time taken to compare:  6.485939025878906 ms
+sliding window :  [(171, 479), (294, 479), (164, 479), (296, 479)]  counter :  2
+sliding window :  [(164, 479), (296, 479)]  counter :  2
+time taken to remove:  6.8569183349609375 ms
+X value to use :  2
+Centre value to use :  -89.0
+varLeft :  800  varRight :  489.88000000000005
+varLeft :  800  varRight :  489.88000000000005
+--------------------------------------------------------------------------------
+length of nonzero :  1594
+x is :  299  y is  479
+x is :  165  y is  479
+index to break :  1591
+tempWindow :  [(299, 479), (165, 479)]
+counter :  2
+time taken to append:  5.545854568481445 ms
+temp window length :  2 sliding window length :  2
+diff in x :  1  diff from centre :  -154  diffXList :  [1]  diffCentreList :  [-154]
+diff in x :  3  diff from centre :  -20  diffXList :  [1, 3]  diffCentreList :  [-154, -20]
+extending sliding with  [(165, 479), (299, 479)]
+time taken to compare:  6.114482879638672 ms
+sliding window :  [(164, 479), (296, 479), (165, 479), (299, 479)]  counter :  2
+sliding window :  [(165, 479), (299, 479)]  counter :  2
+time taken to remove:  6.410837173461914 ms
+X value to use :  3
+Centre value to use :  -87.0
+varLeft :  800  varRight :  495.1000000000001
+varLeft :  800  varRight :  495.1000000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1550
+x is :  302  y is  479
+x is :  170  y is  479
+index to break :  1547
+tempWindow :  [(302, 479), (170, 479)]
+counter :  2
+time taken to append:  5.8994293212890625 ms
+temp window length :  2 sliding window length :  2
+diff in x :  5  diff from centre :  -149  diffXList :  [5]  diffCentreList :  [-149]
+diff in x :  3  diff from centre :  -17  diffXList :  [5, 3]  diffCentreList :  [-149, -17]
+extending sliding with  [(170, 479), (302, 479)]
+time taken to compare:  6.493568420410156 ms
+sliding window :  [(165, 479), (299, 479), (170, 479), (302, 479)]  counter :  2
+sliding window :  [(170, 479), (302, 479)]  counter :  2
+time taken to remove:  6.804704666137695 ms
+X value to use :  5
+Centre value to use :  -83.0
+varLeft :  800  varRight :  503.4000000000001
+varLeft :  800  varRight :  503.4000000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1493
+x is :  305  y is  479
+x is :  175  y is  479
+index to break :  1490
+tempWindow :  [(305, 479), (175, 479)]
+counter :  2
+time taken to append:  5.620241165161133 ms
+temp window length :  2 sliding window length :  2
+diff in x :  5  diff from centre :  -144  diffXList :  [5]  diffCentreList :  [-144]
+diff in x :  3  diff from centre :  -14  diffXList :  [5, 3]  diffCentreList :  [-144, -14]
+extending sliding with  [(175, 479), (305, 479)]
+time taken to compare:  6.179094314575195 ms
+sliding window :  [(170, 479), (302, 479), (175, 479), (305, 479)]  counter :  2
+sliding window :  [(175, 479), (305, 479)]  counter :  2
+time taken to remove:  6.5021514892578125 ms
+X value to use :  5
+Centre value to use :  -79.0
+varLeft :  800  varRight :  511.30000000000007
+varLeft :  800  varRight :  511.30000000000007
+--------------------------------------------------------------------------------
+length of nonzero :  1450
+x is :  323  y is  479
+x is :  194  y is  479
+index to break :  1447
+tempWindow :  [(323, 479), (194, 479)]
+counter :  2
+time taken to append:  6.203174591064453 ms
+temp window length :  2 sliding window length :  2
+diff in x :  19  diff from centre :  -125  diffXList :  [19]  diffCentreList :  [-125]
+diff in x :  18  diff from centre :  4  diffXList :  [19, 18]  diffCentreList :  [-125, 4]
+extending sliding with  [(194, 479), (323, 479)]
+time taken to compare:  7.644414901733398 ms
+sliding window :  [(175, 479), (305, 479), (194, 479), (323, 479)]  counter :  2
+sliding window :  [(194, 479), (323, 479)]  counter :  2
+time taken to remove:  7.9631805419921875 ms
+X value to use :  19
+Centre value to use :  -60.5
+varLeft :  800  varRight :  534.2900000000001
+varLeft :  800  varRight :  534.2900000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1390
+x is :  345  y is  479
+x is :  218  y is  479
+index to break :  1387
+tempWindow :  [(345, 479), (218, 479)]
+counter :  2
+time taken to append:  6.217718124389648 ms
+temp window length :  2 sliding window length :  2
+diff in x :  24  diff from centre :  -101  diffXList :  [24]  diffCentreList :  [-101]
+diff in x :  22  diff from centre :  26  diffXList :  [24, 22]  diffCentreList :  [-101, 26]
+extending sliding with  [(218, 479), (345, 479)]
+time taken to compare:  6.737947463989258 ms
+sliding window :  [(194, 479), (323, 479), (218, 479), (345, 479)]  counter :  2
+sliding window :  [(218, 479), (345, 479)]  counter :  2
+time taken to remove:  7.04193115234375 ms
+X value to use :  24
+Centre value to use :  -37.5
+varLeft :  800  varRight :  552.2900000000001
+varLeft :  800  varRight :  552.2900000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1320
+x is :  370  y is  479
+x is :  243  y is  479
+index to break :  1317
+tempWindow :  [(370, 479), (243, 479)]
+counter :  2
+time taken to append:  5.710840225219727 ms
+temp window length :  2 sliding window length :  2
+diff in x :  25  diff from centre :  -76  diffXList :  [25]  diffCentreList :  [-76]
+diff in x :  25  diff from centre :  51  diffXList :  [25, 25]  diffCentreList :  [-76, 51]
+extending sliding with  [(243, 479), (370, 479)]
+time taken to compare:  6.323099136352539 ms
+sliding window :  [(218, 479), (345, 479), (243, 479), (370, 479)]  counter :  2
+sliding window :  [(243, 479), (370, 479)]  counter :  2
+time taken to remove:  6.626605987548828 ms
+X value to use :  25
+Centre value to use :  -12.5
+varLeft :  800  varRight :  558.5400000000001
+varLeft :  800  varRight :  558.5400000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1267
+x is :  402  y is  479
+x is :  273  y is  479
+index to break :  1264
+tempWindow :  [(402, 479), (273, 479)]
+counter :  2
+time taken to append:  6.010532379150391 ms
+temp window length :  2 sliding window length :  2
+diff in x :  30  diff from centre :  -46  diffXList :  [30]  diffCentreList :  [-46]
+diff in x :  32  diff from centre :  83  diffXList :  [30, 32]  diffCentreList :  [-46, 83]
+extending sliding with  [(273, 479), (402, 479)]
+time taken to compare:  6.548166275024414 ms
+sliding window :  [(243, 479), (370, 479), (273, 479), (402, 479)]  counter :  2
+sliding window :  [(273, 479), (402, 479)]  counter :  2
+time taken to remove:  6.914854049682617 ms
+X value to use :  32
+Centre value to use :  18.5
+varLeft :  800  varRight :  499.3400000000001
+varLeft :  800  varRight :  499.3400000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1205
+x is :  429  y is  479
+x is :  300  y is  479
+index to break :  1202
+tempWindow :  [(429, 479), (300, 479)]
+counter :  2
+time taken to append:  6.094932556152344 ms
+temp window length :  2 sliding window length :  2
+diff in x :  27  diff from centre :  -19  diffXList :  [27]  diffCentreList :  [-19]
+diff in x :  27  diff from centre :  110  diffXList :  [27, 27]  diffCentreList :  [-19, 110]
+extending sliding with  [(300, 479), (429, 479)]
+time taken to compare:  6.6127777099609375 ms
+sliding window :  [(273, 479), (402, 479), (300, 479), (429, 479)]  counter :  2
+sliding window :  [(300, 479), (429, 479)]  counter :  2
+time taken to remove:  6.982088088989258 ms
+X value to use :  27
+Centre value to use :  45.5
+varLeft :  800  varRight :  376.4900000000001
+varLeft :  800  varRight :  376.4900000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1144
+x is :  450  y is  479
+x is :  321  y is  479
+index to break :  1141
+tempWindow :  [(450, 479), (321, 479)]
+counter :  2
+time taken to append:  5.974292755126953 ms
+temp window length :  2 sliding window length :  2
+diff in x :  21  diff from centre :  2  diffXList :  [21]  diffCentreList :  [2]
+diff in x :  21  diff from centre :  131  diffXList :  [21, 21]  diffCentreList :  [2, 131]
+extending sliding with  [(321, 479), (450, 479)]
+time taken to compare:  6.508588790893555 ms
+sliding window :  [(300, 479), (429, 479), (321, 479), (450, 479)]  counter :  2
+sliding window :  [(321, 479), (450, 479)]  counter :  2
+time taken to remove:  6.852626800537109 ms
+X value to use :  21
+Centre value to use :  66.5
+varLeft :  800  varRight :  236.84000000000012
+varLeft :  800  varRight :  236.84000000000012
+--------------------------------------------------------------------------------
+length of nonzero :  1089
+x is :  467  y is  479
+x is :  336  y is  479
+index to break :  1086
+tempWindow :  [(467, 479), (336, 479)]
+counter :  2
+time taken to append:  5.944252014160156 ms
+temp window length :  2 sliding window length :  2
+diff in x :  15  diff from centre :  17  diffXList :  [15]  diffCentreList :  [17]
+diff in x :  17  diff from centre :  148  diffXList :  [15, 17]  diffCentreList :  [17, 148]
+extending sliding with  [(336, 479), (467, 479)]
+time taken to compare:  6.452798843383789 ms
+sliding window :  [(321, 479), (450, 479), (336, 479), (467, 479)]  counter :  2
+sliding window :  [(336, 479), (467, 479)]  counter :  2
+time taken to remove:  6.822824478149414 ms
+X value to use :  17
+Centre value to use :  82.5
+varLeft :  800  varRight :  96.59000000000012
+varLeft :  800  varRight :  96.59000000000012
+--------------------------------------------------------------------------------
+length of nonzero :  1037
+x is :  469  y is  479
+x is :  339  y is  479
+index to break :  1034
+tempWindow :  [(469, 479), (339, 479)]
+counter :  2
+time taken to append:  6.275653839111328 ms
+temp window length :  2 sliding window length :  2
+diff in x :  3  diff from centre :  20  diffXList :  [3]  diffCentreList :  [20]
+diff in x :  2  diff from centre :  150  diffXList :  [3, 2]  diffCentreList :  [20, 150]
+extending sliding with  [(339, 479), (469, 479)]
+time taken to compare:  6.830692291259766 ms
+sliding window :  [(336, 479), (467, 479), (339, 479), (469, 479)]  counter :  2
+sliding window :  [(339, 479), (469, 479)]  counter :  2
+time taken to remove:  7.129907608032227 ms
+X value to use :  3
+Centre value to use :  85.0
+varLeft :  800  varRight :  71.09000000000012
+varLeft :  800  varRight :  71.09000000000012
+--------------------------------------------------------------------------------
+length of nonzero :  997
+x is :  453  y is  479
+x is :  324  y is  479
+index to break :  994
+tempWindow :  [(453, 479), (324, 479)]
+counter :  2
+time taken to append:  5.875110626220703 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -15  diff from centre :  5  diffXList :  [-15]  diffCentreList :  [5]
+diff in x :  -16  diff from centre :  134  diffXList :  [-15, -16]  diffCentreList :  [5, 134]
+extending sliding with  [(324, 479), (453, 479)]
+time taken to compare:  6.398439407348633 ms
+sliding window :  [(339, 479), (469, 479), (324, 479), (453, 479)]  counter :  2
+sliding window :  [(324, 479), (453, 479)]  counter :  2
+time taken to remove:  6.699800491333008 ms
+X value to use :  -15
+Centre value to use :  69.5
+varLeft :  800  varRight :  50.24000000000012
+varLeft :  800  varRight :  50.24000000000012
+--------------------------------------------------------------------------------
+length of nonzero :  976
+x is :  428  y is  479
+x is :  302  y is  479
+index to break :  973
+tempWindow :  [(428, 479), (302, 479)]
+counter :  2
+time taken to append:  6.720304489135742 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -22  diff from centre :  -17  diffXList :  [-22]  diffCentreList :  [-17]
+diff in x :  -25  diff from centre :  109  diffXList :  [-22, -25]  diffCentreList :  [-17, 109]
+extending sliding with  [(302, 479), (428, 479)]
+time taken to compare:  7.3413848876953125 ms
+sliding window :  [(324, 479), (453, 479), (302, 479), (428, 479)]  counter :  2
+sliding window :  [(302, 479), (428, 479)]  counter :  2
+time taken to remove:  7.689952850341797 ms
+X value to use :  -22
+Centre value to use :  46.0
+varLeft :  800  varRight :  30.00000000000012
+varLeft :  800  varRight :  30.00000000000012
+--------------------------------------------------------------------------------
+length of nonzero :  962
+x is :  396  y is  479
+x is :  281  y is  479
+index to break :  959
+tempWindow :  [(396, 479), (281, 479)]
+counter :  2
+time taken to append:  6.420135498046875 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -21  diff from centre :  -38  diffXList :  [-21]  diffCentreList :  [-38]
+diff in x :  -32  diff from centre :  77  diffXList :  [-21, -32]  diffCentreList :  [-38, 77]
+extending sliding with  [(281, 479), (396, 479)]
+time taken to compare:  6.957530975341797 ms
+sliding window :  [(302, 479), (428, 479), (281, 479), (396, 479)]  counter :  2
+sliding window :  [(281, 479), (396, 479)]  counter :  2
+time taken to remove:  7.266521453857422 ms
+X value to use :  -21
+Centre value to use :  19.5
+varLeft :  800  varRight :  21.810000000000123
+varLeft :  800  varRight :  21.810000000000123
+--------------------------------------------------------------------------------
+length of nonzero :  970
+x is :  366  y is  479
+x is :  251  y is  479
+index to break :  967
+tempWindow :  [(366, 479), (251, 479)]
+counter :  2
+time taken to append:  6.021022796630859 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -30  diff from centre :  -68  diffXList :  [-30]  diffCentreList :  [-68]
+diff in x :  -30  diff from centre :  47  diffXList :  [-30, -30]  diffCentreList :  [-68, 47]
+extending sliding with  [(251, 479), (366, 479)]
+time taken to compare:  6.608486175537109 ms
+sliding window :  [(281, 479), (396, 479), (251, 479), (366, 479)]  counter :  2
+sliding window :  [(251, 479), (366, 479)]  counter :  2
+time taken to remove:  6.969690322875977 ms
+X value to use :  -30
+Centre value to use :  -10.5
+varLeft :  800  varRight :  53.31000000000012
+varLeft :  800  varRight :  53.31000000000012
+--------------------------------------------------------------------------------
+length of nonzero :  980
+x is :  341  y is  479
+x is :  227  y is  479
+index to break :  977
+tempWindow :  [(341, 479), (227, 479)]
+counter :  2
+time taken to append:  5.983114242553711 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -24  diff from centre :  -92  diffXList :  [-24]  diffCentreList :  [-92]
+diff in x :  -25  diff from centre :  22  diffXList :  [-24, -25]  diffCentreList :  [-92, 22]
+extending sliding with  [(227, 479), (341, 479)]
+time taken to compare:  6.568670272827148 ms
+sliding window :  [(251, 479), (366, 479), (227, 479), (341, 479)]  counter :  2
+sliding window :  [(227, 479), (341, 479)]  counter :  2
+time taken to remove:  6.926298141479492 ms
+X value to use :  -24
+Centre value to use :  -35.0
+varLeft :  800  varRight :  137.31000000000012
+varLeft :  800  varRight :  137.31000000000012
+--------------------------------------------------------------------------------
+length of nonzero :  982
+x is :  320  y is  479
+x is :  208  y is  479
+index to break :  979
+tempWindow :  [(320, 479), (208, 479)]
+counter :  2
+time taken to append:  3.568410873413086 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -19  diff from centre :  -111  diffXList :  [-19]  diffCentreList :  [-111]
+diff in x :  -21  diff from centre :  1  diffXList :  [-19, -21]  diffCentreList :  [-111, 1]
+extending sliding with  [(208, 479), (320, 479)]
+time taken to compare:  3.844022750854492 ms
+sliding window :  [(227, 479), (341, 479), (208, 479), (320, 479)]  counter :  2
+sliding window :  [(208, 479), (320, 479)]  counter :  2
+time taken to remove:  4.023075103759766 ms
+X value to use :  -19
+Centre value to use :  -55.0
+varLeft :  800  varRight :  241.81000000000012
+varLeft :  800  varRight :  241.81000000000012
+--------------------------------------------------------------------------------
+length of nonzero :  995
+x is :  301  y is  479
+x is :  189  y is  479
+index to break :  992
+tempWindow :  [(301, 479), (189, 479)]
+counter :  2
+time taken to append:  3.1197071075439453 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -19  diff from centre :  -130  diffXList :  [-19]  diffCentreList :  [-130]
+diff in x :  -19  diff from centre :  -18  diffXList :  [-19, -19]  diffCentreList :  [-130, -18]
+extending sliding with  [(189, 479), (301, 479)]
+time taken to compare:  3.4461021423339844 ms
+sliding window :  [(208, 479), (320, 479), (189, 479), (301, 479)]  counter :  2
+sliding window :  [(189, 479), (301, 479)]  counter :  2
+time taken to remove:  3.5979747772216797 ms
+X value to use :  -19
+Centre value to use :  -74.0
+varLeft :  800  varRight :  382.4100000000001
+varLeft :  800  varRight :  382.4100000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1019
+x is :  289  y is  479
+x is :  177  y is  479
+index to break :  1016
+tempWindow :  [(289, 479), (177, 479)]
+counter :  2
+time taken to append:  5.692005157470703 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -12  diff from centre :  -142  diffXList :  [-12]  diffCentreList :  [-142]
+diff in x :  -12  diff from centre :  -30  diffXList :  [-12, -12]  diffCentreList :  [-142, -30]
+extending sliding with  [(177, 479), (289, 479)]
+time taken to compare:  6.214141845703125 ms
+sliding window :  [(189, 479), (301, 479), (177, 479), (289, 479)]  counter :  2
+sliding window :  [(177, 479), (289, 479)]  counter :  2
+time taken to remove:  6.52623176574707 ms
+X value to use :  -12
+Centre value to use :  -86.0
+varLeft :  800  varRight :  485.61000000000007
+varLeft :  800  varRight :  485.61000000000007
+--------------------------------------------------------------------------------
+length of nonzero :  1027
+x is :  276  y is  479
+x is :  164  y is  479
+index to break :  1024
+tempWindow :  [(276, 479), (164, 479)]
+counter :  2
+time taken to append:  5.513906478881836 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -13  diff from centre :  -155  diffXList :  [-13]  diffCentreList :  [-155]
+diff in x :  -13  diff from centre :  -43  diffXList :  [-13, -13]  diffCentreList :  [-155, -43]
+extending sliding with  [(164, 479), (276, 479)]
+time taken to compare:  6.097316741943359 ms
+sliding window :  [(177, 479), (289, 479), (164, 479), (276, 479)]  counter :  2
+sliding window :  [(164, 479), (276, 479)]  counter :  2
+time taken to remove:  6.400346755981445 ms
+X value to use :  -13
+Centre value to use :  -99.0
+varLeft :  800  varRight :  614.3100000000001
+varLeft :  800  varRight :  614.3100000000001
+--------------------------------------------------------------------------------
+length of nonzero :  1066
+x is :  254  y is  479
+x is :  142  y is  479
+index to break :  1063
+tempWindow :  [(254, 479), (142, 479)]
+counter :  2
+time taken to append:  5.631923675537109 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -22  diff from centre :  -177  diffXList :  [-22]  diffCentreList :  [-177]
+diff in x :  -22  diff from centre :  -65  diffXList :  [-22, -22]  diffCentreList :  [-177, -65]
+extending sliding with  [(142, 479), (254, 479)]
+time taken to compare:  6.161212921142578 ms
+sliding window :  [(164, 479), (276, 479), (142, 479), (254, 479)]  counter :  2
+sliding window :  [(142, 479), (254, 479)]  counter :  2
+time taken to remove:  6.455898284912109 ms
+X value to use :  -22
+Centre value to use :  -121.0
+varLeft :  800  varRight :  880.51
+varLeft :  800  varRight :  880.51
+--------------------------------------------------------------------------------
+length of nonzero :  1097
+x is :  240  y is  479
+x is :  129  y is  479
+index to break :  1094
+tempWindow :  [(240, 479), (129, 479)]
+counter :  2
+time taken to append:  6.493568420410156 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -13  diff from centre :  -190  diffXList :  [-13]  diffCentreList :  [-190]
+diff in x :  -14  diff from centre :  -79  diffXList :  [-13, -14]  diffCentreList :  [-190, -79]
+extending sliding with  [(129, 479), (240, 479)]
+time taken to compare:  7.025003433227539 ms
+sliding window :  [(142, 479), (254, 479), (129, 479), (240, 479)]  counter :  2
+sliding window :  [(129, 479), (240, 479)]  counter :  2
+time taken to remove:  7.333040237426758 ms
+X value to use :  -13
+Centre value to use :  -134.5
+varLeft :  800  varRight :  1055.36
+varLeft :  800  varRight :  1055.36
+--------------------------------------------------------------------------------
+length of nonzero :  1102
+x is :  230  y is  479
+x is :  118  y is  479
+index to break :  1099
+tempWindow :  [(230, 479), (118, 479)]
+counter :  2
+time taken to append:  6.043910980224609 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -11  diff from centre :  -201  diffXList :  [-11]  diffCentreList :  [-201]
+diff in x :  -10  diff from centre :  -89  diffXList :  [-11, -10]  diffCentreList :  [-201, -89]
+extending sliding with  [(118, 479), (230, 479)]
+time taken to compare:  6.724119186401367 ms
+sliding window :  [(129, 479), (240, 479), (118, 479), (230, 479)]  counter :  2
+sliding window :  [(118, 479), (230, 479)]  counter :  2
+time taken to remove:  7.0285797119140625 ms
+X value to use :  -10
+Centre value to use :  -145.0
+varLeft :  800  varRight :  1200.36
+varLeft :  800  varRight :  1200.36
+--------------------------------------------------------------------------------
+length of nonzero :  1045
+x is :  220  y is  479
+x is :  107  y is  479
+index to break :  1042
+tempWindow :  [(220, 479), (107, 479)]
+counter :  2
+time taken to append:  6.284236907958984 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -11  diff from centre :  -212  diffXList :  [-11]  diffCentreList :  [-212]
+diff in x :  -10  diff from centre :  -99  diffXList :  [-11, -10]  diffCentreList :  [-212, -99]
+extending sliding with  [(107, 479), (220, 479)]
+time taken to compare:  6.814241409301758 ms
+sliding window :  [(118, 479), (230, 479), (107, 479), (220, 479)]  counter :  2
+sliding window :  [(107, 479), (220, 479)]  counter :  2
+time taken to remove:  7.23719596862793 ms
+X value to use :  -10
+Centre value to use :  -155.5
+varLeft :  800  varRight :  1355.86
+varLeft :  800  varRight :  1355.86
+--------------------------------------------------------------------------------
+length of nonzero :  978
+x is :  218  y is  479
+x is :  104  y is  479
+index to break :  975
+tempWindow :  [(218, 479), (104, 479)]
+counter :  2
+time taken to append:  6.388187408447266 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -3  diff from centre :  -215  diffXList :  [-3]  diffCentreList :  [-215]
+diff in x :  -2  diff from centre :  -101  diffXList :  [-3, -2]  diffCentreList :  [-215, -101]
+extending sliding with  [(104, 479), (218, 479)]
+time taken to compare:  6.94584846496582 ms
+sliding window :  [(107, 479), (220, 479), (104, 479), (218, 479)]  counter :  2
+sliding window :  [(104, 479), (218, 479)]  counter :  2
+time taken to remove:  7.316112518310547 ms
+X value to use :  -2
+Centre value to use :  -158.0
+varLeft :  800  varRight :  1387.4599999999998
+varLeft :  800  varRight :  1387.4599999999998
+--------------------------------------------------------------------------------
+length of nonzero :  923
+x is :  206  y is  479
+x is :  92  y is  479
+index to break :  920
+tempWindow :  [(206, 479), (92, 479)]
+counter :  2
+time taken to append:  5.570650100708008 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -12  diff from centre :  -227  diffXList :  [-12]  diffCentreList :  [-227]
+diff in x :  -12  diff from centre :  -113  diffXList :  [-12, -12]  diffCentreList :  [-227, -113]
+extending sliding with  [(92, 479), (206, 479)]
+time taken to compare:  6.110191345214844 ms
+sliding window :  [(104, 479), (218, 479), (92, 479), (206, 479)]  counter :  2
+sliding window :  [(92, 479), (206, 479)]  counter :  2
+time taken to remove:  6.411552429199219 ms
+X value to use :  -12
+Centre value to use :  -170.0
+varLeft :  800  varRight :  1591.4599999999998
+varLeft :  800  varRight :  1591.4599999999998
+--------------------------------------------------------------------------------
+length of nonzero :  820
+x is :  195  y is  479
+x is :  69  y is  479
+index to break :  817
+tempWindow :  [(195, 479), (69, 479)]
+counter :  2
+time taken to append:  5.9146881103515625 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -23  diff from centre :  -250  diffXList :  [-23]  diffCentreList :  [-250]
+diff in x :  -11  diff from centre :  -124  diffXList :  [-23, -11]  diffCentreList :  [-250, -124]
+extending sliding with  [(69, 479), (195, 479)]
+time taken to compare:  6.422519683837891 ms
+sliding window :  [(92, 479), (206, 479), (69, 479), (195, 479)]  counter :  2
+sliding window :  [(69, 479), (195, 479)]  counter :  2
+time taken to remove:  6.728649139404297 ms
+X value to use :  -11
+Centre value to use :  -187.0
+varLeft :  800  varRight :  1797.1599999999999
+varLeft :  800  varRight :  1797.1599999999999
+--------------------------------------------------------------------------------
+length of nonzero :  597
+x is :  167  y is  479
+x is :  41  y is  479
+index to break :  594
+tempWindow :  [(167, 479), (41, 479)]
+counter :  2
+time taken to append:  5.9680938720703125 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -28  diff from centre :  -278  diffXList :  [-28]  diffCentreList :  [-278]
+diff in x :  -28  diff from centre :  -152  diffXList :  [-28, -28]  diffCentreList :  [-278, -152]
+extending sliding with  [(41, 479), (167, 479)]
+time taken to compare:  6.554603576660156 ms
+sliding window :  [(69, 479), (195, 479), (41, 479), (167, 479)]  counter :  2
+sliding window :  [(41, 479), (167, 479)]  counter :  2
+time taken to remove:  6.916999816894531 ms
+X value to use :  -28
+Centre value to use :  -215.0
+varLeft :  800  varRight :  2399.16
+varLeft :  800  varRight :  2399.16
+--------------------------------------------------------------------------------
+length of nonzero :  503
+x is :  148  y is  479
+x is :  24  y is  479
+index to break :  500
+tempWindow :  [(148, 479), (24, 479)]
+counter :  2
+time taken to append:  5.327463150024414 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -17  diff from centre :  -295  diffXList :  [-17]  diffCentreList :  [-295]
+diff in x :  -19  diff from centre :  -171  diffXList :  [-17, -19]  diffCentreList :  [-295, -171]
+extending sliding with  [(24, 479), (148, 479)]
+time taken to compare:  5.846261978149414 ms
+sliding window :  [(41, 479), (167, 479), (24, 479), (148, 479)]  counter :  2
+sliding window :  [(24, 479), (148, 479)]  counter :  2
+time taken to remove:  6.144046783447266 ms
+X value to use :  -17
+Centre value to use :  -233.0
+varLeft :  800  varRight :  2795.2599999999998
+varLeft :  800  varRight :  2795.2599999999998
+--------------------------------------------------------------------------------
+length of nonzero :  454
+x is :  141  y is  479
+x is :  19  y is  479
+index to break :  451
+tempWindow :  [(141, 479), (19, 479)]
+counter :  2
+time taken to append:  6.44683837890625 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -5  diff from centre :  -300  diffXList :  [-5]  diffCentreList :  [-300]
+diff in x :  -7  diff from centre :  -178  diffXList :  [-5, -7]  diffCentreList :  [-300, -178]
+extending sliding with  [(19, 479), (141, 479)]
+time taken to compare:  7.025957107543945 ms
+sliding window :  [(24, 479), (148, 479), (19, 479), (141, 479)]  counter :  2
+sliding window :  [(19, 479), (141, 479)]  counter :  2
+time taken to remove:  7.415771484375 ms
+X value to use :  -5
+Centre value to use :  -239.0
+varLeft :  800  varRight :  2914.7599999999998
+varLeft :  800  varRight :  2914.7599999999998
+--------------------------------------------------------------------------------
+length of nonzero :  439
+x is :  137  y is  479
+x is :  17  y is  479
+index to break :  436
+tempWindow :  [(137, 479), (17, 479)]
+counter :  2
+time taken to append:  7.692575454711914 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -2  diff from centre :  -302  diffXList :  [-2]  diffCentreList :  [-302]
+diff in x :  -4  diff from centre :  -182  diffXList :  [-2, -4]  diffCentreList :  [-302, -182]
+extending sliding with  [(17, 479), (137, 479)]
+time taken to compare:  8.313894271850586 ms
+sliding window :  [(19, 479), (141, 479), (17, 479), (137, 479)]  counter :  2
+sliding window :  [(17, 479), (137, 479)]  counter :  2
+time taken to remove:  8.65030288696289 ms
+X value to use :  -2
+Centre value to use :  -242.0
+varLeft :  800  varRight :  2963.16
+varLeft :  800  varRight :  2963.16
+--------------------------------------------------------------------------------
+length of nonzero :  495
+x is :  152  y is  479
+x is :  35  y is  479
+index to break :  492
+tempWindow :  [(152, 479), (35, 479)]
+counter :  2
+time taken to append:  6.360292434692383 ms
+temp window length :  2 sliding window length :  2
+diff in x :  18  diff from centre :  -284  diffXList :  [18]  diffCentreList :  [-284]
+diff in x :  15  diff from centre :  -167  diffXList :  [18, 15]  diffCentreList :  [-284, -167]
+extending sliding with  [(35, 479), (152, 479)]
+time taken to compare:  6.992101669311523 ms
+sliding window :  [(17, 479), (137, 479), (35, 479), (152, 479)]  counter :  2
+sliding window :  [(35, 479), (152, 479)]  counter :  2
+time taken to remove:  7.362604141235352 ms
+X value to use :  18
+Centre value to use :  -225.5
+varLeft :  800  varRight :  3044.3399999999997
+varLeft :  800  varRight :  3044.3399999999997
+--------------------------------------------------------------------------------
+length of nonzero :  359
+x is :  143  y is  479
+x is :  3  y is  479
+index to break :  356
+tempWindow :  [(143, 479), (3, 479)]
+counter :  2
+time taken to append:  6.325721740722656 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -32  diff from centre :  -316  diffXList :  [-32]  diffCentreList :  [-316]
+diff in x :  -9  diff from centre :  -176  diffXList :  [-32, -9]  diffCentreList :  [-316, -176]
+extending sliding with  [(3, 479), (143, 479)]
+time taken to compare:  6.996631622314453 ms
+sliding window :  [(35, 479), (152, 479), (3, 479), (143, 479)]  counter :  2
+sliding window :  [(3, 479), (143, 479)]  counter :  2
+time taken to remove:  7.377386093139648 ms
+X value to use :  -9
+Centre value to use :  -246.0
+varLeft :  800  varRight :  3265.74
+varLeft :  800  varRight :  3265.74
+--------------------------------------------------------------------------------
+length of nonzero :  379
+x is :  141  y is  479
+x is :  7  y is  479
+index to break :  376
+tempWindow :  [(141, 479), (7, 479)]
+counter :  2
+time taken to append:  6.67572021484375 ms
+temp window length :  2 sliding window length :  2
+diff in x :  4  diff from centre :  -312  diffXList :  [4]  diffCentreList :  [-312]
+diff in x :  -2  diff from centre :  -178  diffXList :  [4, -2]  diffCentreList :  [-312, -178]
+extending sliding with  [(7, 479), (141, 479)]
+time taken to compare:  7.327795028686523 ms
+sliding window :  [(3, 479), (143, 479), (7, 479), (141, 479)]  counter :  2
+sliding window :  [(7, 479), (141, 479)]  counter :  2
+time taken to remove:  7.695913314819336 ms
+X value to use :  4
+Centre value to use :  -245.0
+varLeft :  800  varRight :  3285.3399999999997
+varLeft :  800  varRight :  3285.3399999999997
+--------------------------------------------------------------------------------
+length of nonzero :  317
+x is :  130  y is  479
+index to break :  315
+tempWindow :  [(130, 479)]
+counter :  1
+time taken to append:  6.238460540771484 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -189  diffCentreList :  [-189]
+extending sliding with  []
+time taken to compare:  6.533384323120117 ms
+time taken to remove:  6.629705429077148 ms
+Centre value to use :  -189.0
+varLeft :  800  varRight :  3300.4599999999996
+varLeft :  800  varRight :  3300.4599999999996
+--------------------------------------------------------------------------------
+length of nonzero :  302
+x is :  129  y is  479
+index to break :  300
+tempWindow :  [(129, 479)]
+counter :  1
+time taken to append:  6.288290023803711 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -190  diffCentreList :  [-190]
+extending sliding with  []
+time taken to compare:  6.570100784301758 ms
+time taken to remove:  6.659030914306641 ms
+Centre value to use :  -190.0
+varLeft :  800  varRight :  3315.6599999999994
+varLeft :  800  varRight :  3315.6599999999994
+--------------------------------------------------------------------------------
+length of nonzero :  246
+x is :  101  y is  479
+index to break :  244
+tempWindow :  [(101, 479)]
+counter :  1
+time taken to append:  6.267070770263672 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -218  diffCentreList :  [-218]
+extending sliding with  []
+time taken to compare:  6.530284881591797 ms
+time taken to remove:  6.630659103393555 ms
+Centre value to use :  -218.0
+varLeft :  800  varRight :  3333.0999999999995
+varLeft :  800  varRight :  3333.0999999999995
+--------------------------------------------------------------------------------
+length of nonzero :  262
+x is :  95  y is  479
+index to break :  260
+tempWindow :  [(95, 479)]
+counter :  1
+time taken to append:  6.114006042480469 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -224  diffCentreList :  [-224]
+extending sliding with  []
+time taken to compare:  6.450176239013672 ms
+time taken to remove:  6.537675857543945 ms
+Centre value to use :  -224.0
+varLeft :  800  varRight :  3351.0199999999995
+varLeft :  800  varRight :  3351.0199999999995
+--------------------------------------------------------------------------------
+length of nonzero :  231
+x is :  80  y is  479
+index to break :  229
+tempWindow :  [(80, 479)]
+counter :  1
+time taken to append:  6.327390670776367 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -239  diffCentreList :  [-239]
+extending sliding with  []
+time taken to compare:  6.606340408325195 ms
+time taken to remove:  6.656885147094727 ms
+Centre value to use :  -239.0
+varLeft :  800  varRight :  3370.1399999999994
+varLeft :  800  varRight :  3370.1399999999994
+--------------------------------------------------------------------------------
+length of nonzero :  260
+x is :  87  y is  479
+index to break :  258
+tempWindow :  [(87, 479)]
+counter :  1
+time taken to append:  6.485223770141602 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -232  diffCentreList :  [-232]
+extending sliding with  []
+time taken to compare:  6.727695465087891 ms
+time taken to remove:  6.813287734985352 ms
+Centre value to use :  -232.0
+varLeft :  800  varRight :  3388.6999999999994
+varLeft :  800  varRight :  3388.6999999999994
+--------------------------------------------------------------------------------
+length of nonzero :  239
+x is :  87  y is  479
+index to break :  237
+tempWindow :  [(87, 479)]
+counter :  1
+time taken to append:  6.205320358276367 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -232  diffCentreList :  [-232]
+extending sliding with  []
+time taken to compare:  6.561279296875 ms
+time taken to remove:  6.643772125244141 ms
+Centre value to use :  -232.0
+varLeft :  800  varRight :  3407.2599999999993
+varLeft :  800  varRight :  3407.2599999999993
+--------------------------------------------------------------------------------
+length of nonzero :  221
+x is :  86  y is  479
+index to break :  219
+tempWindow :  [(86, 479)]
+counter :  1
+time taken to append:  5.241870880126953 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -233  diffCentreList :  [-233]
+extending sliding with  []
+time taken to compare:  5.477428436279297 ms
+time taken to remove:  5.526542663574219 ms
+Centre value to use :  -233.0
+varLeft :  800  varRight :  3425.899999999999
+varLeft :  800  varRight :  3425.899999999999
+--------------------------------------------------------------------------------
+length of nonzero :  256
+x is :  100  y is  479
+index to break :  254
+tempWindow :  [(100, 479)]
+counter :  1
+time taken to append:  6.528139114379883 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -219  diffCentreList :  [-219]
+extending sliding with  []
+time taken to compare:  6.772041320800781 ms
+time taken to remove:  6.825685501098633 ms
+Centre value to use :  -219.0
+varLeft :  800  varRight :  3443.419999999999
+varLeft :  800  varRight :  3443.419999999999
+--------------------------------------------------------------------------------
+length of nonzero :  234
+x is :  78  y is  479
+index to break :  232
+tempWindow :  [(78, 479)]
+counter :  1
+time taken to append:  5.289793014526367 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -241  diffCentreList :  [-241]
+extending sliding with  []
+time taken to compare:  5.532741546630859 ms
+time taken to remove:  5.586862564086914 ms
+Centre value to use :  -241.0
+varLeft :  800  varRight :  3462.6999999999994
+varLeft :  800  varRight :  3462.6999999999994
+--------------------------------------------------------------------------------
+length of nonzero :  187
+x is :  61  y is  479
+index to break :  185
+tempWindow :  [(61, 479)]
+counter :  1
+time taken to append:  5.658864974975586 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -258  diffCentreList :  [-258]
+extending sliding with  []
+time taken to compare:  5.914211273193359 ms
+time taken to remove:  5.969047546386719 ms
+Centre value to use :  -258.0
+varLeft :  800  varRight :  3483.3399999999992
+varLeft :  800  varRight :  3483.3399999999992
+--------------------------------------------------------------------------------
+length of nonzero :  149
+x is :  46  y is  479
+index to break :  147
+tempWindow :  [(46, 479)]
+counter :  1
+time taken to append:  5.478382110595703 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -273  diffCentreList :  [-273]
+extending sliding with  []
+time taken to compare:  5.823850631713867 ms
+time taken to remove:  5.886316299438477 ms
+Centre value to use :  -273.0
+varLeft :  800  varRight :  3505.1799999999994
+varLeft :  800  varRight :  3505.1799999999994
+--------------------------------------------------------------------------------
+length of nonzero :  179
+x is :  53  y is  479
+index to break :  177
+tempWindow :  [(53, 479)]
+counter :  1
+time taken to append:  5.321741104125977 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -266  diffCentreList :  [-266]
+extending sliding with  []
+time taken to compare:  5.551576614379883 ms
+time taken to remove:  5.601406097412109 ms
+Centre value to use :  -266.0
+varLeft :  800  varRight :  3526.4599999999996
+varLeft :  800  varRight :  3526.4599999999996
+--------------------------------------------------------------------------------
+length of nonzero :  214
+x is :  57  y is  479
+index to break :  212
+tempWindow :  [(57, 479)]
+counter :  1
+time taken to append:  5.365610122680664 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -262  diffCentreList :  [-262]
+extending sliding with  []
+time taken to compare:  5.609273910522461 ms
+time taken to remove:  5.658388137817383 ms
+Centre value to use :  -262.0
+varLeft :  800  varRight :  3547.4199999999996
+varLeft :  800  varRight :  3547.4199999999996
+--------------------------------------------------------------------------------
+length of nonzero :  390
+x is :  79  y is  479
+index to break :  388
+tempWindow :  [(79, 479)]
+counter :  1
+time taken to append:  5.380153656005859 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -240  diffCentreList :  [-240]
+extending sliding with  []
+time taken to compare:  5.616664886474609 ms
+time taken to remove:  5.666255950927734 ms
+Centre value to use :  -240.0
+varLeft :  800  varRight :  3566.6199999999994
+varLeft :  800  varRight :  3566.6199999999994
+--------------------------------------------------------------------------------
+length of nonzero :  644
+x is :  104  y is  479
+index to break :  642
+tempWindow :  [(104, 479)]
+counter :  1
+time taken to append:  5.400419235229492 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -215  diffCentreList :  [-215]
+extending sliding with  []
+time taken to compare:  5.637884140014648 ms
+time taken to remove:  5.686759948730469 ms
+Centre value to use :  -215.0
+varLeft :  800  varRight :  3583.8199999999993
+varLeft :  800  varRight :  3583.8199999999993
+--------------------------------------------------------------------------------
+length of nonzero :  846
+x is :  135  y is  479
+x is :  22  y is  479
+index to break :  843
+tempWindow :  [(135, 479), (22, 479)]
+counter :  2
+time taken to append:  3.4308433532714844 ms
+temp window length :  2 sliding window length :  2
+diff in x :  15  diff from centre :  -297  diffXList :  [15]  diffCentreList :  [-297]
+diff in x :  -6  diff from centre :  -184  diffXList :  [15, -6]  diffCentreList :  [-297, -184]
+extending sliding with  [(22, 479), (135, 479)]
+time taken to compare:  3.7021636962890625 ms
+sliding window :  [(7, 479), (141, 479), (22, 479), (135, 479)]  counter :  2
+sliding window :  [(22, 479), (135, 479)]  counter :  2
+time taken to remove:  3.8568973541259766 ms
+X value to use :  15
+Centre value to use :  -240.5
+varLeft :  800  varRight :  3655.9699999999993
+varLeft :  800  varRight :  3655.9699999999993
+--------------------------------------------------------------------------------
+length of nonzero :  984
+x is :  165  y is  479
+x is :  54  y is  479
+index to break :  981
+tempWindow :  [(165, 479), (54, 479)]
+counter :  2
+time taken to append:  5.985498428344727 ms
+temp window length :  2 sliding window length :  2
+diff in x :  32  diff from centre :  -265  diffXList :  [32]  diffCentreList :  [-265]
+diff in x :  30  diff from centre :  -154  diffXList :  [32, 30]  diffCentreList :  [-265, -154]
+extending sliding with  [(54, 479), (165, 479)]
+time taken to compare:  6.504058837890625 ms
+sliding window :  [(22, 479), (135, 479), (54, 479), (165, 479)]  counter :  2
+sliding window :  [(54, 479), (165, 479)]  counter :  2
+time taken to remove:  6.798744201660156 ms
+X value to use :  32
+Centre value to use :  -209.5
+varLeft :  800  varRight :  3790.0499999999993
+varLeft :  800  varRight :  3790.0499999999993
+--------------------------------------------------------------------------------
+length of nonzero :  395
+x is :  197  y is  479
+x is :  94  y is  479
+index to break :  392
+tempWindow :  [(197, 479), (94, 479)]
+counter :  2
+time taken to append:  5.553483963012695 ms
+temp window length :  2 sliding window length :  2
+diff in x :  40  diff from centre :  -225  diffXList :  [40]  diffCentreList :  [-225]
+diff in x :  32  diff from centre :  -122  diffXList :  [40, 32]  diffCentreList :  [-225, -122]
+extending sliding with  [(94, 479), (197, 479)]
+time taken to compare:  6.067752838134766 ms
+sliding window :  [(54, 479), (165, 479), (94, 479), (197, 479)]  counter :  2
+sliding window :  [(94, 479), (197, 479)]  counter :  2
+time taken to remove:  6.365776062011719 ms
+X value to use :  40
+Centre value to use :  -173.5
+varLeft :  800  varRight :  3928.8499999999995
+varLeft :  800  varRight :  3928.8499999999995
+--------------------------------------------------------------------------------
+length of nonzero :  1179
+x is :  249  y is  479
+x is :  138  y is  479
+index to break :  1176
+tempWindow :  [(249, 479), (138, 479)]
+counter :  2
+time taken to append:  5.528688430786133 ms
+temp window length :  2 sliding window length :  2
+diff in x :  44  diff from centre :  -181  diffXList :  [44]  diffCentreList :  [-181]
+diff in x :  52  diff from centre :  -70  diffXList :  [44, 52]  diffCentreList :  [-181, -70]
+extending sliding with  [(138, 479), (249, 479)]
+time taken to compare:  6.037473678588867 ms
+sliding window :  [(94, 479), (197, 479), (138, 479), (249, 479)]  counter :  2
+sliding window :  [(138, 479), (249, 479)]  counter :  2
+time taken to remove:  6.331682205200195 ms
+X value to use :  52
+Centre value to use :  -125.5
+varLeft :  800  varRight :  4059.3699999999994
+varLeft :  800  varRight :  3000
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  306  y is  479
+x is :  197  y is  479
+index to break :  957
+tempWindow :  [(306, 479), (197, 479)]
+counter :  2
+time taken to append:  5.648136138916016 ms
+temp window length :  2 sliding window length :  2
+diff in x :  59  diff from centre :  -122  diffXList :  [59]  diffCentreList :  [-122]
+diff in x :  57  diff from centre :  -13  diffXList :  [59, 57]  diffCentreList :  [-122, -13]
+extending sliding with  [(197, 479), (306, 479)]
+time taken to compare:  6.153345108032227 ms
+sliding window :  [(138, 479), (249, 479), (197, 479), (306, 479)]  counter :  2
+sliding window :  [(197, 479), (306, 479)]  counter :  2
+time taken to remove:  6.448984146118164 ms
+X value to use :  59
+Centre value to use :  -67.5
+varLeft :  800  varRight :  3079.65
+varLeft :  800  varRight :  3079.65
+--------------------------------------------------------------------------------
+length of nonzero :  444
+x is :  348  y is  479
+x is :  241  y is  479
+index to break :  441
+tempWindow :  [(348, 479), (241, 479)]
+counter :  2
+time taken to append:  5.760669708251953 ms
+temp window length :  2 sliding window length :  2
+diff in x :  44  diff from centre :  -78  diffXList :  [44]  diffCentreList :  [-78]
+diff in x :  42  diff from centre :  29  diffXList :  [44, 42]  diffCentreList :  [-78, 29]
+extending sliding with  [(241, 479), (348, 479)]
+time taken to compare:  6.345272064208984 ms
+sliding window :  [(197, 479), (306, 479), (241, 479), (348, 479)]  counter :  2
+sliding window :  [(241, 479), (348, 479)]  counter :  2
+time taken to remove:  6.649971008300781 ms
+X value to use :  44
+Centre value to use :  -24.5
+varLeft :  800  varRight :  3101.21
+varLeft :  800  varRight :  3101.21
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  400  y is  479
+x is :  288  y is  479
+index to break :  957
+tempWindow :  [(400, 479), (288, 479)]
+counter :  2
+time taken to append:  5.438089370727539 ms
+temp window length :  2 sliding window length :  2
+diff in x :  47  diff from centre :  -31  diffXList :  [47]  diffCentreList :  [-31]
+diff in x :  52  diff from centre :  81  diffXList :  [47, 52]  diffCentreList :  [-31, 81]
+extending sliding with  [(288, 479), (400, 479)]
+time taken to compare:  5.958318710327148 ms
+sliding window :  [(241, 479), (348, 479), (288, 479), (400, 479)]  counter :  2
+sliding window :  [(288, 479), (400, 479)]  counter :  2
+time taken to remove:  6.599187850952148 ms
+X value to use :  52
+Centre value to use :  25.0
+varLeft :  800  varRight :  2971.21
+varLeft :  800  varRight :  2971.21
+--------------------------------------------------------------------------------
+length of nonzero :  1125
+x is :  450  y is  479
+x is :  339  y is  479
+index to break :  1122
+tempWindow :  [(450, 479), (339, 479)]
+counter :  2
+time taken to append:  5.561590194702148 ms
+temp window length :  2 sliding window length :  2
+diff in x :  51  diff from centre :  20  diffXList :  [51]  diffCentreList :  [20]
+diff in x :  50  diff from centre :  131  diffXList :  [51, 50]  diffCentreList :  [20, 131]
+extending sliding with  [(339, 479), (450, 479)]
+time taken to compare:  6.0749053955078125 ms
+sliding window :  [(288, 479), (400, 479), (339, 479), (450, 479)]  counter :  2
+sliding window :  [(339, 479), (450, 479)]  counter :  2
+time taken to remove:  6.369352340698242 ms
+X value to use :  51
+Centre value to use :  75.5
+varLeft :  800  varRight :  2586.16
+varLeft :  800  varRight :  2586.16
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  492  y is  479
+x is :  380  y is  479
+index to break :  957
+tempWindow :  [(492, 479), (380, 479)]
+counter :  2
+time taken to append:  5.54656982421875 ms
+temp window length :  2 sliding window length :  2
+diff in x :  41  diff from centre :  61  diffXList :  [41]  diffCentreList :  [61]
+diff in x :  42  diff from centre :  173  diffXList :  [41, 42]  diffCentreList :  [61, 173]
+extending sliding with  [(380, 479), (492, 479)]
+time taken to compare:  6.064176559448242 ms
+sliding window :  [(339, 479), (450, 479), (380, 479), (492, 479)]  counter :  2
+sliding window :  [(380, 479), (492, 479)]  counter :  2
+time taken to remove:  6.363153457641602 ms
+X value to use :  42
+Centre value to use :  117.0
+varLeft :  800  varRight :  2094.7599999999998
+varLeft :  800  varRight :  2094.7599999999998
+--------------------------------------------------------------------------------
+length of nonzero :  1224
+x is :  535  y is  479
+x is :  422  y is  479
+index to break :  1221
+tempWindow :  [(535, 479), (422, 479)]
+counter :  2
+time taken to append:  5.757570266723633 ms
+temp window length :  2 sliding window length :  2
+diff in x :  42  diff from centre :  103  diffXList :  [42]  diffCentreList :  [103]
+diff in x :  43  diff from centre :  216  diffXList :  [42, 43]  diffCentreList :  [103, 216]
+extending sliding with  [(422, 479), (535, 479)]
+time taken to compare:  6.266117095947266 ms
+sliding window :  [(380, 479), (492, 479), (422, 479), (535, 479)]  counter :  2
+sliding window :  [(422, 479), (535, 479)]  counter :  2
+time taken to remove:  6.620168685913086 ms
+X value to use :  43
+Centre value to use :  159.5
+varLeft :  800  varRight :  1408.9099999999999
+varLeft :  800  varRight :  1408.9099999999999
+--------------------------------------------------------------------------------
+length of nonzero :  761
+x is :  586  y is  479
+x is :  469  y is  479
+index to break :  758
+tempWindow :  [(586, 479), (469, 479)]
+counter :  2
+time taken to append:  6.175041198730469 ms
+temp window length :  2 sliding window length :  2
+diff in x :  47  diff from centre :  150  diffXList :  [47]  diffCentreList :  [150]
+diff in x :  51  diff from centre :  267  diffXList :  [47, 51]  diffCentreList :  [150, 267]
+extending sliding with  [(469, 479), (586, 479)]
+time taken to compare:  6.694316864013672 ms
+sliding window :  [(422, 479), (535, 479), (469, 479), (586, 479)]  counter :  2
+sliding window :  [(469, 479), (586, 479)]  counter :  2
+time taken to remove:  6.99162483215332 ms
+X value to use :  51
+Centre value to use :  208.5
+varLeft :  800  varRight :  345.5599999999997
+varLeft :  800  varRight :  345.5599999999997
+--------------------------------------------------------------------------------
+length of nonzero :  758
+x is :  628  y is  479
+x is :  509  y is  479
+index to break :  755
+tempWindow :  [(628, 479), (509, 479)]
+counter :  2
+time taken to append:  5.635499954223633 ms
+temp window length :  2 sliding window length :  2
+diff in x :  40  diff from centre :  190  diffXList :  [40]  diffCentreList :  [190]
+diff in x :  42  diff from centre :  309  diffXList :  [40, 42]  diffCentreList :  [190, 309]
+extending sliding with  [(509, 479), (628, 479)]
+time taken to compare:  6.153106689453125 ms
+sliding window :  [(469, 479), (586, 479), (509, 479), (628, 479)]  counter :  2
+sliding window :  [(509, 479), (628, 479)]  counter :  2
+time taken to remove:  6.4601898193359375 ms
+X value to use :  42
+Centre value to use :  249.5
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  457
+x is :  529  y is  479
+index to break :  455
+tempWindow :  [(529, 479)]
+counter :  1
+time taken to append:  5.379199981689453 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  210  diffCentreList :  [210]
+extending sliding with  []
+time taken to compare:  5.622386932373047 ms
+time taken to remove:  5.671501159667969 ms
+Centre value to use :  210.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  537
+x is :  631  y is  479
+x is :  513  y is  479
+index to break :  534
+tempWindow :  [(631, 479), (513, 479)]
+counter :  2
+time taken to append:  6.467103958129883 ms
+temp window length :  2 sliding window length :  2
+diff in x :  4  diff from centre :  194  diffXList :  [4]  diffCentreList :  [194]
+diff in x :  3  diff from centre :  312  diffXList :  [4, 3]  diffCentreList :  [194, 312]
+extending sliding with  [(513, 479), (631, 479)]
+time taken to compare:  7.994413375854492 ms
+sliding window :  [(509, 479), (628, 479), (513, 479), (631, 479)]  counter :  2
+sliding window :  [(513, 479), (631, 479)]  counter :  2
+time taken to remove:  8.366823196411133 ms
+X value to use :  4
+Centre value to use :  253.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  678
+x is :  609  y is  479
+x is :  492  y is  479
+index to break :  675
+tempWindow :  [(609, 479), (492, 479)]
+counter :  2
+time taken to append:  6.165266036987305 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -21  diff from centre :  173  diffXList :  [-21]  diffCentreList :  [173]
+diff in x :  -22  diff from centre :  290  diffXList :  [-21, -22]  diffCentreList :  [173, 290]
+extending sliding with  [(492, 479), (609, 479)]
+time taken to compare:  6.70313835144043 ms
+sliding window :  [(513, 479), (631, 479), (492, 479), (609, 479)]  counter :  2
+sliding window :  [(492, 479), (609, 479)]  counter :  2
+time taken to remove:  7.051229476928711 ms
+X value to use :  -21
+Centre value to use :  231.5
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  772
+x is :  598  y is  479
+x is :  482  y is  479
+index to break :  769
+tempWindow :  [(598, 479), (482, 479)]
+counter :  2
+time taken to append:  6.0062408447265625 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -10  diff from centre :  163  diffXList :  [-10]  diffCentreList :  [163]
+diff in x :  -11  diff from centre :  279  diffXList :  [-10, -11]  diffCentreList :  [163, 279]
+extending sliding with  [(482, 479), (598, 479)]
+time taken to compare:  6.541013717651367 ms
+sliding window :  [(492, 479), (609, 479), (482, 479), (598, 479)]  counter :  2
+sliding window :  [(482, 479), (598, 479)]  counter :  2
+time taken to remove:  6.886005401611328 ms
+X value to use :  -10
+Centre value to use :  221.0
+varLeft :  800  varRight :  55.8
+varLeft :  800  varRight :  55.8
+--------------------------------------------------------------------------------
+length of nonzero :  905
+x is :  583  y is  479
+x is :  467  y is  479
+index to break :  902
+tempWindow :  [(583, 479), (467, 479)]
+counter :  2
+time taken to append:  5.461931228637695 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -15  diff from centre :  148  diffXList :  [-15]  diffCentreList :  [148]
+diff in x :  -15  diff from centre :  264  diffXList :  [-15, -15]  diffCentreList :  [148, 264]
+extending sliding with  [(467, 479), (583, 479)]
+time taken to compare:  6.06226921081543 ms
+sliding window :  [(482, 479), (598, 479), (467, 479), (583, 479)]  counter :  2
+sliding window :  [(467, 479), (583, 479)]  counter :  2
+time taken to remove:  6.364107131958008 ms
+X value to use :  -15
+Centre value to use :  206.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  960
+x is :  569  y is  479
+x is :  454  y is  479
+index to break :  957
+tempWindow :  [(569, 479), (454, 479)]
+counter :  2
+time taken to append:  6.020069122314453 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -13  diff from centre :  135  diffXList :  [-13]  diffCentreList :  [135]
+diff in x :  -14  diff from centre :  250  diffXList :  [-13, -14]  diffCentreList :  [135, 250]
+extending sliding with  [(454, 479), (569, 479)]
+time taken to compare:  6.578207015991211 ms
+sliding window :  [(467, 479), (583, 479), (454, 479), (569, 479)]  counter :  2
+sliding window :  [(454, 479), (569, 479)]  counter :  2
+time taken to remove:  6.915092468261719 ms
+X value to use :  -13
+Centre value to use :  192.5
+varLeft :  800  varRight :  49.949999999999996
+varLeft :  800  varRight :  49.949999999999996
+--------------------------------------------------------------------------------
+length of nonzero :  1023
+x is :  547  y is  479
+x is :  433  y is  479
+index to break :  1020
+tempWindow :  [(547, 479), (433, 479)]
+counter :  2
+time taken to append:  5.751609802246094 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -21  diff from centre :  114  diffXList :  [-21]  diffCentreList :  [114]
+diff in x :  -22  diff from centre :  228  diffXList :  [-21, -22]  diffCentreList :  [114, 228]
+extending sliding with  [(433, 479), (547, 479)]
+time taken to compare:  6.276845932006836 ms
+sliding window :  [(454, 479), (569, 479), (433, 479), (547, 479)]  counter :  2
+sliding window :  [(433, 479), (547, 479)]  counter :  2
+time taken to remove:  6.568193435668945 ms
+X value to use :  -21
+Centre value to use :  171.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  1014
+x is :  520  y is  479
+x is :  407  y is  479
+index to break :  1011
+tempWindow :  [(520, 479), (407, 479)]
+counter :  2
+time taken to append:  6.075859069824219 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -26  diff from centre :  88  diffXList :  [-26]  diffCentreList :  [88]
+diff in x :  -27  diff from centre :  201  diffXList :  [-26, -27]  diffCentreList :  [88, 201]
+extending sliding with  [(407, 479), (520, 479)]
+time taken to compare:  6.634712219238281 ms
+sliding window :  [(433, 479), (547, 479), (407, 479), (520, 479)]  counter :  2
+sliding window :  [(407, 479), (520, 479)]  counter :  2
+time taken to remove:  6.973981857299805 ms
+X value to use :  -26
+Centre value to use :  144.5
+varLeft :  800  varRight :  24.86
+varLeft :  800  varRight :  24.86
+--------------------------------------------------------------------------------
+length of nonzero :  985
+x is :  512  y is  479
+x is :  399  y is  479
+index to break :  982
+tempWindow :  [(512, 479), (399, 479)]
+counter :  2
+time taken to append:  10.976314544677734 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -8  diff from centre :  80  diffXList :  [-8]  diffCentreList :  [80]
+diff in x :  -8  diff from centre :  193  diffXList :  [-8, -8]  diffCentreList :  [80, 193]
+extending sliding with  [(399, 479), (512, 479)]
+time taken to compare:  11.591196060180664 ms
+sliding window :  [(407, 479), (520, 479), (399, 479), (512, 479)]  counter :  2
+sliding window :  [(399, 479), (512, 479)]  counter :  2
+time taken to remove:  11.906623840332031 ms
+X value to use :  -8
+Centre value to use :  136.5
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  969
+x is :  507  y is  479
+x is :  394  y is  479
+index to break :  966
+tempWindow :  [(507, 479), (394, 479)]
+counter :  2
+time taken to append:  5.770444869995117 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -5  diff from centre :  75  diffXList :  [-5]  diffCentreList :  [75]
+diff in x :  -5  diff from centre :  188  diffXList :  [-5, -5]  diffCentreList :  [75, 188]
+extending sliding with  [(394, 479), (507, 479)]
+time taken to compare:  6.320714950561523 ms
+sliding window :  [(399, 479), (512, 479), (394, 479), (507, 479)]  counter :  2
+sliding window :  [(394, 479), (507, 479)]  counter :  2
+time taken to remove:  6.618022918701172 ms
+X value to use :  -5
+Centre value to use :  131.5
+varLeft :  800  varRight :  86.85
+varLeft :  800  varRight :  86.85
+--------------------------------------------------------------------------------
+length of nonzero :  952
+x is :  510  y is  479
+x is :  397  y is  479
+index to break :  949
+tempWindow :  [(510, 479), (397, 479)]
+counter :  2
+time taken to append:  5.838155746459961 ms
+temp window length :  2 sliding window length :  2
+diff in x :  3  diff from centre :  78  diffXList :  [3]  diffCentreList :  [78]
+diff in x :  3  diff from centre :  191  diffXList :  [3, 3]  diffCentreList :  [78, 191]
+extending sliding with  [(397, 479), (510, 479)]
+time taken to compare:  7.250308990478516 ms
+sliding window :  [(394, 479), (507, 479), (397, 479), (510, 479)]  counter :  2
+sliding window :  [(397, 479), (510, 479)]  counter :  2
+time taken to remove:  7.601022720336914 ms
+X value to use :  3
+Centre value to use :  134.5
+varLeft :  800  varRight :  46.5
+varLeft :  800  varRight :  46.5
+--------------------------------------------------------------------------------
+length of nonzero :  935
+x is :  499  y is  479
+x is :  387  y is  479
+index to break :  932
+tempWindow :  [(499, 479), (387, 479)]
+counter :  2
+time taken to append:  5.785465240478516 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -10  diff from centre :  68  diffXList :  [-10]  diffCentreList :  [68]
+diff in x :  -11  diff from centre :  180  diffXList :  [-10, -11]  diffCentreList :  [68, 180]
+extending sliding with  [(387, 479), (499, 479)]
+time taken to compare:  6.576299667358398 ms
+sliding window :  [(397, 479), (510, 479), (387, 479), (499, 479)]  counter :  2
+sliding window :  [(387, 479), (499, 479)]  counter :  2
+time taken to remove:  6.88624382019043 ms
+X value to use :  -10
+Centre value to use :  124.0
+varLeft :  800  varRight :  21.7
+varLeft :  800  varRight :  21.7
+--------------------------------------------------------------------------------
+length of nonzero :  918
+x is :  484  y is  479
+x is :  371  y is  479
+index to break :  915
+tempWindow :  [(484, 479), (371, 479)]
+counter :  2
+time taken to append:  5.747556686401367 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -16  diff from centre :  52  diffXList :  [-16]  diffCentreList :  [52]
+diff in x :  -15  diff from centre :  165  diffXList :  [-16, -15]  diffCentreList :  [52, 165]
+extending sliding with  [(371, 479), (484, 479)]
+time taken to compare:  6.370067596435547 ms
+sliding window :  [(387, 479), (499, 479), (371, 479), (484, 479)]  counter :  2
+sliding window :  [(371, 479), (484, 479)]  counter :  2
+time taken to remove:  6.667852401733398 ms
+X value to use :  -15
+Centre value to use :  108.5
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  900
+x is :  461  y is  479
+x is :  349  y is  479
+index to break :  897
+tempWindow :  [(461, 479), (349, 479)]
+counter :  2
+time taken to append:  5.870580673217773 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -22  diff from centre :  30  diffXList :  [-22]  diffCentreList :  [30]
+diff in x :  -23  diff from centre :  142  diffXList :  [-22, -23]  diffCentreList :  [30, 142]
+extending sliding with  [(349, 479), (461, 479)]
+time taken to compare:  6.387948989868164 ms
+sliding window :  [(371, 479), (484, 479), (349, 479), (461, 479)]  counter :  2
+sliding window :  [(349, 479), (461, 479)]  counter :  2
+time taken to remove:  6.723165512084961 ms
+X value to use :  -22
+Centre value to use :  86.0
+varLeft :  800  varRight :  62.160000000000004
+varLeft :  800  varRight :  62.160000000000004
+--------------------------------------------------------------------------------
+length of nonzero :  872
+x is :  445  y is  479
+x is :  333  y is  479
+index to break :  869
+tempWindow :  [(445, 479), (333, 479)]
+counter :  2
+time taken to append:  5.778312683105469 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -16  diff from centre :  14  diffXList :  [-16]  diffCentreList :  [14]
+diff in x :  -16  diff from centre :  126  diffXList :  [-16, -16]  diffCentreList :  [14, 126]
+extending sliding with  [(333, 479), (445, 479)]
+time taken to compare:  6.284236907958984 ms
+sliding window :  [(349, 479), (461, 479), (333, 479), (445, 479)]  counter :  2
+sliding window :  [(333, 479), (445, 479)]  counter :  2
+time taken to remove:  6.70623779296875 ms
+X value to use :  -16
+Centre value to use :  70.0
+varLeft :  800  varRight :  39.760000000000005
+varLeft :  800  varRight :  39.760000000000005
+--------------------------------------------------------------------------------
+length of nonzero :  850
+x is :  424  y is  479
+x is :  312  y is  479
+index to break :  847
+tempWindow :  [(424, 479), (312, 479)]
+counter :  2
+time taken to append:  5.822658538818359 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -21  diff from centre :  -7  diffXList :  [-21]  diffCentreList :  [-7]
+diff in x :  -21  diff from centre :  105  diffXList :  [-21, -21]  diffCentreList :  [-7, 105]
+extending sliding with  [(312, 479), (424, 479)]
+time taken to compare:  6.378889083862305 ms
+sliding window :  [(333, 479), (445, 479), (312, 479), (424, 479)]  counter :  2
+sliding window :  [(312, 479), (424, 479)]  counter :  2
+time taken to remove:  6.673574447631836 ms
+X value to use :  -21
+Centre value to use :  49.0
+varLeft :  800  varRight :  100
+varLeft :  800  varRight :  100
+--------------------------------------------------------------------------------
+length of nonzero :  824
+x is :  405  y is  479
+x is :  293  y is  479
+index to break :  821
+tempWindow :  [(405, 479), (293, 479)]
+counter :  2
+time taken to append:  5.45954704284668 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -19  diff from centre :  -26  diffXList :  [-19]  diffCentreList :  [-26]
+diff in x :  -19  diff from centre :  86  diffXList :  [-19, -19]  diffCentreList :  [-26, 86]
+extending sliding with  [(293, 479), (405, 479)]
+time taken to compare:  5.980014801025391 ms
+sliding window :  [(312, 479), (424, 479), (293, 479), (405, 479)]  counter :  2
+sliding window :  [(293, 479), (405, 479)]  counter :  2
+time taken to remove:  6.2770843505859375 ms
+X value to use :  -19
+Centre value to use :  30.0
+varLeft :  800  varRight :  88.6
+varLeft :  800  varRight :  88.6
+--------------------------------------------------------------------------------
+length of nonzero :  796
+x is :  381  y is  479
+x is :  269  y is  479
+index to break :  793
+tempWindow :  [(381, 479), (269, 479)]
+counter :  2
+time taken to append:  5.774021148681641 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -24  diff from centre :  -50  diffXList :  [-24]  diffCentreList :  [-50]
+diff in x :  -24  diff from centre :  62  diffXList :  [-24, -24]  diffCentreList :  [-50, 62]
+extending sliding with  [(269, 479), (381, 479)]
+time taken to compare:  6.294488906860352 ms
+sliding window :  [(293, 479), (405, 479), (269, 479), (381, 479)]  counter :  2
+sliding window :  [(269, 479), (381, 479)]  counter :  2
+time taken to remove:  7.154703140258789 ms
+X value to use :  -24
+Centre value to use :  6.0
+varLeft :  800  varRight :  85.72
+varLeft :  800  varRight :  85.72
+--------------------------------------------------------------------------------
+length of nonzero :  780
+x is :  352  y is  479
+x is :  240  y is  479
+index to break :  777
+tempWindow :  [(352, 479), (240, 479)]
+counter :  2
+time taken to append:  5.566596984863281 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -29  diff from centre :  -79  diffXList :  [-29]  diffCentreList :  [-79]
+diff in x :  -29  diff from centre :  33  diffXList :  [-29, -29]  diffCentreList :  [-79, 33]
+extending sliding with  [(240, 479), (352, 479)]
+time taken to compare:  6.088733673095703 ms
+sliding window :  [(269, 479), (381, 479), (240, 479), (352, 479)]  counter :  2
+sliding window :  [(240, 479), (352, 479)]  counter :  2
+time taken to remove:  6.386756896972656 ms
+X value to use :  -29
+Centre value to use :  -23.0
+varLeft :  800  varRight :  152.42
+varLeft :  800  varRight :  152.42
+--------------------------------------------------------------------------------
+length of nonzero :  734
+x is :  334  y is  479
+x is :  221  y is  479
+index to break :  731
+tempWindow :  [(334, 479), (221, 479)]
+counter :  2
+time taken to append:  5.762815475463867 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -19  diff from centre :  -98  diffXList :  [-19]  diffCentreList :  [-98]
+diff in x :  -18  diff from centre :  15  diffXList :  [-19, -18]  diffCentreList :  [-98, 15]
+extending sliding with  [(221, 479), (334, 479)]
+time taken to compare:  6.326913833618164 ms
+sliding window :  [(240, 479), (352, 479), (221, 479), (334, 479)]  counter :  2
+sliding window :  [(221, 479), (334, 479)]  counter :  2
+time taken to remove:  7.80034065246582 ms
+X value to use :  -18
+Centre value to use :  -41.5
+varLeft :  800  varRight :  227.12
+varLeft :  800  varRight :  227.12
+--------------------------------------------------------------------------------
+length of nonzero :  705
+x is :  312  y is  479
+x is :  200  y is  479
+index to break :  702
+tempWindow :  [(312, 479), (200, 479)]
+counter :  2
+time taken to append:  5.543708801269531 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -21  diff from centre :  -119  diffXList :  [-21]  diffCentreList :  [-119]
+diff in x :  -22  diff from centre :  -7  diffXList :  [-21, -22]  diffCentreList :  [-119, -7]
+extending sliding with  [(200, 479), (312, 479)]
+time taken to compare:  6.096124649047852 ms
+sliding window :  [(221, 479), (334, 479), (200, 479), (312, 479)]  counter :  2
+sliding window :  [(200, 479), (312, 479)]  counter :  2
+time taken to remove:  6.407022476196289 ms
+X value to use :  -21
+Centre value to use :  -63.0
+varLeft :  800  varRight :  359.41999999999996
+varLeft :  800  varRight :  359.41999999999996
+--------------------------------------------------------------------------------
+length of nonzero :  682
+x is :  284  y is  479
+x is :  171  y is  479
+index to break :  679
+tempWindow :  [(284, 479), (171, 479)]
+counter :  2
+time taken to append:  5.916833877563477 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -29  diff from centre :  -148  diffXList :  [-29]  diffCentreList :  [-148]
+diff in x :  -28  diff from centre :  -35  diffXList :  [-29, -28]  diffCentreList :  [-148, -35]
+extending sliding with  [(171, 479), (284, 479)]
+time taken to compare:  6.556510925292969 ms
+sliding window :  [(200, 479), (312, 479), (171, 479), (284, 479)]  counter :  2
+sliding window :  [(171, 479), (284, 479)]  counter :  2
+time taken to remove:  6.905555725097656 ms
+X value to use :  -28
+Centre value to use :  -91.5
+varLeft :  800  varRight :  615.6199999999999
+varLeft :  800  varRight :  615.6199999999999
+--------------------------------------------------------------------------------
+length of nonzero :  620
+x is :  248  y is  479
+x is :  135  y is  479
+index to break :  617
+tempWindow :  [(248, 479), (135, 479)]
+counter :  2
+time taken to append:  5.614519119262695 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -36  diff from centre :  -184  diffXList :  [-36]  diffCentreList :  [-184]
+diff in x :  -36  diff from centre :  -71  diffXList :  [-36, -36]  diffCentreList :  [-184, -71]
+extending sliding with  [(135, 479), (248, 479)]
+time taken to compare:  6.163835525512695 ms
+sliding window :  [(171, 479), (284, 479), (135, 479), (248, 479)]  counter :  2
+sliding window :  [(135, 479), (248, 479)]  counter :  2
+time taken to remove:  6.472349166870117 ms
+X value to use :  -36
+Centre value to use :  -127.5
+varLeft :  800  varRight :  1074.62
+varLeft :  800  varRight :  1074.62
+--------------------------------------------------------------------------------
+length of nonzero :  646
+x is :  233  y is  479
+x is :  119  y is  479
+index to break :  643
+tempWindow :  [(233, 479), (119, 479)]
+counter :  2
+time taken to append:  5.742073059082031 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -16  diff from centre :  -200  diffXList :  [-16]  diffCentreList :  [-200]
+diff in x :  -15  diff from centre :  -86  diffXList :  [-16, -15]  diffCentreList :  [-200, -86]
+extending sliding with  [(119, 479), (233, 479)]
+time taken to compare:  6.258249282836914 ms
+sliding window :  [(135, 479), (248, 479), (119, 479), (233, 479)]  counter :  2
+sliding window :  [(119, 479), (233, 479)]  counter :  2
+time taken to remove:  6.557226181030273 ms
+X value to use :  -15
+Centre value to use :  -143.0
+varLeft :  800  varRight :  1289.12
+varLeft :  800  varRight :  1289.12
+--------------------------------------------------------------------------------
+length of nonzero :  621
+x is :  221  y is  479
+x is :  107  y is  479
+index to break :  618
+tempWindow :  [(221, 479), (107, 479)]
+counter :  2
+time taken to append:  6.061792373657227 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -12  diff from centre :  -212  diffXList :  [-12]  diffCentreList :  [-212]
+diff in x :  -12  diff from centre :  -98  diffXList :  [-12, -12]  diffCentreList :  [-212, -98]
+extending sliding with  [(107, 479), (221, 479)]
+time taken to compare:  6.617069244384766 ms
+sliding window :  [(119, 479), (233, 479), (107, 479), (221, 479)]  counter :  2
+sliding window :  [(107, 479), (221, 479)]  counter :  2
+time taken to remove:  6.964921951293945 ms
+X value to use :  -12
+Centre value to use :  -155.0
+varLeft :  800  varRight :  1475.12
+varLeft :  800  varRight :  1475.12
+--------------------------------------------------------------------------------
+length of nonzero :  619
+x is :  195  y is  479
+x is :  79  y is  479
+index to break :  616
+tempWindow :  [(195, 479), (79, 479)]
+counter :  2
+time taken to append:  5.441188812255859 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -28  diff from centre :  -240  diffXList :  [-28]  diffCentreList :  [-240]
+diff in x :  -26  diff from centre :  -124  diffXList :  [-28, -26]  diffCentreList :  [-240, -124]
+extending sliding with  [(79, 479), (195, 479)]
+time taken to compare:  5.972385406494141 ms
+sliding window :  [(107, 479), (221, 479), (79, 479), (195, 479)]  counter :  2
+sliding window :  [(79, 479), (195, 479)]  counter :  2
+time taken to remove:  6.264925003051758 ms
+X value to use :  -26
+Centre value to use :  -182.0
+varLeft :  800  varRight :  1948.32
+varLeft :  800  varRight :  1948.32
+--------------------------------------------------------------------------------
+length of nonzero :  344
+x is :  164  y is  479
+x is :  49  y is  479
+index to break :  341
+tempWindow :  [(164, 479), (49, 479)]
+counter :  2
+time taken to append:  6.148815155029297 ms
+temp window length :  2 sliding window length :  2
+diff in x :  -30  diff from centre :  -270  diffXList :  [-30]  diffCentreList :  [-270]
+diff in x :  -31  diff from centre :  -155  diffXList :  [-30, -31]  diffCentreList :  [-270, -155]
+extending sliding with  [(49, 479), (164, 479)]
+time taken to compare:  6.752967834472656 ms
+sliding window :  [(79, 479), (195, 479), (49, 479), (164, 479)]  counter :  2
+sliding window :  [(49, 479), (164, 479)]  counter :  2
+time taken to remove:  7.114171981811523 ms
+X value to use :  -30
+Centre value to use :  -212.5
+varLeft :  800  varRight :  2585.8199999999997
+varLeft :  800  varRight :  2585.8199999999997
+--------------------------------------------------------------------------------
+length of nonzero :  145
+x is :  148  y is  479
+index to break :  143
+tempWindow :  [(148, 479)]
+counter :  1
+time taken to append:  6.058692932128906 ms
+temp window length :  1 sliding window length :  2
+ diff from centre :  -171  diffCentreList :  [-171]
+extending sliding with  []
+time taken to compare:  6.3762664794921875 ms
+time taken to remove:  6.430149078369141 ms
+Centre value to use :  -171.0
+varLeft :  800  varRight :  3098.8199999999997
+varLeft :  800  varRight :  3098.8199999999997
+--------------------------------------------------------------------------------
+length of nonzero :  198
+index to break :  197
+tempWindow :  []
+counter :  0
+time taken to append:  5.904912948608398 ms
+temp window length :  0 sliding window length :  2
+extending sliding with  []
+time taken to compare:  6.101369857788086 ms
+time taken to remove:  6.187915802001953 ms
+no path detected
+Elapsed time :  22.593977451324463 secs
+starting ultrasonic process...
+True
+Measured Distance = 6.1 cm
+Obstacle detected
+True
+Measured Distance = 143.0 cm
+True
+Measured Distance = 143.1 cm
+True
+Measured Distance = 144.7 cm
+True
+Measured Distance = 144.4 cm
+True
+Measured Distance = 143.9 cm
+True
+Measured Distance = 144.3 cm
+True
+Measured Distance = 143.1 cm
+True
+Measured Distance = 143.4 cm
+True
+Measured Distance = 143.4 cm
+True
+Measured Distance = 131.8 cm
+True
+Measured Distance = 143.9 cm
+True
+Measured Distance = 143.0 cm
+True
+Measured Distance = 143.8 cm
+True
+Measured Distance = 143.4 cm
+True
+Measured Distance = 121.4 cm
+True
+Measured Distance = 144.2 cm
+True
+Measured Distance = 139.4 cm
+True
+Measured Distance = 133.7 cm
+True
+Measured Distance = 129.7 cm
+True
+Measured Distance = 125.0 cm
+True
+Measured Distance = 117.4 cm
+True
+Measured Distance = 49.8 cm
+True
+Measured Distance = 152.0 cm
+True
+Measured Distance = 211.5 cm
+True
+Measured Distance = 125.3 cm
+True
+Measured Distance = 120.2 cm
+True
+Measured Distance = 117.4 cm
+True
+Measured Distance = 115.2 cm
+True
+Measured Distance = 115.9 cm
+True
+Measured Distance = 107.8 cm
+True
+Measured Distance = 105.2 cm
+True
+Measured Distance = 100.8 cm
+True
+Measured Distance = 94.5 cm
+True
+Measured Distance = 88.0 cm
+True
+Measured Distance = 81.0 cm
+True
+Measured Distance = 54.9 cm
+True
+Measured Distance = 162.1 cm
+True
+Measured Distance = 122.1 cm
+True
+Measured Distance = 74.0 cm
+True
+Measured Distance = 91.9 cm
+True
+Measured Distance = 90.4 cm
+True
+Measured Distance = 108.4 cm
+True
+Measured Distance = 44.2 cm
+True
+Measured Distance = 103.1 cm
+False
+queue content:  end
+Stop ultrasonic process
