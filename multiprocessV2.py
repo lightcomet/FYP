@@ -196,7 +196,7 @@ def camera(stopQueue,settings):
             print("time taken to remove: ",(timeStop-timeStart)*1000, "ms")
         
             #controlling
-            if(counter == 0 and lenSlidingWindow == 0):
+            if(counter == 0 and lenTempWindow == 0):
                 print("no path detected")
                 pwma.stop()
                 pwmb.stop()
@@ -330,7 +330,7 @@ def ultrasonic(stopQueue,settings):
     GPIO.setup(settings["trigger"], GPIO.OUT)
     GPIO.setup(settings["echo"], GPIO.IN)
 
-    obstacleDist = 20.0
+    obstacleDist = 30.0
 
     def distance():
         # set Trigger to HIGH
