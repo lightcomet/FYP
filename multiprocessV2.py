@@ -385,7 +385,6 @@ def ultrasonic(stopQueue,settings):
 if __name__ == '__main__':
 
     stopQueue = Queue()
-    obstacleQueue = Queue()
     
     ultrasonic = Process(target=ultrasonic,args=( stopQueue,settings) )
     ultrasonic.start()
