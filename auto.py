@@ -9,56 +9,57 @@ import RPi.GPIO as GPIO
 from settings import config
 
 def movement (varLeft, varRight, moreSide, lessSide, pwma, pwmb, direction, findPath):
-    print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
-    if(findPath == True):
-        print("finding path")
-        print("no path detected")
-        pwma.stop()
-        pwmb.stop()
-##        pwma.start(1)
-##        pwmb.start(20)
-##        GPIO.output(settings["AIN1"],1)
-##        GPIO.output(settings["AIN2"],0)
-##        GPIO.output(settings["BIN1"],1)
-##        GPIO.output(settings["BIN2"],0)
-##        pwma.ChangeFrequency(varRight)
-##        pwmb.ChangeFrequency(varLeft)
-    else:
-        if(direction == "up"):
-            print("up movement")
-            print("more side : ", moreSide, "less side : ", lessSide)
-            pwma.start(moreSide)
-            pwmb.start(lessSide)
-            GPIO.output(settings["AIN1"],1)
-            GPIO.output(settings["AIN2"],0)
-            GPIO.output(settings["BIN1"],1)
-            GPIO.output(settings["BIN2"],0)
-            pwma.ChangeFrequency(varRight)
-            pwmb.ChangeFrequency(varLeft)
-            
-        elif(direction == "left"):
-            print("left movement")
-            print("more side : ", moreSide, "less side : ", lessSide)
-            pwma.start(moreSide)
-            pwmb.start(lessSide)
-            GPIO.output(settings["AIN1"],1)
-            GPIO.output(settings["AIN2"],0)
-            GPIO.output(settings["BIN1"],1)
-            GPIO.output(settings["BIN2"],0)
-            pwma.ChangeFrequency(varRight)
-            pwmb.ChangeFrequency(varLeft)
-            
-        elif(direction == "right"):
-            print("right movement")
-            print("more side : ", moreSide, "less side : ", lessSide)
-            pwma.start(lessSide)
-            pwmb.start(moreSide)
-            GPIO.output(settings["AIN1"],1)
-            GPIO.output(settings["AIN2"],0)
-            GPIO.output(settings["BIN1"],1)
-            GPIO.output(settings["BIN2"],0)
-            pwma.ChangeFrequency(varRight)
-            pwmb.ChangeFrequency(varLeft)
+    pass
+##    print("left: ", varLeft, " | ", "right: ", varRight, " | ", "direction: ", direction, " | ", "pathFlag: ",findPath)
+##    if(findPath == True):
+##        print("finding path")
+##        print("no path detected")
+##        pwma.stop()
+##        pwmb.stop()
+####        pwma.start(1)
+####        pwmb.start(20)
+####        GPIO.output(settings["AIN1"],1)
+####        GPIO.output(settings["AIN2"],0)
+####        GPIO.output(settings["BIN1"],1)
+####        GPIO.output(settings["BIN2"],0)
+####        pwma.ChangeFrequency(varRight)
+####        pwmb.ChangeFrequency(varLeft)
+##    else:
+##        if(direction == "up"):
+##            print("up movement")
+##            print("more side : ", moreSide, "less side : ", lessSide)
+##            pwma.start(moreSide)
+##            pwmb.start(lessSide)
+##            GPIO.output(settings["AIN1"],1)
+##            GPIO.output(settings["AIN2"],0)
+##            GPIO.output(settings["BIN1"],1)
+##            GPIO.output(settings["BIN2"],0)
+##            pwma.ChangeFrequency(varRight)
+##            pwmb.ChangeFrequency(varLeft)
+##            
+##        elif(direction == "left"):
+##            print("left movement")
+##            print("more side : ", moreSide, "less side : ", lessSide)
+##            pwma.start(moreSide)
+##            pwmb.start(lessSide)
+##            GPIO.output(settings["AIN1"],1)
+##            GPIO.output(settings["AIN2"],0)
+##            GPIO.output(settings["BIN1"],1)
+##            GPIO.output(settings["BIN2"],0)
+##            pwma.ChangeFrequency(varRight)
+##            pwmb.ChangeFrequency(varLeft)
+##            
+##        elif(direction == "right"):
+##            print("right movement")
+##            print("more side : ", moreSide, "less side : ", lessSide)
+##            pwma.start(lessSide)
+##            pwmb.start(moreSide)
+##            GPIO.output(settings["AIN1"],1)
+##            GPIO.output(settings["AIN2"],0)
+##            GPIO.output(settings["BIN1"],1)
+##            GPIO.output(settings["BIN2"],0)
+##            pwma.ChangeFrequency(varRight)
+##            pwmb.ChangeFrequency(varLeft)
     
 
 if __name__ == '__main__':
@@ -112,6 +113,8 @@ if __name__ == '__main__':
     # capture frames from camera
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
+        timeStart = time.time()
+        
         pathXList = []
         angleList = []
         parallelAngle = []
@@ -131,7 +134,7 @@ if __name__ == '__main__':
         edges = cv2.Canny(hsv, 80, 100)
         
         lines = cv2.HoughLinesP(edges, rho = 1, theta = np.pi/360, threshold =  100, minLineLength = settings["minLineLength"], maxLineGap = settings["maxLineGap"])
-        timeStart = time.time()
+
         print("--------------------------------------------------------------------------------")
         if(lines is not None):
             lenlines = len(lines)
@@ -139,6 +142,7 @@ if __name__ == '__main__':
             if(lenlines <= 8):
                 for line in lines:
                     for x1,y1,x2,y2 in line:
+                        print("x1 : ",x1," y1 : ",y1, " x2 : ",x2," y2 : ",y2)
                         dy = y2-y1
                         dx = x2-x1
                         angle = round(math.degrees(math.atan2(dy,dx)))
@@ -173,7 +177,7 @@ if __name__ == '__main__':
             angle,x1,y1,x2,y2 = i
 
             for currentParallelAngle in parallelAngle:
-                print("currentParallelAngle : ",currentParallelAngle)
+##                print("currentParallelAngle : ",currentParallelAngle)
                 difference = currentParallelAngle - angle
                 if(abs(difference) <= 2):
                     cv2.line(image,(x1,y1),(x2,y2),(0,255,0),2)

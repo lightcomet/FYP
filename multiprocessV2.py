@@ -78,6 +78,8 @@ def camera(stopQueue,settings):
         # capture frames from camera
         for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
+            timeStart = time.time()
+            
             tempWindow = []
             diffInX = []
             diffInCentre = []
@@ -97,9 +99,6 @@ def camera(stopQueue,settings):
             edges = cv2.Canny(hsv, 80, 100)
             
     ##        lines = cv2.HoughLinesP(edges, rho = 1, theta = np.pi/360, threshold =  100, minLineLength = settings["minLineLength"], maxLineGap = settings["maxLineGap"])
-            timeStart = time.time()
-            # show frame
-            cv2.imshow("Canny Image", edges)
             
             print("--------------------------------------------------------------------------------")
 
@@ -192,8 +191,7 @@ def camera(stopQueue,settings):
                         print("sliding window : ",slidingWindow, " counter : ",amtToRemove)
                 
             pathFlag = False
-            timeStop = time.time()
-            print("time taken to remove: ",(timeStop-timeStart)*1000, "ms")
+
         
             #controlling
             if(counter == 0 and lenTempWindow == 0):
@@ -289,6 +287,11 @@ def camera(stopQueue,settings):
                 pwmb.ChangeDutyCycle(20)
                 initialMotor = False
                 
+            timeStop = time.time()
+            print("time taken : ",(timeStop-timeStart)*1000, "ms")
+
+            # show frame
+            cv2.imshow("Canny Image", edges)
             
             # clear stream in preparation for next frame
             rawCapture.truncate(0)
