@@ -117,8 +117,8 @@ if __name__ == '__main__':
         parallelAngle = []
         consolidatedList = []
         toBeRemoved = []
-        varLeft = 2000
-        varRight = 1000
+        varLeft = 1000
+        varRight = 1250
             
         # image array, processing is done here
         image = frame.array
@@ -154,28 +154,24 @@ if __name__ == '__main__':
 ##        print(consolidatedList)
         print("angleList : ",angleList)
         parallelAngle = set(currentParallelAngle for currentParallelAngle in angleList if angleList.count(currentParallelAngle) > 1)
+        print("parellel Angle : ",parallelAngle)
+
+        if(parallelAngle == set()):
+            print("no parallel angle")
+            if(len(angleList) != 0):
+                averageAngles = round(sum(angleList)/len(angleList))
+                print("average angle", averageAngles)
+                for angle in angleList:
+                    difference = angle - averageAngles
+                    if(abs(difference) <= 10):
+                        print("add angle", averageAngles)
+                        parallelAngle.add(averageAngles)            
 
 
-##        angleDifference = [j-i for i, j in zip(angleList[:-1],angleList[1:])] #find difference between elements of list
-##        
-####        print(angleDifference)
-##        counter = 0
-##        if(len(angleDifference) == 1):
-##            pass
-##        else:
-##            for i in angleDifference:
-##                if(abs(i) < 5):
-##                    pass
-####                    print("parellel")
-##                else:
-####                    print("remove this index : ",counter)
-##                    toBeRemoved.append(counter-1)
-##                counter += 1
-##            for i in toBeRemoved:
-##                del consolidatedList[i]
         print("consolidated list : ", consolidatedList)
         for i in consolidatedList:
             angle,x1,y1,x2,y2 = i
+
             for currentParallelAngle in parallelAngle:
                 print("currentParallelAngle : ",currentParallelAngle)
                 difference = currentParallelAngle - angle
@@ -218,16 +214,16 @@ if __name__ == '__main__':
                     if(averageAngle < 0):
                         print("turn right")
                         if(averageAngle <= -20 and averageAngle > -37.5):
-                            moreSide = 30
+                            moreSide = 40
                             lessSide = 10
                         elif(averageAngle <= -37.5 and averageAngle > -55):
-                            moreSide = 25
+                            moreSide = 35
                             lessSide = 10
                         elif(averageAngle <= -55 and averageAngle > -72.5):
-                            moreSide = 20
+                            moreSide = 30
                             lessSide = 10    
                         elif(averageAngle <= -72.5 and averageAngle > -90):
-                            moreSide = 15
+                            moreSide = 25
                             lessSide = 10
                         else:
                             moreSide = 10
@@ -236,16 +232,16 @@ if __name__ == '__main__':
                     elif(averageAngle > 0):
                         print("turn left")
                         if(averageAngle >= 20 and averageAngle < 37.5):
-                            moreSide = 30
+                            moreSide = 40
                             lessSide = 10
                         elif(averageAngle >= 37.5 and averageAngle < 55):
-                            moreSide = 25
+                            moreSide = 35
                             lessSide = 10
                         elif(averageAngle >= 55 and averageAngle < 72.5):
-                            moreSide = 20
+                            moreSide = 30
                             lessSide = 10
                         elif(averageAngle >= 72.5 and averageAngle < 90):
-                            moreSide = 15
+                            moreSide = 25
                             lessSide = 10
                         else:
                             moreSide = 10
@@ -258,32 +254,32 @@ if __name__ == '__main__':
                     if(averageAngle <= 0):
                         print("turn right")
                         if(averageAngle <= -20 and averageAngle > -37.5):
-                            moreSide = 30
+                            moreSide = 40
                             lessSide = 10
                         elif(averageAngle <= -37.5 and averageAngle > -55):
-                            moreSide = 25
+                            moreSide = 35
                             lessSide = 10
                         elif(averageAngle <= -55 and averageAngle > -72.5):
-                            moreSide = 20
+                            moreSide = 30
                             lessSide = 10    
                         elif(averageAngle <= -72.5 and averageAngle > -90):
-                            moreSide = 15
+                            moreSide = 25
                             lessSide = 10
                         movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"right",pathFlag)
 
                     elif(averageAngle >= 0):
                         print("turn left")
                         if(averageAngle >= 20 and averageAngle < 37.5):
-                            moreSide = 30
+                            moreSide = 40
                             lessSide = 10
                         elif(averageAngle >= 37.5 and averageAngle < 55):
-                            moreSide = 25
+                            moreSide = 35
                             lessSide = 10
                         elif(averageAngle >= 55 and averageAngle < 72.5):
-                            moreSide = 20
+                            moreSide = 30
                             lessSide = 10
                         elif(averageAngle >= 72.5 and averageAngle < 90):
-                            moreSide = 15
+                            moreSide = 25
                             lessSide = 10
                         movement(varLeft,varRight,moreSide,lessSide,pwma,pwmb,"left",pathFlag)                    
 
