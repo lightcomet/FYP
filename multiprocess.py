@@ -6,12 +6,12 @@ import csv
 def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight):
     import RPi.GPIO as GPIO
     if(direction == "left"):
-        pwma.start(varRight)
-        GPIO.output(AIN1,1)
-        GPIO.output(AIN2,0)
-        pwmb.start(varLeft)
-        GPIO.output(BIN1,0)
-        GPIO.output(BIN2,0)
+##        pwma.start(varRight)
+##        GPIO.output(AIN1,1)
+##        GPIO.output(AIN2,0)
+##        pwmb.start(varLeft)
+##        GPIO.output(BIN1,0)
+##        GPIO.output(BIN2,0)
         print("turning left: " ,varRight)
         return varLeft, varRight
 
@@ -26,12 +26,12 @@ def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, B
             elif(increaseOrDecrease == "decrease"):
                 varRight -= stepSize
 
-            pwma.start(varRight)
-            GPIO.output(AIN1,1)
-            GPIO.output(AIN2,0)
-            pwmb.start(varLeft)
-            GPIO.output(BIN1,1)
-            GPIO.output(BIN2,0)
+##            pwma.start(varRight)
+##            GPIO.output(AIN1,1)
+##            GPIO.output(AIN2,0)
+##            pwmb.start(varLeft)
+##            GPIO.output(BIN1,1)
+##            GPIO.output(BIN2,0)
             print("forward")
             print("left: " ,varLeft)
             print("right: " ,varRight)
@@ -48,12 +48,12 @@ def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, B
             elif(increaseOrDecrease == "decrease"):
                 varRight -= stepSize
 
-            pwma.start(varRight)
-            GPIO.output(AIN1,0)
-            GPIO.output(AIN2,1)
-            pwmb.start(varLeft)
-            GPIO.output(BIN1,0)
-            GPIO.output(BIN2,1)
+##            pwma.start(varRight)
+##            GPIO.output(AIN1,0)
+##            GPIO.output(AIN2,1)
+##            pwmb.start(varLeft)
+##            GPIO.output(BIN1,0)
+##            GPIO.output(BIN2,1)
             print("backward")
             print("left: " ,varLeft)
             print("right: " ,varRight)
@@ -324,7 +324,8 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
 
         # capture frames from camera
         for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-
+            timeStart = time.time()
+            
 ##            cannyMin = cv2.getTrackbarPos('Canny Min','window')
 ##            cannyMax = cv2.getTrackbarPos('Canny Max','window')
             
@@ -466,6 +467,9 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
             if(nonZeroLeft is None or nonZeroRight is None):
                 print("empty")
                 varLeft, varRight = movement("left","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+
+            timeStop = time.time()
+            print("time taken : ",(timeStop-timeStart)*1000, "ms")
             
             cv2.imshow('mask1',leftMask)
             cv2.imshow('mask2',rightMask)
