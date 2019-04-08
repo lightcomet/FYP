@@ -6,12 +6,12 @@ import csv
 def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight):
     import RPi.GPIO as GPIO
     if(direction == "left"):
-##        pwma.start(varRight)
-##        GPIO.output(AIN1,1)
-##        GPIO.output(AIN2,0)
-##        pwmb.start(varLeft)
-##        GPIO.output(BIN1,0)
-##        GPIO.output(BIN2,0)
+       pwma.start(varRight)
+       GPIO.output(AIN1,1)
+       GPIO.output(AIN2,0)
+       pwmb.start(varLeft)
+       GPIO.output(BIN1,0)
+       GPIO.output(BIN2,0)
         print("turning left: " ,varRight)
         return varLeft, varRight
 
@@ -26,12 +26,12 @@ def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, B
             elif(increaseOrDecrease == "decrease"):
                 varRight -= stepSize
 
-##            pwma.start(varRight)
-##            GPIO.output(AIN1,1)
-##            GPIO.output(AIN2,0)
-##            pwmb.start(varLeft)
-##            GPIO.output(BIN1,1)
-##            GPIO.output(BIN2,0)
+           pwma.start(varRight)
+           GPIO.output(AIN1,1)
+           GPIO.output(AIN2,0)
+           pwmb.start(varLeft)
+           GPIO.output(BIN1,1)
+           GPIO.output(BIN2,0)
             print("forward")
             print("left: " ,varLeft)
             print("right: " ,varRight)
@@ -48,12 +48,12 @@ def movement (direction, increaseOrDecrease, stepSize, pwma, AIN1, AIN2, pwmb, B
             elif(increaseOrDecrease == "decrease"):
                 varRight -= stepSize
 
-##            pwma.start(varRight)
-##            GPIO.output(AIN1,0)
-##            GPIO.output(AIN2,1)
-##            pwmb.start(varLeft)
-##            GPIO.output(BIN1,0)
-##            GPIO.output(BIN2,1)
+           pwma.start(varRight)
+           GPIO.output(AIN1,0)
+           GPIO.output(AIN2,1)
+           pwmb.start(varLeft)
+           GPIO.output(BIN1,0)
+           GPIO.output(BIN2,1)
             print("backward")
             print("left: " ,varLeft)
             print("right: " ,varRight)
@@ -411,7 +411,27 @@ def camera(stopQueue, objectQueue, cameraLeftQueue, cameraRightQueue, imageQueue
                         print("recursive")
                         newLeftMask, newRightMask = masking(rightMask, rightMask.shape[1])
                         countZeroNewLeft = cv2.countNonZero(newLeftMask)
-                        countZeroNewRight = cv2.countNonZero(newRightMask)    
+                        countZeroNewRight = cv2.countNonZero(newRightMask)
+                    else:
+                        print("normal processing")
+                        lengthNonZeroLeft = len(nonZeroLeft)
+                        lengthNonZeroRight = len(nonZeroRight)
+                        totalLeft, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("left", False, nonZeroLeft, lengthNonZeroLeft)
+                        leftDiffFromCenter = leftX2 - (totalLeft/cameraHeight)
+                        print("left: ", leftDiffFromCenter)
+                        totalLeft = 0
+                        totalRight, dataLeftX, dataLeftY, dataRightX, dataRightY = distFromCenter ("right", False, nonZeroRight, lengthNonZeroRight)
+                        rightDiffFromCenter = (totalRight/cameraHeight)
+                        print("right: ",rightDiffFromCenter)
+                        totalRight = 0
+
+                        rightLeftDiff = rightDiffFromCenter - leftDiffFromCenter
+                        if(rightLeftDiff <=20 and rightLeftDiff >= 0):
+                            varLeft, varRight = movement("up","none",0, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                        elif(rightLeftDiff < 0):
+                            varLeft, varRight = movement("up","increase",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)
+                        else:
+                            varLeft, varRight = movement("up","decrease",0.1, pwma, AIN1, AIN2, pwmb, BIN1, BIN2, varLeft, varRight)    
                 else:
                     print("minor difference between left and right, normal processing")
 
